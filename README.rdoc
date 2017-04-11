@@ -21,8 +21,22 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+The spec, from the client:
 
+Here are a few reports we’d love to have. Let us know if they are doable:
+
+1. The most pertinent information is a comparison of student attendance through the years: the total # of students attending each year and an average #.  We’d also like to know the # of schools represented: the total number of schools attending Student Night per year and total number of schools per each Student Night.
+
+2. What schools are students coming from?
+
+3. How many students are attending per school?
+	  i.      Related: The % of attendees each school represents. Ex: If there are 5000 student attendees a year, what percentage are from Creighton, UNO, etc.?
+
+4. How many students are attending each program on Student Night? Ex: how many students came to the 7pm showing of X film?
+
+5. Visits per Student – Ex: How many students came 12 times a year or 5 times a year? It would be great if we could have these results by time period (in the last year, in the last 3 years, etc. ) and by school (ex: how many students from UNO came more than 6 times a year? )
+
+Finally, is there a way to do a simple dropdown menu to ask the question “how did you hear about Student Night?” Students could select from different choices such as “Friend,” “Teacher,” “Film Streams enewsletter,” etc.
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
