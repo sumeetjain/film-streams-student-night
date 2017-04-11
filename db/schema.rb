@@ -11,30 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-
-ActiveRecord::Schema.define(version: 20170411163254) do
-
+ActiveRecord::Schema.define(version: 20170411230151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "events", force: :cascade do |t|
-    t.date     "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "students", force: :cascade do |t|
-    t.string   "email"
-    t.string   "name"
-    t.string   "school"
-    t.integer  "year"
-    t.integer  "zip"
-    t.string   "referral"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "student_id"
@@ -43,10 +23,28 @@ ActiveRecord::Schema.define(version: 20170411163254) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "events", force: :cascade do |t|
+    t.date     "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string   "title"
     t.time     "time"
     t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string   "email"
+    t.string   "name"
+    t.string   "school"
+    t.string   "year"
+    t.integer  "zip"
+    t.string   "referral"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
