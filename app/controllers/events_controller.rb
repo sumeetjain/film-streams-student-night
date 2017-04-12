@@ -4,11 +4,19 @@ class EventsController < ApplicationController
 	end
 
 	def new
-		@event = Event.new
+		if load_current_user
+			@event = Event.new
+		else
+			redirect_to :root
+		end
 	end
 
 	def show
-		@event = Event.find(params[:id])
+		if load_current_user
+			@event = Event.find(params[:id])
+		else
+			redirect_to :root
+		end
 	end
 
 	def create
