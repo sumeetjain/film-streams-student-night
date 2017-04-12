@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :password_confirmation
+  attr_accessor :password, :password_confirmation
 
 	validates :username, presence: true
 	validates :password_digest, presence: true, length: { minimum: 6 }
@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, length: { maximum: 255},
 										format: { with: VALID_EMAIL_REGEX },
 										uniqueness: { case_sensitive:false }
+	has_secure_password
 end
