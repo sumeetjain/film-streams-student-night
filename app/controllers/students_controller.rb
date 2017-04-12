@@ -1,19 +1,11 @@
 class StudentsController < ApplicationController
 
-	# def index
-	# 	@student = Student.new
-	# end
-
-	# def new
-	# 	@student = Student.new
-	# end
-
 	def create
-  		session[:student] = Student.new(student_params)
-	  	if session[:student].save
-	  		session[:updated] = true	
-	    end
-	    redirect_to(:back)	  
+		session[:student] = Student.new(student_params)
+  	if session[:student].save
+  		session[:updated] = true	
+    end
+    redirect_to(:back)	  
   end
 
   def update
