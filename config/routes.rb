@@ -15,8 +15,6 @@ Rails.application.routes.draw do
   resources :free_movie_nights
 
   resources :login
-  # get '/login'                    => 'login#new'
-  # get 'login/:id'                 => 'login#create'
   get  '/logout'                  => 'login#destroy'
 
   
