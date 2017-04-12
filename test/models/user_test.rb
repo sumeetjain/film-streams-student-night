@@ -37,6 +37,14 @@ class UserTest < ActiveSupport::TestCase
 			assert_not @user.valid?, "#{invalid_address.inspect} should not be valid"
 		end
 	end
+
+	test "email address should be unique when submitted" do
+		duplicate_user = @user.dup
+		duplicate_user.email = @user.email.upcase
+		@user.save
+		assert_not duplicate_user.valid?
+	end
+
 end
 
 
