@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 	def create
-		debugger
 		@current_user = User.new(user_params)
-	    if @current_user.save && @current_user.authenticate(params[:user][:password])
+	    if @current_user.save && @current_user.authenticate(params[:user][:password_digest])
     	session[:user_id] = @current_user.id
     	flash[:success] = "Welcome to Film Streams Student Night!"
     	redirect_to events_index
