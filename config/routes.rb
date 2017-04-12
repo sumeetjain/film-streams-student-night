@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
 
+
+  post 'movies/:id' => 'movies#update'
+  post 'checkin/:id' => 'checkin#create'
+  get 'attendances/:id' => 'attendances#show'
+
   resources :students
   resources :events
   resources :checkin
-  post 'movies/:id' => 'movies#update'
+  resources :free_movie_nights
+  resources :movies
+  resources :attendances
 
-
-   resources :movies
-   resources :attendances
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

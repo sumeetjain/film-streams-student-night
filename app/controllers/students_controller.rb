@@ -11,13 +11,15 @@ class StudentsController < ApplicationController
 	def create
   		@student = Student.new(student_params)
 	  	@student.save
-  	render template: "students/new"
+	  	session[:updated] = true
+  	  redirect_to(:back)
   end
 
   def update
   	@student = Student.find(params[:id])
   	@student.update_attributes(student_params)
-  	render template: "students/index"
+  	session[:updated] = true
+  	redirect_to(:back)
   end
 
 	def student_params

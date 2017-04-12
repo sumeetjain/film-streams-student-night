@@ -1,0 +1,80 @@
+
+
+<% if session[:email].nil? %>
+
+  <h5>Hello Student Please check-in!</h5>
+
+
+  <div class="container bottom_space">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+      <% flash.each do |message_type, message| %>
+    <div class="text-center bg-<%= message_type %>"><%= message %></div>
+      <% end %>   
+        <%= form_for(@student, url:{controller: "checkin", action: "create"}) do |f| %>
+
+          <%= f.text_field :email, class: 'form-control' %>
+
+          <%= f.label :email_confirmation, class: "label-padding" %>
+          <%= f.text_field :email_confirmation, class: "form-control" %>
+
+          <%= f.submit "Submit", class: "btn button_top_margin btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<% elsif !session[:email].nil? && session[:updated].nil? %>
+
+  <div class="container bottom_space">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2 class="text-center">What are the details?</h2>
+
+        <%= form_for @student do |f| %>
+
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'form-control' %>
+
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+
+          <%= f.label :school %>
+          <%= f.text_field :school, class: 'form-control' %>
+
+          <%= f.label :year %>
+          <%= f.text_field :year, class: 'form-control' %>
+
+          <%= f.label :zip %>
+          <%= f.text_field :zip, class: 'form-control' %>
+
+          <%= f.label :referral %>
+          <%= f.text_field :referral, class: 'form-control' %>
+
+          <%= f.submit "Save Student", class: "btn btn-primary button_margin" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<% else %>
+
+  <form action="/attendances" method="post">
+    <h4> Which Movie are you seeing </h4>
+    <% @event.movies.each do |movie| %> 
+      <%= radio_button_tag(:movie_id, movie.id) %>
+      <%= label_tag(:movie_time, (Time.parse(movie.time.to_s).strftime('%l:%M'' %P')) ) %>
+      <%= label_tag(:movie_tile, movie.title ) %><br>
+    <% end %>
+    <button class="btn btn-success button_margin" name="commit" type='submit'>Finish</button>
+  </form>
+
+<% end %>
+
+
+
+
+
+
+
+
