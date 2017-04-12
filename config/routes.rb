@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :students
   resources :events
   resources :checkin
-  root 'attendances#new'
+  post 'movies/:id' => 'movies#update'
 
 
    resources :movies
