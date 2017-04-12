@@ -29,8 +29,8 @@
   <div class="container bottom_space">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h2 class="text-center">What are the details?</h2>
-
+        <h2 class="text-center">Please make sure all fields are filled</h2>
+        <%= render 'layouts/errors' %>
         <%= form_for @student do |f| %>
 
           <%= f.label :email %>
@@ -65,14 +65,12 @@
       <%= radio_button_tag(:movie_id, movie.id) %>
       <%= label_tag(:movie_time, (Time.parse(movie.time.to_s).strftime('%l:%M'' %P')) ) %>
       <%= label_tag(:movie_tile, movie.title ) %><br>
+      <input name="student_id" type="hidden" value="<%= @student.id %>">
     <% end %>
     <button class="btn btn-success button_margin" name="commit" type='submit'>Finish</button>
   </form>
 
 <% end %>
-
-
-
 
 
 

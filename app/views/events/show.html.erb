@@ -18,6 +18,21 @@
 	    </div>
 	  </div>
 	</div>
+
+
+	<div class="col-md-3">
+		<a class="btn btn-default share_button" href="/attendances/<%=@event.id%>" role="button">Shareable Link  <span class="glyphicon glyphicon-share"></span></a>
+
+		<form action="/events/<%=@event.id%>" method="post">
+			<button class="btn btn-danger navbar-btn" onclick="return confirm('Are you sure?')" name="id" value='<%=@event.id%>'>Delete Event  <span class="glyphicon glyphicon-remove"> </span></button>
+		</form>
+	</div>
+
+
+
+
+
+
 	<form action="/movies/<%=@event.id%>" method="post">
 		<table class="table">
 			<thead class="">

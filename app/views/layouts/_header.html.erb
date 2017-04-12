@@ -8,7 +8,7 @@
 				<% if !@current_user.id.nil? %>
 					<li><a href="/events" >Create New Event</a></li>
 				  <li><a href="/event/show" >Upcoming Events</a></li>
-					<li><%= link_to "Log out", logout_path, method: "delete" %></li>
+					<li><%= link_to "Log out", users_path, method: "delete" %></li>
 				<% else  %>
 				 	<li><a href="/users/new">Log In</a></li>
 				 	<li><a href="/users/create">Register </a></li>
