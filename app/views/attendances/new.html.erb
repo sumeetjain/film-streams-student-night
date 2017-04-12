@@ -1,1 +1,30 @@
-Hello Film Streams Attendances
+<div class="container bottom_space">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2 class="text-center">What are the details?</h2>
+
+      <%= form_for @student do |f| %>
+
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control' %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+
+        <%= f.label :school %>
+        <%= f.text_field :school, class: 'form-control' %>
+
+        <%= f.label :year %>
+        <%= f.text_field :year, class: 'form-control' %>
+
+        <%= f.label :zip %>
+        <%= f.text_field :zip, class: 'form-control' %>
+
+        <%= f.label :referral %>
+        <%= f.text_field :referral, class: 'form-control' %>
+
+        <%= f.submit "Save Student", class: "btn btn-primary button_margin" %>
+      <% end %>
+    </div>
+  </div>
+</div>

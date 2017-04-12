@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20170412140420) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170412140420) do
     t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "title"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -41,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170412140420) do
     t.string   "email"
     t.string   "name"
     t.string   "school"
-    t.integer  "year"
+    t.string   "year"
     t.integer  "zip"
     t.string   "referral"
     t.datetime "created_at", null: false

@@ -1,0 +1,54 @@
+<div class="container">
+	<div class="container bottom_space">
+	  <div class="row">
+	    <div class="col-md-6 col-md-offset-3">
+	      <h2 class="text-center">Movie Night Details</h2>
+	      <input id="e_id" type="hidden" value="<%= @event.id %>">
+
+	      <%= form_for @event do |f| %>
+
+	        <%= f.label :title %>
+	        <%= f.text_field :title, class: 'form-control' %>
+
+	        <%= f.label :date %>
+	        <%= f.date_field :date, class: 'form-control' %>
+
+	        <%= f.submit "Update Event", class: "btn btn-primary button_margin" %>
+	      <% end %>
+	    </div>
+	  </div>
+	</div>
+	<form action="/movies/<%=@event.id%>" method="post">
+		<table class="table">
+			<thead class="">
+				<tr class="table-bordered">
+					<th>Title</th>
+					<th>Time</th>
+					<th></th>
+				</tr>
+				<tr>
+					<th>
+						<span class ='label label-success' role='button' id='new_movie'>add movies <span class="glyphicon glyphicon-plus"></span> </span>
+					</th>
+				</tr>
+			</thead>
+			<tbody class="list_movies table-bordered">
+
+				<% @event.movies.each do |movie|  %>
+		  			<%= fields_for "movie[]", movie do |movie_f| %>
+							<tr class="movie_row">
+							  <td><%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+									<%= movie_f.text_field :title, placeholder: "movie name", class: 'form-control movie_name'%></td>
+								<td><%= movie_f.time_field :time, placeholder: "movie time", class: 'form-control'%></td>
+								<td><%= movie_f.text_field :delete, :value => "0", class: 'collapse delete_row'%>
+								<%= movie_f.number_field :event_id, class: 'collapse form-control event_id'%>
+								<span class="glyphicon glyphicon-remove text-danger remove_movie" role="button"></span></td>
+							</tr>
+					<% end %>
+				<% end %>	
+			</tbody>
+		</table>
+		<button class="btn btn-default" name="commit" type='submit'>Save Movies<span class="glyphicon glyphicon-save"></span></button>
+	</form>
+</div>
+

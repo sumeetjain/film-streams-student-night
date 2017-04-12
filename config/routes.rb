@@ -1,15 +1,25 @@
 Rails.application.routes.draw do
 
+
+  post 'movies/:id' => 'movies#update'
+  post 'checkin/:id' => 'checkin#create'
+  get 'attendances/:id' => 'attendances#show'
+
   resources :students
   resources :events
   resources :movies
   resources :attendances
   resources :users
+  resources :checkin
+  resources :free_movie_nights
+  root 'users#index'
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'users#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
