@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
+		debugger
 		@current_user = User.new(user_params)
 	    if @current_user.save && @current_user.authenticate(params[:user][:password])
     	session[:user_id] = @current_user.id
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
 	end
 
 	def user_params
-		params.require(:user).permit(:name, :password_digest,
+		params.require(:user).permit(:name, :password, :email,
 											:password_confirmation)
 	end
 end
