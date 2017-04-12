@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+
+
+	def show
+		@user = User.find(params[:id])
+	end
+
 	def create
 		@current_user = User.new(user_params)
 	    if @current_user.save && @current_user.authenticate(params[:user][:password_digest])
