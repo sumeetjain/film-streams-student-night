@@ -5,9 +5,13 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
+	def new
+		@user = User.new
+	end
+
 	def create
 		@current_user = User.new(user_params)
-	    if @current_user.save && @current_user.authenticate(params[:user][:password_digest])
+	    if @current_user.save && @current_user.authenticate(params[:user][:password])
     	session[:user_id] = @current_user.id
     	flash[:success] = "Welcome to Film Streams Student Night!"
     	redirect_to events_index
