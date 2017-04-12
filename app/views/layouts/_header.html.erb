@@ -8,12 +8,15 @@
 				<% if load_current_user %>
 					<li><a href="/events" >Create New Event</a></li>
 				  <li><a href="/event/show" >Upcoming Events</a></li>
-					<li><%= link_to "Log out", users_path, method: "delete" %></li>
+					<li><a href="/logout">Logout</a></li>
 				<% else  %>
-				 	<li><a href="/users/new">Log In</a></li>
-				 	<li><a href="/users/create">Register </a></li>
+				 	<li><a href="/login">Log In</a></li>
+				 	<li><a href="/users/new">Register</a></li>
 				<% end %>
 			</ul>
+
+			<%= render 'layouts/error_messages' %>
+
 	  </div>
 	</nav>
 </header>

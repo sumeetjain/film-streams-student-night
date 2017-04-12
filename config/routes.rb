@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root 'users#index'
 
   post 'movies/:id' => 'movies#update'
   post 'checkin/:id' => 'checkin#create'
@@ -12,7 +13,9 @@ Rails.application.routes.draw do
   resources :users
   resources :checkin
   resources :free_movie_nights
-  root 'users#index'
+
+  resources :login
+  get  '/logout'                  => 'login#destroy'
 
   
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,5 +1,9 @@
 class AttendancesController < ApplicationController
 
+	def index
+
+	end
+
 	def show
 		if session[:attended] == 'true'
 			clear_cookies
