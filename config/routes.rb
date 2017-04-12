@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   post 'movies/:id' => 'movies#update'
   post 'checkin/:id' => 'checkin#create'
   get 'attendances/:id' => 'attendances#show'
