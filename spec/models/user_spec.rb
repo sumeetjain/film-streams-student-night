@@ -59,7 +59,6 @@ RSpec.describe User, type: :model do
 	  		
 	  		@user.password = valid_password
 	  		@user.password_confirmation = valid_password
-	  		debugger
 	  		expect(@user.valid?).to equal (true)
 	  	end
 	  end

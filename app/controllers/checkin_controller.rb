@@ -11,7 +11,7 @@ class CheckinController < ApplicationController
 		  redirect_to "/students/show"
  		else
  			flash[:danger] = "Emails must match and be valid."
- 			redirect_to(:back)
+ 			redirect_to("/checkin/#{params[:id]}")
  		end
 	end
 
