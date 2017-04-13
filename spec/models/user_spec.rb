@@ -34,24 +34,6 @@ RSpec.describe User, type: :model do
 		end
   end
 
-	# test "email validation should accept valid addresses" do
-	# 	valid_addresses = %w[user@example.com User@foo.COM A_US-ER@foo.bar.org
-	# 											 first.last@foo.jp alice+bob@baz.cn]
-	# 	valid_addresses.each do |valid_address|
-	# 		@user.email = valid_address
-	# 		assert @user.valid?, "#{valid_address.inspect} should be valid"
-	# 	end
-	# end
-
-	# test "email validation should not accept invalid addresses" do
-	# 	invalid_addresses = %w[lskolksndg bork@ derp.corp moo,moo,moo 
-	# 												user.name.@example foo@bar_baz.com foo@bar+dong.mom]
-	# 	invalid_addresses.each do |invalid_address|
-	# 		@user.email = invalid_address
-	# 		assert_not @user.valid?, "#{invalid_address.inspect} should not be valid"
-	# 	end
-	# end
-
 	# test "email address should be unique when submitted" do
 	# 	duplicate_user = @user.dup
 	# 	duplicate_user.email = @user.email.upcase
