@@ -7,7 +7,7 @@
     <% flash.each do |message_type, message| %>
   <div class="text-center bg-<%= message_type %>"><%= message %></div>
     <% end %>   
-      <%= form_for(@student, url:{controller: "checkin", action: "create"}) do |f| %>
+      <%= form_for(:checkin) do |f| %>
 
         <%= f.text_field :email, class: 'form-control' %>
 
