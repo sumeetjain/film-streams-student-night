@@ -9,7 +9,7 @@ class CheckinController < ApplicationController
 			session[:info] = Sessions.new(params)
 		  redirect_to "/students/show"
  		else
- 			flash[:danger] = "Email must match and be valid."
+ 			flash[:danger] = "Emails must match and be valid."
  			redirect_to(:back)
  		end
 	end
