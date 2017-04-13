@@ -19,8 +19,7 @@ RSpec.describe CheckinController, type: :controller do
       expect(response).to redirect_to("/checkin/")
       expect(flash[:danger]).to be_truthy
       expect(session[:info]).to be_falsey
+      
     end
-
   end 
-
 end
