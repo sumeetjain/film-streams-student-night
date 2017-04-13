@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '#allows valid email' do
-  	it 'conforms to valid regex' do
+  	it 'is valid if conforms to regex' do
 			valid_addresses = %w[user@example.com User@foo.COM A_US-ER@foo.bar.org
 													 first.last@foo.jp alice+bob@baz.cn]
 			valid_addresses.each do |valid_address|
@@ -35,7 +35,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '#does not allow invalid email' do
-  	it 'if has invalid regex' do
+  	it 'is not valid with improper regex' do
 			invalid_addresses = %w[lskolksndg bork@ derp.corp moo,moo,moo 
 		 												user.name.@example foo@bar_baz.com foo@bar+dong.mom]
 			invalid_addresses.each do |invalid_address|
@@ -44,6 +44,17 @@ RSpec.describe User, type: :model do
 			end
 		end
   end
+
+  describe '#email should be unique' do
+  	it 'is invalid if duplicate' do
+  		dup_user = $user.dup
+  		dup_user.email = $user.email.upcase
+  		$user.save
+  		expect(dup_user.valid?).to equal (false)
+  	end
+  end
+
+
 
 	# test "email address should be unique when submitted" do
 	# 	duplicate_user = @user.dup
