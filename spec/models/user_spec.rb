@@ -53,16 +53,7 @@ RSpec.describe User, type: :model do
   		expect(dup_user.valid?).to equal (false)
   	end
   end
-
-
-
-	# test "email address should be unique when submitted" do
-	# 	duplicate_user = @user.dup
-	# 	duplicate_user.email = @user.email.upcase
-	# 	@user.save
-	# 	assert_not duplicate_user.valid?
-	# end
-
+  
 	# test "password should be nonempty" do
 	# 	@user.password_digest = @user.password_confirmation = " "
 	# 	assert_not @user.valid?
