@@ -15,7 +15,9 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @student = Student.find_by(email: session[:email]) || Student.new(email: session[:email])
+
+    email = session[:info]["email"]
+    @student = Student.find_by(email: email) || Student.new(email: email)
   end
 
 	def student_params

@@ -5,8 +5,4 @@ class Sessions
 		@email = params[:student][:email]
 	end
 
-	def clear
-		session[:info] = nil
-	end
-
 end

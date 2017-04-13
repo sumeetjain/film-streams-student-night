@@ -5,7 +5,7 @@
     <%= radio_button_tag(:movie_id, movie.id) %>
     <%= label_tag(:movie_time, (Time.parse(movie.time.to_s).strftime('%l:%M'' %P')) ) %>
     <%= label_tag(:movie_tile, movie.title ) %><br>
-    <input name="student_id" type="hidden" value="<%= @student.id %>">
+    <input name="student_id" type="hidden" value="<%= @student_id %>">
   <% end %>
   <button class="btn btn-success button_margin" name="commit" type='submit'>Finish</button>
 </form>
