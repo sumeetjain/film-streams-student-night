@@ -1,0 +1,5 @@
+<div class="row">
+	<% flash.each do |message_type, message| %>
+	  <div class="text-center bg-<%= message_type %>"><%= message %></div>
+	<% end %> 
+</div>
