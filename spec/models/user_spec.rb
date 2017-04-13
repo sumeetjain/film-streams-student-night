@@ -23,13 +23,24 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#email is valid' do
+  describe '#allows valid email' do
   	it 'conforms to valid regex' do
 			valid_addresses = %w[user@example.com User@foo.COM A_US-ER@foo.bar.org
 													 first.last@foo.jp alice+bob@baz.cn]
 			valid_addresses.each do |valid_address|
 				$user.email = valid_address
 				expect($user.valid?).to equal (true)
+			end
+		end
+  end
+
+  describe '#does not allow invalid email' do
+  	it 'if has invalid regex' do
+			invalid_addresses = %w[lskolksndg bork@ derp.corp moo,moo,moo 
+		 												user.name.@example foo@bar_baz.com foo@bar+dong.mom]
+			invalid_addresses.each do |invalid_address|
+				$user.email = invalid_address
+				expect($user.valid?).to equal (false)
 			end
 		end
   end
