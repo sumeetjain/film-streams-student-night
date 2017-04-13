@@ -1,0 +1,21 @@
+<h5>Hello Student Please check-in!</h5>
+
+
+<div class="container bottom_space">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+    <% flash.each do |message_type, message| %>
+  <div class="text-center bg-<%= message_type %>"><%= message %></div>
+    <% end %>   
+      <%= form_for(@student, url:{controller: "checkin", action: "create"}) do |f| %>
+
+        <%= f.text_field :email, class: 'form-control' %>
+
+        <%= f.label :email_confirmation, class: "label-padding" %>
+        <%= f.text_field :email_confirmation, class: "form-control" %>
+
+        <%= f.submit "Submit", class: "btn button_top_margin btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
