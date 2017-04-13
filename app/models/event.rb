@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
 	has_many :movies
 	
 	validates :date, presence: true
+  validates :title, presence: true
 
   # Get the title of the event, or the default.
   # 
