@@ -4,6 +4,7 @@ RSpec.describe EventsController, type: :controller do
   describe '#new' do
     context 'when not logged in' do
       it 'redirects home' do
+        #Setup 
         get :new
         expect(response).to redirect_to(root_path)
       end

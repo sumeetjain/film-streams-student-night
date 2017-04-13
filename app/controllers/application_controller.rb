@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
       @current_user = User.find(session[:user_id])
     else
       @current_user = User.new
+      session[:user_id] = nil
     end
   end
 
