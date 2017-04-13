@@ -2,82 +2,82 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-	$user = User.new(name: "Example User", password: "moocows",
-					 password_confirmation: "moocows", email: "moogle@doogle.com")	
+	describe '#User should be valid if' do
 
-	describe '#should be valid' do
-    it 'returns true if valid' do
-    ## Setup 
+	  before(:each) do
+  	  @user = User.new(name: "Example", password: "moocows", password_confirmation: "moocows", email: "moogle@doogle.com")	
+	  end
 
-    ## Exercise / Validation
-      expect($user.valid?).to equal (true)
+    it 'all params are valid' do
+    # Exercise / Validation
+      expect(@user.valid?).to equal (true)
     end
-  end
 
-  describe '#name only valid if present' do
-    it 'is not valid if name is empty' do
-    ## Setup 
-    user = User.new(name: "  ")
-    ## Exercise / Validation
-      expect(user.valid?).to equal (false)
+    it 'name is nonempty' do
+    # Setup
+    	@user.name = " "
+    # Exercise / Validation
+      expect(@user.valid?).to equal (false)
     end
-  end
 
-  describe '#allows valid email' do
-  	# Setup
-  	it 'is valid if conforms to regex' do
+  	it 'email conforms to regex' do
+	  	# Setup
 			valid_addresses = %w[user@example.com User@foo.COM A_US-ER@foo.bar.org
 													 first.last@foo.jp alice+bob@baz.cn]
 		# Execute / Validation
 			valid_addresses.each do |valid_address|
-				$user.email = valid_address
-				expect($user.valid?).to equal (true)
+				@user.email = valid_address
+				expect(@user.valid?).to equal (true)
 			end
 		end
-  end
 
-  describe '#does not allow invalid email' do
-  	it 'is not valid with improper regex' do
+  	it 'lacks improper regex' do
   		# Setup
 			invalid_addresses = %w[lskolksndg bork@ derp.corp moo,moo,moo 
 		 												user.name.@example foo@bar_baz.com foo@bar+dong.mom]
 		 	# Execute / Validation
 			invalid_addresses.each do |invalid_address|
-				$user.email = invalid_address
-				expect($user.valid?).to equal (false)
+				@user.email = invalid_address
+				expect(@user.valid?).to equal (false)
 			end
 		end
-  end
 
-  describe '#email should be unique' do
-  	it 'is invalid if duplicate' do
+  	it 'not a duplicate email' do
   		# Setup
-  		dup_user = $user.dup
-  		dup_user.email = $user.email.upcase
-  		$user.save
+  		dup_user = @user.dup
+  		dup_user.email = @user.email.upcase
+  		@user.save
   		# Execute / Validation
   		expect(dup_user.valid?).to equal (false)
   	end
-  end
 
-  describe '#password should be nonempty' do
-  	# Setup
+  	it 'password in valid form' do
+  		# Setup
+  		valid_passwords = %w[moomoo cowcow 12er34ow mpx3Ewe password]
+  		# Execute / Validation
+	  	valid_passwords.each do |valid_password|
+	  		
+	  		@user.password = valid_password
+	  		@user.password_confirmation = valid_password
+	  		debugger
+	  		expect(@user.valid?).to equal (true)
+	  	end
+	  end
+
   	it 'is invalid if password empty' do
-  		user = User.new(password: "  ")
-  		expect(user.valid?).to equal (false)
+	  	# Setup
+  		@user.password = "  "
+  		@user.password_confirmation = "  "
+  		#Execute / Validation
+  		expect(@user.valid?).to equal (false)
+  	end
+
+  	it 'is invalid if too short' do
+	  	# Setup
+	  	@user.password = "ww"
+	  	@user.password_confirmation = "ww"
+	  	#Execute / Validation
+	  	expect(@user.valid?).to equal (false)
   	end
   end
-
-
-
-	# test "password should be nonempty" do
-	# 	@user.password_digest = @user.password_confirmation = " "
-	# 	assert_not @user.valid?
-	# end
-
-	# test "password should have min length" do
-	# 	@user.password_digest = @user.password_confirmation = "a"
-	# 	assert_not @user.valid?
-	# end
-
 end
