@@ -7,10 +7,18 @@ RSpec.describe CheckinController, type: :controller do
       post 'create', :student => {"email" => "email@example.com", "email_confirmation" => "email@example.com"}
       # Exercise
       expect(response).to redirect_to("/students/show")
+      expect(flash[:danger]).to be_falsey
+      expect(session[:info]).to be_truthy
 
-      post 'create', :student => {"email" => "email", "email_confirmation" => "email"}
+    end
+
+    it 'redirects to /checkin' do
+      # Setup
+      post 'create', :student => {"email" => "invalid", "email_confirmation" => "invalid"}
       # Exercise
       expect(response).to redirect_to("/checkin/")
+      expect(flash[:danger]).to be_truthy
+      expect(session[:info]).to be_falsey
     end
 
   end 
