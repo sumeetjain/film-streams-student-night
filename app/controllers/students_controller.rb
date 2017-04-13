@@ -1,18 +1,23 @@
 class StudentsController < ApplicationController
 
 	def create
-		session[:student] = Student.new(student_params)
-  	if session[:student].save
-  		session[:updated] = true	
+		@student = Student.new(student_params)
+  	if @student.save
+      redirect_to "/attendances/show"	
+    else
+    render :show
     end
-    redirect_to(:back)	  
   end
 
   def update
   	@student = Student.find(params[:id])
   	@student.update_attributes(student_params)
-  	session[:updated] = true
-  	redirect_to(:back)
+  	redirect_to "/attendances/show"
+  end
+
+  def show
+    email = session[:info]["email"]
+    @student = Student.find_by(email: email) || Student.new(email: email)
   end
 
 	def student_params
@@ -20,5 +25,3 @@ class StudentsController < ApplicationController
 	end
 
 end
-
-

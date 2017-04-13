@@ -1,13 +1,6 @@
 class MoviesController < ApplicationController
 
-
 	def update
-
-		debugger
-
-	end
-
-		def update
 		params[:movie].each do |key, movie|
 			id = (key.to_i < 1491481669659) ? Movie.find(key) : nil 
 			if movie[:delete] == "1" && id != nil
@@ -20,7 +13,6 @@ class MoviesController < ApplicationController
 		end
 		redirect_to(:back)
 	end
-
 
 	def save(movie)
 		movie = Movie.new(movie_params(movie))

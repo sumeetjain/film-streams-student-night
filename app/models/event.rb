@@ -1,9 +1,10 @@
 class Event < ActiveRecord::Base
-  DEFAULT_TITLE = "Strawberry"
+  DEFAULT_TITLE = "Free Movie Night"
 
 	has_many :movies
 	
 	validates :date, presence: true
+  validates :title, presence: true
 
   # Get the title of the event, or the default.
   # 
