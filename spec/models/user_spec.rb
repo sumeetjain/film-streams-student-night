@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
   	describe '#name only valid if present' do
       it 'is not valid if name is empty' do
       ## Setup 
-      user = user.New(name: "  ")
+      user = User.new(name: "  ")
       ## Exercise / Validation
         expect(user.valid?).to equal (false)
       end
