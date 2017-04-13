@@ -6,27 +6,33 @@ RSpec.describe User, type: :model do
 					 password_confirmation: "moocows", email: "moogle@doogle.com")	
 
 	describe '#should be valid' do
-      it 'returns true if valid' do
-      ## Setup 
+    it 'returns true if valid' do
+    ## Setup 
 
-      ## Exercise / Validation
-        expect($user.valid?).to equal (true)
-      end
+    ## Exercise / Validation
+      expect($user.valid?).to equal (true)
+    end
   end
 
-  	describe '#name only valid if present' do
-      it 'is not valid if name is empty' do
-      ## Setup 
-      user = User.new(name: "  ")
-      ## Exercise / Validation
-        expect(user.valid?).to equal (false)
-      end
+  describe '#name only valid if present' do
+    it 'is not valid if name is empty' do
+    ## Setup 
+    user = User.new(name: "  ")
+    ## Exercise / Validation
+      expect(user.valid?).to equal (false)
+    end
   end
 
-	# test "name should be present" do
-	# 	@user.name = "    "
-	# 	assert_not @user.valid?
-	# end
+  describe '#email is valid' do
+  	it 'conforms to valid regex' do
+			valid_addresses = %w[user@example.com User@foo.COM A_US-ER@foo.bar.org
+													 first.last@foo.jp alice+bob@baz.cn]
+			valid_addresses.each do |valid_address|
+				$user.email = valid_address
+				expect($user.valid?).to equal (true)
+			end
+		end
+  end
 
 	# test "email validation should accept valid addresses" do
 	# 	valid_addresses = %w[user@example.com User@foo.COM A_US-ER@foo.bar.org
