@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   resources :users
   resources :checkin
   resources :free_movie_nights
-
   resources :login
   get  '/logout'                  => 'login#destroy'
 

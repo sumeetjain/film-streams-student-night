@@ -31,7 +31,6 @@ RSpec.describe EventsController, type: :controller do
 
     context 'when logged in' do
       it 'renders its view' do
-        debugger
         allow(controller).to receive(:load_current_user) { User.new }
         allow(Event).to receive(:find) { Event.new(date: Date.today) }
 
