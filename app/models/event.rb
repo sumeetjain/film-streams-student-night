@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  DEFAULT_TITLE = "Strawberry"
+  DEFAULT_TITLE = "Free Movie Night"
 
 	has_many :movies
 	

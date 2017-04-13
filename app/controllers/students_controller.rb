@@ -4,8 +4,9 @@ class StudentsController < ApplicationController
 		@student = Student.new(student_params)
   	if @student.save
       redirect_to "/attendances/show"	
-    end
+    else
     render :show
+    end
   end
 
   def update

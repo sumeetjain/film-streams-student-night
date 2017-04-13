@@ -1,6 +1,7 @@
 class CheckinController < ApplicationController
 
 	def show
+		session[:info] = nil
 		@student = Student.new
 	end
 
