@@ -5,7 +5,7 @@
 	      <a class="navbar-brand" href="/">Film Streams Student Night</a>
 	    </div>
 	    <ul class="nav navbar-nav navbar-right">
-				<% if load_current_user %>
+				<% if !session[:user_id].nil? %>
 					<li><a href="/events" >Create New Event</a></li>
 				  <li><a href="/event/show" >Upcoming Events</a></li>
 					<li><a href="/logout">Logout</a></li>

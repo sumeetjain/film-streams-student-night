@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe CheckinController, type: :controller do
+RSpec.describe CheckinsController, type: :controller do
   describe '#show' do
-    it 'clears session[:info]'
+    it 'clears session[:info]' do
       get :show, {}, {info: 1}
 
       expect(session[:info]).to be_nil
     end
 
-    it 'renders its view'
+    it 'renders its view' do
       get :show
 
       expect(response).to render_template(:show)

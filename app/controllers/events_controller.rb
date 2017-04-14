@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 		if load_current_user
 			@event = Event.new
 		else
-			redirect_to :root
+			redirect_to root_path
 		end
 	end
 
@@ -15,7 +15,7 @@ class EventsController < ApplicationController
 		if load_current_user
 			@event = Event.find(params[:id])
 		else
-			redirect_to :root
+			redirect_to root_path
 		end
 	end
 
