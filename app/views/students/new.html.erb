@@ -1,9 +1,9 @@
-<div class="container bottom_space">
+<!-- FORM FOR CREATING A NEW STUDENT --><div class="container bottom_space">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <h2 class="text-center">Please make sure all fields are filled</h2>
       <%= render 'layouts/student_errors' %>
-      <%= form_for @checkin.student do |f| %>
+      <%= form_for(@student, url:{controller: "students", action: "create"}) do |f| %>
 
         <%= f.label :email %>
         <%= f.text_field :email, class: 'form-control' %>

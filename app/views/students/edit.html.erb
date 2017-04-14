@@ -3,7 +3,8 @@
     <div class="col-md-6 col-md-offset-3">
       <h2 class="text-center">Please make sure all fields are filled</h2>
       <%= render 'layouts/student_errors' %>
-      <%= form_for @checkin.student do |f| %>
+
+      <%= form_for(@student, url:{controller: "students", action: "update"}) do |f| %>
 
         <%= f.label :email %>
         <%= f.text_field :email, class: 'form-control' %>
@@ -23,7 +24,7 @@
         <%= f.label :referral %>
         <%= f.text_field :referral, class: 'form-control' %>
 
-        <%= f.submit "Save Student", class: "btn btn-primary button_margin" %>
+        <%= f.submit "Update Student", class: "btn btn-primary button_margin" %>
       <% end %>
     </div>
   </div>
