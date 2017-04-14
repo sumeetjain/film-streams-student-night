@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # resources :movies
   resources :users
   resources :login
+  resources :stats, only: [:index]
   get  '/logout'                  => 'login#destroy'
 
   # ---------------------------------------------------------------------------
