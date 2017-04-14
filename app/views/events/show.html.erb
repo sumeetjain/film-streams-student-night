@@ -21,12 +21,13 @@
 
 
 	<div class="col-md-3">
-		<a class="btn btn-default share_button" href="/checkin/<%=@event.id%>" role="button">Shareable Link  <span class="glyphicon glyphicon-share"></span></a>
+		<a class="btn btn-default share_button" href="/events/<%=@event.id%>/checkins/new" role="button">Shareable Link  <span class="glyphicon glyphicon-share"></span></a>
 
-		<form action="/events/<%=@event.id%>" method="post">
-			<button class="btn btn-danger navbar-btn" onclick="return confirm('Are you sure?')" name="id" value='<%=@event.id%>'>Delete Event  <span class="glyphicon glyphicon-remove"> </span></button>
-		</form>
+		<%= link_to 'Delete Event', event_path(@event), 
+		data: {:confirm => 'Are you sure? This will delete report information as well.'}, :method => :delete %>
 	</div>
+
+	
 
 	<form action="/movies/<%=@event.id%>" method="post">
 		<table class="table">

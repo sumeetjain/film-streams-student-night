@@ -19,6 +19,15 @@ class EventsController < ApplicationController
 		end
 	end
 
+	def destroy
+		if load_current_user
+			event = Event.find(params[:id])
+			event.delete
+			flash[:danger] = "Event deleted."
+		end 
+	    redirect_to events_path
+	end
+
 	def create
 		@event = Event.new(event_params)
 		if @event.save
