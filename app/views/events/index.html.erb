@@ -1,14 +1,12 @@
 <h1>Hello Admin, Master of the Universe</h1>
 
-<%= button_to "Upcoming Events", events_path, :method => "get", class: "btn-lg btn-default" %>
-
 <%= button_to "View All Events Statistics", stats_path,  :method => "get", class: "btn-lg btn-default" %>
 
 <% @events.each do |event| %>
 	<div class="row">
 		<div class="col-md-4">
 			<div>
-				<h1><%= (Time.parse(event.date.to_s).strftime('%a, %b %d ')) %></h1>
+				<h1><%= (Time.parse(event.date.to_s).strftime('%a, %b %d, \'%y ')) %></h1>
 			</div>
 			<div class="col-md-offset-5 text-left">
 				<h1><%= event.title.capitalize %></h1>
@@ -16,7 +14,7 @@
 				<div class="row text-right">
 					<div class="btn-group btn-group">
 
-					<a href="events/edit/<%= event.id %>" class="btn btn-default borderless">Edit<span class="glyphicon glyphicon-edit"></span>
+					<a href="events/<%= event.id %>" class="btn btn-default borderless">Edit<span class="glyphicon glyphicon-edit"></span>
 				  </a>
 				</div>
 					
