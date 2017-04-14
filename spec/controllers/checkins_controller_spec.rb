@@ -1,17 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe CheckinsController, type: :controller do
-  describe '#show' do
-    it 'clears session[:info]' do
-      get :show, {}, {info: 1}
-
-      expect(session[:info]).to be_nil
-    end
-
+  describe '#new' do
     it 'renders its view' do
-      get :show
+      event = Event.create(title: "Student Night", date: Date.today)
 
-      expect(response).to render_template(:show)
+      get :new, {event_id: event.id}
+
+      expect(response).to render_template(:new)
+
+      event.destroy
     end
   end
 
