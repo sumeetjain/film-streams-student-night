@@ -6,7 +6,7 @@
 	    </div>
 	    <ul class="nav navbar-nav navbar-right">
 				<% if !session[:user_id].nil? %>
-					<li><a href="/events" >Create New Event</a></li>
+					<li><a href="/events/new" >Create New Event</a></li>
 				  <li><a href="/event/show" >Upcoming Events</a></li>
 					<li><a href="/logout">Logout</a></li>
 				<% else  %>
