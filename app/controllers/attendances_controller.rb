@@ -14,7 +14,7 @@ class AttendancesController < ApplicationController
 	# main page for the next student to check in.
 	def create
 		Attendance.create(attendance_params)
-		redirect_to event_path(params[:event_id])
+		redirect_to new_event_checkin_path(params[:event_id])
 	end
 
 	private
