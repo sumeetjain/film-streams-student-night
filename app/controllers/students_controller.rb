@@ -1,6 +1,7 @@
 # Every action in this controller has params[:event_id].
 
 class StudentsController < ApplicationController
+  before_filter :set_event
 
   # This is where user ends up if they're new to Film Streams!
   # We want to collect more info about them.
@@ -51,5 +52,10 @@ class StudentsController < ApplicationController
 	def student_params
 		params.require(:student).permit(:email, :name, :school, :year, :zip, :referral)
 	end
+
+  def set_event
+    @event = Event.find(params[:event_id])
+  end
+
 
 end

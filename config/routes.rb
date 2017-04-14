@@ -21,6 +21,5 @@ Rails.application.routes.draw do
 
   # ---------------------------------------------------------------------------
   
-  post "/events/:id/attendances/create" => 'attendances#create'
   root to: 'users#index'
 end

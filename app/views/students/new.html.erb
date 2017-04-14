@@ -3,7 +3,7 @@
     <div class="col-md-6 col-md-offset-3">
       <h2 class="text-center">Please make sure all fields are filled</h2>
       <%= render 'layouts/student_errors' %>
-      <%= form_for(@student, url:{controller: "students", action: "create"}) do |f| %>
+      <%= form_for([@event, @student]) do |f| %>
 
         <%= f.label :email %>
         <%= f.text_field :email, class: 'form-control' %>
@@ -11,17 +11,20 @@
         <%= f.label :name %>
         <%= f.text_field :name, class: 'form-control' %>
 
-        <%= f.label :school %>
-        <%= f.text_field :school, class: 'form-control' %>
-
         <%= f.label :year %>
-        <%= f.text_field :year, class: 'form-control' %>
+        <%= f.select( :year, Student.years.map { |key, value| [key, key] }, 
+        {include_blank: "Select Year"},{ :class => 'form-control' })%>
+
+        <%= f.label :school %>
+        <%= f.select( :school, Student.schools.map { |key, value| [key, key] }, 
+        {include_blank: "Select School"},{ :class => 'form-control' })%>
 
         <%= f.label :zip %>
         <%= f.text_field :zip, class: 'form-control' %>
 
         <%= f.label :referral %>
-        <%= f.text_field :referral, class: 'form-control' %>
+        <%= f.select( :referral, Student.referrals.map { |key, value| [key, key] }, 
+        {include_blank: "How did you hear about PGRM?"},{ :class => 'form-control' })%>
 
         <%= f.submit "Save Student", class: "btn btn-primary button_margin" %>
       <% end %>
