@@ -11,9 +11,9 @@ class CheckinsController < ApplicationController
     checkin = Checkin.new(params[:checkin])
 
     if checkin.valid?
-      if checkin.student.id
+      if checkin.student
         # Just verify the rest of your details. School? Grade?
-        redirect_to edit_event_student_path(@event.id, checkin.student.id)
+        redirect_to edit_event_student_path(@event.id, checkin.student_id)
       else
         # We need more info! Fill out your student profile.
         flash[:email] = checkin.email

@@ -15,33 +15,112 @@ RSpec.describe CheckinsController, type: :controller do
 
   describe '#create' do
     context "with valid info" do
-      it "save their info to the session" do
-        
+      context "for existing user" do
+        it "redirects to verify info page" do
+          # Setup
+          event = Event.create(title: "Student Night", date: Date.today)
+
+          checkin_params = {
+            email: "email@example.com",
+            email_confirmation: "email@example.com"
+          }
+
+          allow_any_instance_of(Checkin).to receive(:student)    { true }
+          allow_any_instance_of(Checkin).to receive(:student_id) { 1 }
+
+          # Exercise
+          post :create, {event_id: event.id, checkin: checkin_params}
+
+          # Verify
+          expect(response).to redirect_to edit_event_student_path(event.id, 1)
+
+          # Teardown
+          event.destroy
+        end
       end
 
-      it "redirects to /students/show" do
-        # Setup
-        post 'create', :student => {"email" => "email@example.com", "email_confirmation" => "email@example.com"}
-        # Exercise
-        expect(response).to redirect_to("/students/show")
-        expect(flash[:danger]).to be_falsey
-        expect(session[:info]).to be_truthy
+      context "for a new user" do
+        it "redirects to add info page" do
+          # Setup
+          event = Event.create(title: "Student Night", date: Date.today)
+
+          checkin_params = {
+            email: "email@example.com",
+            email_confirmation: "email@example.com"
+          }
+
+          allow_any_instance_of(Checkin).to receive(:student)    { nil }
+
+          # Exercise
+          post :create, {event_id: event.id, checkin: checkin_params}
+
+          # Verify
+          expect(response).to redirect_to new_event_student_path(event.id)
+
+          # Teardown
+          event.destroy
+        end
+
+        it "stores the email in the flash" do
+          # Setup
+          event = Event.create(title: "Student Night", date: Date.today)
+
+          checkin_params = {
+            email: "email@example.com",
+            email_confirmation: "email@example.com"
+          }
+
+          allow_any_instance_of(Checkin).to receive(:student)    { nil }
+
+          # Exercise
+          post :create, {event_id: event.id, checkin: checkin_params}
+
+          # Verify
+          expect(flash[:email]).to eq("email@example.com")
+
+          # Teardown
+          event.destroy
+        end
       end
     end
 
-
     context "with invalid info" do
       it "add flash message" do
-        
+        # Setup
+        event = Event.create(title: "Student Night", date: Date.today)
+
+        checkin_params = {
+          email: "email@example.com",
+          email_confirmation: "not-matching@example.com"
+        }
+
+        # Exercise
+        post :create, {event_id: event.id, checkin: checkin_params}
+
+        # Verify
+        expect(flash[:alert]).to_not be_nil
+
+        # Teardown
+        event.destroy
       end
       
       it "redirect to checkin page" do
         # Setup
-        post 'create', :student => {"email" => "invalid", "email_confirmation" => "invalid"}
+        event = Event.create(title: "Student Night", date: Date.today)
+
+        checkin_params = {
+          email: "email@example.com",
+          email_confirmation: "not-matching@example.com"
+        }
+
         # Exercise
-        expect(response).to redirect_to("/checkin/")
-        expect(flash[:danger]).to be_truthy
-        expect(session[:info]).to be_falsey        
+        post :create, {event_id: event.id, checkin: checkin_params}
+
+        # Verify
+        expect(response).to redirect_to(new_event_checkin_path(event.id))
+
+        # Teardown
+        event.destroy
       end
     end
 

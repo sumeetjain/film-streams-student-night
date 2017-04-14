@@ -11,7 +11,11 @@ class Checkin
   end
 
   def student
-    Student.find_by(email: @email) || Student.new
+    Student.find_by(email: @email)
+  end
+
+  def student_id
+    student.id
   end
 
   private 
