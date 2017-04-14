@@ -40,4 +40,18 @@ RSpec.describe EventsController, type: :controller do
       end
     end
   end
+
+  describe '#create' do
+    context 'when event saves' do
+      it 'redirects to event' do
+        # Setup
+        # Exercise / Verify
+        get :create, {:event => {title: "Free Movie Night", date: Date.today}}
+        expect(response).to render_template(@event)
+      end
+    end
+  end
+
+
+
 end
