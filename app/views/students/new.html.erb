@@ -11,17 +11,20 @@
         <%= f.label :name %>
         <%= f.text_field :name, class: 'form-control' %>
 
-        <%= f.label :school %>
-        <%= f.text_field :school, class: 'form-control' %>
-
         <%= f.label :year %>
-        <%= f.text_field :year, class: 'form-control' %>
+        <%= f.select( :year, Student.years.map { |key, value| [key.humanize, key] }, 
+        {include_blank: "Select Year"},{ :class => 'form-control' })%>
+
+        <%= f.label :school %>
+        <%= f.select( :school, Student.schools.map { |key, value| [key.humanize, key] }, 
+        {include_blank: "Select School"},{ :class => 'form-control' })%>
 
         <%= f.label :zip %>
         <%= f.text_field :zip, class: 'form-control' %>
 
         <%= f.label :referral %>
-        <%= f.text_field :referral, class: 'form-control' %>
+        <%= f.select( :referral, Student.referrals.map { |key, value| [key.humanize, key] }, 
+        {include_blank: "How did you hear about PGRM?"},{ :class => 'form-control' })%>
 
         <%= f.submit "Save Student", class: "btn btn-primary button_margin" %>
       <% end %>
