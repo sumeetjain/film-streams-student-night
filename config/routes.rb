@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   # post 'movies/:id' => 'movies#update'
 
   # resources :movies
-  # resources :users
+  resources :users
   # resources :login
-  # get  '/logout'                  => 'login#destroy'
+  get  '/logout'                  => 'login#destroy'
 
   # ---------------------------------------------------------------------------
 
