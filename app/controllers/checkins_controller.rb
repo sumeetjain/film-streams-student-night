@@ -5,6 +5,10 @@ class CheckinsController < ApplicationController
   before_filter :set_event
 
 	def new
+    @checkin = Checkin.new({
+      email: flash[:email],
+      email_confirmation: flash[:email]
+    })
 	end
 
 	def create
