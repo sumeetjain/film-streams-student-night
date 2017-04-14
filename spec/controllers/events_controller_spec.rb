@@ -52,9 +52,10 @@ RSpec.describe EventsController, type: :controller do
 
     context 'when event does not save' do
       it 'redirects to new' do
-        get :create
+        get :create, {:event => {title: nil, date: nil}}
         expect(response).to render_template(:new)
       end
+    end
   end
 
   # describe '#update' do
