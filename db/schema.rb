@@ -23,25 +23,11 @@ ActiveRecord::Schema.define(version: 20170414148957) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "books", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "events", force: :cascade do |t|
     t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "title"
-  end
-
-  create_table "forms", force: :cascade do |t|
-    t.string   "years"
-    t.string   "schools"
-    t.string   "referrals"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "movies", force: :cascade do |t|
