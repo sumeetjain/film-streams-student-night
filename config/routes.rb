@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # resources :movies
   resources :users
-  # resources :login
+  resources :login
   get  '/logout'                  => 'login#destroy'
 
   # ---------------------------------------------------------------------------
