@@ -8,9 +8,8 @@ class CheckinsController < ApplicationController
 	end
 
 	def create
-
-
     checkin = Checkin.new(params[:checkin])
+
     if checkin.valid?
       if checkin.student.id
         # Just verify the rest of your details. School? Grade?
@@ -23,8 +22,6 @@ class CheckinsController < ApplicationController
     else
       flash[:alert] = "Emails must match and be valid."
       redirect_to new_event_checkin_path(@event.id)
-
-
     end
 	end
 
