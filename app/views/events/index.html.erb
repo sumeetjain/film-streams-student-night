@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div>
-				<h1><%= (Time.parse(event.date.to_s).strftime('%a, %b %d, \'%y ')) %></h1>
+				<h1><%= (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y ')) %></h1>
 			</div>
 			<div class="col-md-offset-5 text-left">
 				<h1><%= event.title.capitalize %></h1>
