@@ -21,15 +21,11 @@ class Csvdata
 			student = Student.new(
 			email: row["E-MAIL"],
 			name: "#{row["FIRST NAME"]} #{row["LAST NAME"]}",
-			school: row["SCHOOL"],
+			school: Csvdata.set_valid_school(row["SCHOOL"]),
 			year: row["YR"].to_i,
 			zip: row["zip"],
 			referral: 6
 			)
-
-			### somehow need to check for error messages and replace with 'other' values
-
-			student.save
 
 			attendances = Csvdata.attendanceDates(row)
 			attendances.each do |attendance| 
@@ -60,5 +56,9 @@ class Csvdata
 																 attendance[1],
 																 attendance[0])
 		attendance = attendance.strftime("%F")
+	end
+
+	def Csvdata.set_valid_school(school)
+		Student.schools.keys.include? school ? school : "other school"
 	end
 end

@@ -137,7 +137,12 @@ class Student < ActiveRecord::Base
 		'Wheaton College' =>	93,
 		'WMU' =>	94,
 		'Xavier U' =>	95,
-		'other school' => 96
+		'U of Missouri - Columbia' => 96,
+		'St. Stephen' => 97,
+		'Creighton' => 98,
+		'Grace U' => 99,
+		'other school' => 100
+
 	}
 
 	  enum referral: {
