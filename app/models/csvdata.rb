@@ -18,6 +18,9 @@ class Csvdata
 	#
 	# Run this to populate the CSV with all previus students and their attendances on dates.
 	def Csvdata.seedStudents
+		saves = 0
+		fails = 0
+		error_list = []
 		CSV.foreach("student_night.csv", {headers: true, return_headers: false}) do |row|
 
 			student = Student.new(
@@ -29,9 +32,18 @@ class Csvdata
 			referral: 6
 			)
 
-			student.save
+			if student.save
+				saves += 1
+			else
+				debugger
+				 errors << student.errors.messages
+				fails += 1
+			end
+
 			Csvdata.save_student_attendances(row, student)		
 		end
+		puts "student saves: #{saves}"
+		puts "student fails: #{fails}"
 	end
 
 	# Give a student object and row, records all their attendances into database
@@ -47,8 +59,8 @@ class Csvdata
 				if !/\d+\/\d+\/\d{2}/.match(attendance).nil?
 					event =  Event.find_by(date: Csvdata.convert(attendance))
 					new_att = Attendance.new(student_id: student.id,
-														 			 event_id: event.id
-														 			 created_at: event.created_at
+														 			 event_id: event.id,
+														 			 created_at: event.created_at,
 														 			 updated_at: event.updated_at)
 					new_att.save
 				end
