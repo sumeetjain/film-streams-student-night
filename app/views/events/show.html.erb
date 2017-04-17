@@ -13,8 +13,9 @@
 	        <%= f.label :date %>
 	        <%= f.date_field :date, class: 'form-control' %>
 
-	        <%= f.submit "Update Event", class: "btn btn-primary button_margin" %>
+	        <%= f.submit "Update Event", class: "btn btn-primary navbar-btn" %>
 	      <% end %>
+
 	    </div>
 	  </div>
 	</div>
@@ -23,7 +24,7 @@
 	<div class="col-md-3">
 		<a class="btn btn-default share_button" href="/events/<%=@event.id%>/checkins/new" role="button">Shareable Link  <span class="glyphicon glyphicon-share"></span></a>
 
-		<%= link_to 'Delete Event', event_path(@event), 
+		<%= button_to 'Delete Event', event_path(@event), class: 'btn btn-danger navbar-btn' , 
 		data: {:confirm => 'Are you sure? This will delete report information as well.'}, :method => :delete %>
 	</div>
 
@@ -59,7 +60,7 @@
 				<% end %>	
 			</tbody>
 		</table>
-		<button class="btn btn-default" name="commit" type='submit'>Save Movies<span class="glyphicon glyphicon-save"></span></button>
+		<button class="btn btn-default" name="commit" type='submit'>Save Movies <span class="glyphicon glyphicon-save"></span></button>
 	</form>
 </div>
 

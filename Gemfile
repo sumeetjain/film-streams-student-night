@@ -1,6 +1,13 @@
 source 'https://rubygems.org'
 
+
+gem "chartkick"
+gem 'groupdate'
+gem 'by_star'
 gem 'bootstrap-sass'
+
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
 # Use postgresql as the database for Active Record

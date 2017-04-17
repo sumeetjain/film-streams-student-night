@@ -4,10 +4,12 @@ Rails.application.routes.draw do
    post 'movies/:id' => 'movies#update'
 
   # resources :movies
+
+
   resources :users
   resources :login
   resources :stats, only: [:index]
-  get  '/logout'                  => 'login#destroy'
+  get  '/logout' => 'login#destroy'
 
   # ---------------------------------------------------------------------------
 
@@ -16,10 +18,30 @@ Rails.application.routes.draw do
   resources :events, except: [:edit] do
     resources :checkins, only: [:new, :create]
     resources :attendances #, only: [:new, :create]
-    resources :students  #, only: [:show, :new, :edit, :create, :update]
+    resources :students  #, only: [:show, :new, :edit, :create, :update]s
   end
 
   # ---------------------------------------------------------------------------
-  
+
+  # This block handles charts
+  resources :statistics
+  resources :charts, only: [] do
+    collection do
+
+      get 'attendances_by_date'
+      get 'referrals_by_date'
+      get 'movies_by_date'
+      get 'schools_by_date'
+      get 'grade_by_date'
+      get 'zip_by_date'
+    end
+  end
+ 
+# ---------------------------------------------------------------------------
+
+
   root to: 'users#index'
+
+  # Why do i have to add this manually?
+  post "/events/7/attendances/create" => 'attendances#create'
 end

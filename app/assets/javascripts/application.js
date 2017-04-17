@@ -14,5 +14,14 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require chartkick
+
+// add equals to Chart.bundle to use Charts.JS
+// or add it to HighCharts
+// = require Chart.bundle
+//   require highcharts
+
+
+
 //= require turbolinks
 //= require_tree .

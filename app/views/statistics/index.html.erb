@@ -1,0 +1,37 @@
+
+<div class="container">
+
+
+	<span>Date Range</span>
+	<form action="/statistics" method="get">
+		<input type='date' name='start_date' value="<%= params['start_date'] || (Time.now.midnight - 365.day).strftime("%Y-%m-%d") %>" maxlength='4' />
+		<input type='date' name='end_date' value="<%= params['end_date'] || (Time.now.midnight).strftime("%Y-%m-%d") %>" maxlength='4' />
+		<button type='submit'>Submit</button>
+	</form>
+
+	<form action="/statistics" method="get">
+		<input type='hidden' name='start_date' value="2000-01-01"/>
+		<input type='hidden' name='end_date' value="<%=(Time.now.midnight + 1.day).strftime("%Y-%m-%d") %>"/>
+		<button type='submit'>All Time</button>
+	</form>
+
+	<form action="/statistics" method="get">
+		<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year).strftime("%Y-%m-%d") %>"/>
+		<input type='hidden' name='end_date' value="<%=(Time.now.midnight + 1.day).strftime("%Y-%m-%d") %>"/>
+		<button type='submit'>This Year</button>
+	</form>
+
+	<form action="/statistics" method="get">
+		<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year - 1.year).strftime("%Y-%m-%d") %>"/>
+		<input type='hidden' name='end_date' value="<%=(Time.new.end_of_year - 1.year).strftime("%Y-%m-%d") %>"/>
+		<button type='submit'>Last Year</button>
+	</form>
+
+	<%= attendances_by_date %>
+	<%= referrals_by_date %>
+	<%= movies_by_date %>
+	<%= schools_by_date %>
+	<%= grade_by_date %>
+	<%= zip_by_date %>
+
+</div>
