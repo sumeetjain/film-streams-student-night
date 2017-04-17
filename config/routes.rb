@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get 'schools_by_date'
       get 'grade_by_date'
       get 'zip_by_date'
+      get 'school_trends'
     end
   end
  

@@ -1,6 +1,6 @@
 module StatisticsHelper
 
-
+  # Totals by date
   def attendances_by_date
     line_chart attendances_by_date_charts_path(:start_date => @start_date, :end_date => @end_date), download: true, refresh: 60, height: '250px',
     xtitle: "Time", ytitle: "Attendances"
@@ -21,6 +21,11 @@ module StatisticsHelper
     xtitle: "Schools", ytitle: "Attendances"
   end
 
+  def school_trends
+    column_chart school_trends_charts_path(:start_date => @start_date, :end_date => @end_date), download: true, refresh: 60, height: '250px',
+    xtitle: "Movies", ytitle: "Attendances"
+  end 
+
   def grade_by_date 
     column_chart grade_by_date_charts_path(:start_date => @start_date, :end_date => @end_date), download: true, refresh: 60, height: '250px',
     xtitle: "School Year", ytitle: "Attendances"
@@ -30,6 +35,12 @@ module StatisticsHelper
     column_chart zip_by_date_charts_path(:start_date => @start_date, :end_date => @end_date), download: true, refresh: 60, height: '250px',
     xtitle: "Zip Codes", ytitle: "Attendances"
   end
+
+  # Trends by date
+  def school_trends
+    line_chart school_trends_charts_path(:start_date => @start_date, :end_date => @end_date), download: true, refresh: 60, height: '250px',
+    xtitle: "Schools", ytitle: "Attendances"
+  end 
 
 
   private
