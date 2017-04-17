@@ -33,7 +33,7 @@ class Csvdata
 			)
 
 			if student.save
-				Csvdata.save_student_attendances(row, student)
+				save_student_attendances(row, student)
 				saves += 1
 			else
 				error_list << student.errors.messages
@@ -50,13 +50,13 @@ class Csvdata
 	# student - Student , row - csv row
 	#
 	# saves all attendances to an event, returns first attendance
-	def Csvdata.save_student_attendances(row, student)
+	def save_student_attendances(row, student)
 
-			attendances = Csvdata.attendanceDates(row)
+			attendances = attendanceDates(row)
 
 			attendances.each do |attendance|
 				if !/\d+\/\d+\/\d{2}/.match(attendance).nil?
-					event =  Event.find_by(date: Csvdata.convert(attendance))
+					event =  Event.find_by(date: convert(attendance))
 					new_att = Attendance.new(student_id: student.id,
 														 			 event_id: event.id,
 
@@ -72,7 +72,7 @@ class Csvdata
 	# 1 is the indication within a column whether a student attended
 	#
 	# returns an array of dates on which a student attended Student Film Night
-	def Csvdata.attendanceDates(row)
+	def attendanceDates(row)
 		dates = []
 		row.headers.each do |header|
 				dates << header if row[header] == "1"
@@ -81,7 +81,7 @@ class Csvdata
 	end
 
 	# Takes a date that looks like "3/4/10" and transforms it "2010-04-10"
-	def Csvdata.convert(attendance)
+	def convert(attendance)
 			attendance = attendance.split("/")
 
 			attendance = Time.new("20" + attendance[2],
@@ -95,8 +95,41 @@ class Csvdata
 		(Student.schools.keys.include? school) ? school : "other school"
 	end
 
+	# If a year is valid, returns, otherwise set it to "other"
 	def Csvdata.set_valid_year(year)
-		(Student.years.keys.include? year)? year : "other"
+		if year_compare(year)
+			return year
+		elsif year_compare(year.downcase.capitalize)
+			return year.downcase.capitalize
+		elsif !year_contains(year).nil?
+			return year_contains(year)
+		else
+			return 999
+		end
+			
+		debugger
+		(Student.years.keys.include? year) ? year : "other"
 	end
+
+	def year_compare(year)
+		(Student.years.values.include? year) || (Student.years.keys.include? year)
+	end
+
+
+	def year_contains(year)
+		Student.years.keys.each do |year_key|
+			if (year_key.include? year)
+				return year_key
+			elsif (year_key.downcase.capitalize.include? year)
+				return year_key.downcase.capitalize
+			end
+		end
+		return nil
+	end
+
+
+	def 
+
+
 
 end

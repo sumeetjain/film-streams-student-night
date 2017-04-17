@@ -38,7 +38,7 @@ class Student < ActiveRecord::Base
 		'Sophomore in college'     => 15,
 		'Senior in college'        => 16,
 		'Grad'                     => 17,
-		'other'										 => 18
+		'other'										 => 999
 	}
 
 	enum school: {
@@ -141,7 +141,7 @@ class Student < ActiveRecord::Base
 		'St. Stephen' => 97,
 		'Creighton' => 98,
 		'Grace U' => 99,
-		'other school' => 100
+		'other school' => 999
 
 	}
 
@@ -152,7 +152,7 @@ class Student < ActiveRecord::Base
 		'Internet Search'						=> 3,
 		'Social media'              => 4,
 		"Film Stream's website"     => 5,
-		'other source'							=> 6
+		'other source'							=> 999
 
 	}
 
