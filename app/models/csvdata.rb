@@ -33,10 +33,9 @@ class Csvdata
 
 			attendances = Csvdata.attendanceDates(row)
 			attendances.each do |attendance| 
-				attendance = Csvdata.convert(attendance)
-				debugger
-				Attendance.new(student_id: student.id, event_id: Event.find_by(date: attendance).id)
-				debugger 
+				new_att = Attendance.new(student_id: student.id,
+													 			 event_id: Event.find_by(date: Csvdata.convert(attendance)).id)
+				new_att.save
 			end
 
 		end
