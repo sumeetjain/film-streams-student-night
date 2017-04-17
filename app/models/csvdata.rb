@@ -29,8 +29,10 @@ class Csvdata
 			referral: 6
 			)
 
-			Csvdata.save_student_attendances(row, student)
-			
+			student.save
+			creation_date = Csvdata.save_student_attendances(row, student)
+			debugger
+			student.update(created_at: Csvdata.convert(creation_date), updated_at: Csvdata.convert(creation_date))			
 		end
 	end
 
@@ -38,7 +40,7 @@ class Csvdata
 	#
 	# student - Student , row - csv row
 	#
-	# saves all attendances to an event
+	# saves all attendances to an event, returns first attendance
 	def Csvdata.save_student_attendances(row, student)
 
 			attendances = Csvdata.attendanceDates(row)
@@ -48,6 +50,7 @@ class Csvdata
 													 			 event_id: Event.find_by(date: Csvdata.convert(attendance)).id)
 				new_att.save
 			end
+			return attendances[0]
 	end
 
 	# Given a row looks through each header value to see if value is 1
