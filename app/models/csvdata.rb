@@ -44,9 +44,12 @@ class Csvdata
 			attendances = Csvdata.attendanceDates(row)
 
 			attendances.each do |attendance|
-				if !/\d+\/\d+\/\d{2}/.match(attendance).nil? 
+				if !/\d+\/\d+\/\d{2}/.match(attendance).nil?
+					event =  Event.find_by(date: Csvdata.convert(attendance))
 					new_att = Attendance.new(student_id: student.id,
-														 			 event_id: Event.find_by(date: Csvdata.convert(attendance)).id)
+														 			 event_id: event.id
+														 			 created_at: event.created_at
+														 			 updated_at: event.updated_at)
 					new_att.save
 				end
 			end
