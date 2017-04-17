@@ -9,7 +9,7 @@ class Csvdata
 	# run it one time to populate the PG database with these events
 	def Csvdata.seedEvents
 		EVENT_DATES.each do |date|
-			event = Event.new(date: date, title: "Free Movie Night")
+			event = Event.new(date: date, title: "Free Movie Night", created_at: date, updated_at: date)
 			event.save
 		end
 	end
@@ -24,12 +24,12 @@ class Csvdata
 			email: row["E-MAIL"],
 			name: "#{row["FIRST NAME"]} #{row["LAST NAME"]}",
 			school: Csvdata.set_valid_school(row["SCHOOL"]),
-			year: row["YR"].to_i,
+			year: Csvdata.set_valid_year(row["YR"].to_i),
 			zip: row["zip"],
 			referral: 6
 			)
 
-			Csvdate.save_student_attendances(row, student)
+			Csvdata.save_student_attendances(row, student)
 			
 		end
 	end
@@ -76,4 +76,9 @@ class Csvdata
 	def Csvdata.set_valid_school(school)
 		(Student.schools.keys.include? school) ? school : "other school"
 	end
+
+	def Csvdata.set_valid_year(year)
+		(Student.years.keys.include? year)? year : "other"
+	end
+
 end
