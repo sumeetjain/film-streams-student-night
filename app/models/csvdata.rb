@@ -33,17 +33,16 @@ class Csvdata
 			)
 
 			if student.save
+				Csvdata.save_student_attendances(row, student)
 				saves += 1
 			else
-				debugger
-				 errors << student.errors.messages
+				error_list << student.errors.messages
 				fails += 1
-			end
-
-			Csvdata.save_student_attendances(row, student)		
+			end					
 		end
 		puts "student saves: #{saves}"
 		puts "student fails: #{fails}"
+		puts error_list
 	end
 
 	# Give a student object and row, records all their attendances into database
@@ -60,6 +59,7 @@ class Csvdata
 					event =  Event.find_by(date: Csvdata.convert(attendance))
 					new_att = Attendance.new(student_id: student.id,
 														 			 event_id: event.id,
+
 														 			 created_at: event.created_at,
 														 			 updated_at: event.updated_at)
 					new_att.save
@@ -75,9 +75,7 @@ class Csvdata
 	def Csvdata.attendanceDates(row)
 		dates = []
 		row.headers.each do |header|
-			if !row[header] == "YR"
 				dates << header if row[header] == "1"
-			end
 		end
 		return dates
 	end
