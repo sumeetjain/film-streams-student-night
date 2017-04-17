@@ -27,13 +27,13 @@ class Csvdata
 			email: row["E-MAIL"],
 			name: "#{row["FIRST NAME"]} #{row["LAST NAME"]}",
 			school: Csvdata.set_valid_school(row["SCHOOL"]),
-			year: Csvdata.set_valid_year(row["YR"].to_i),
+			year: Csvdata.set_valid_year(row["YR"]),
 			zip: row["zip"],
-			referral: 6
+			referral: 999
 			)
 
 			if student.save
-				save_student_attendances(row, student)
+				Csvdata.save_student_attendances(row, student)
 				saves += 1
 			else
 				error_list << student.errors.messages
@@ -50,13 +50,13 @@ class Csvdata
 	# student - Student , row - csv row
 	#
 	# saves all attendances to an event, returns first attendance
-	def save_student_attendances(row, student)
+	def Csvdata.save_student_attendances(row, student)
 
-			attendances = attendanceDates(row)
+			attendances = Csvdata.attendanceDates(row)
 
 			attendances.each do |attendance|
 				if !/\d+\/\d+\/\d{2}/.match(attendance).nil?
-					event =  Event.find_by(date: convert(attendance))
+					event =  Event.find_by(date: Csvdata.convert(attendance))
 					new_att = Attendance.new(student_id: student.id,
 														 			 event_id: event.id,
 
@@ -72,7 +72,7 @@ class Csvdata
 	# 1 is the indication within a column whether a student attended
 	#
 	# returns an array of dates on which a student attended Student Film Night
-	def attendanceDates(row)
+	def Csvdata.attendanceDates(row)
 		dates = []
 		row.headers.each do |header|
 				dates << header if row[header] == "1"
@@ -81,7 +81,7 @@ class Csvdata
 	end
 
 	# Takes a date that looks like "3/4/10" and transforms it "2010-04-10"
-	def convert(attendance)
+	def Csvdata.convert(attendance)
 			attendance = attendance.split("/")
 
 			attendance = Time.new("20" + attendance[2],
@@ -95,28 +95,33 @@ class Csvdata
 		(Student.schools.keys.include? school) ? school : "other school"
 	end
 
-	# If a year is valid, returns, otherwise set it to "other"
+	# Takes a year unformatted. If valid, returns, checks for capitalization errors, containing keywords
+	#
+	# Returns a valid Enum for year
 	def Csvdata.set_valid_year(year)
-		if year_compare(year)
+		if Csvdata.year_compare(year.to_s)
 			return year
-		elsif year_compare(year.downcase.capitalize)
-			return year.downcase.capitalize
-		elsif !year_contains(year).nil?
-			return year_contains(year)
+		elsif Csvdata.year_compare(year.to_s.downcase.capitalize)
+			return year.to_s.downcase.capitalize
+		elsif !Csvdata.year_contains(year.to_s).nil?
+			return Csvdata.year_contains(year.to_s)
 		else
 			return 999
 		end
-			
-		debugger
-		(Student.years.keys.include? year) ? year : "other"
+		# (Student.years.keys.include? year) ? year : "other"
 	end
 
-	def year_compare(year)
+	# Takes a string (year) and checks if the array of proper year Enums contains it
+	#
+	# Returns Boolean
+	def Csvdata.year_compare(year)
 		(Student.years.values.include? year) || (Student.years.keys.include? year)
 	end
 
-
-	def year_contains(year)
+	# Takes a string year, and checks each element of Year Enum Array whether it contains that string
+	#
+	# returns proper form of year, or nil
+	def Csvdata.year_contains(year)
 		Student.years.keys.each do |year_key|
 			if (year_key.include? year)
 				return year_key
@@ -126,10 +131,5 @@ class Csvdata
 		end
 		return nil
 	end
-
-
-	def 
-
-
 
 end
