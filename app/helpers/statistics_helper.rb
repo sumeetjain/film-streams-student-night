@@ -38,8 +38,7 @@ module StatisticsHelper
 
   # Trends by date
   def school_trends
-    line_chart school_trends_charts_path(:start_date => @start_date, :end_date => @end_date), download: true, refresh: 60, height: '250px',
-    xtitle: "Schools", ytitle: "Attendances"
+    Student.between_times(@start_date.to_date, @end_date.to_date).joins(:attendances).select('attendances.created_at').group('students.school').group_by_month('attendances.created_at').count.each { |k| k[0][0] = Student.schools.key(k[0][0]) }
   end 
 
 

@@ -27,17 +27,16 @@
 		<button type='submit'>Last Year</button>
 	</form>
 
+	<!-- total by date -->
 	<%= attendances_by_date %>
 	<%= referrals_by_date %>
 	<%= movies_by_date %>
 	<%= schools_by_date %>
 	<%= grade_by_date %>
 	<%= zip_by_date %>
-	<%= school_trends %>
-
-
-  <% school_trendswww = Student.joins(:attendances).select('attendances.created_at').group('students.school').group_by_month('attendances.created_at').count.each { |k| k[0][0] = Student.schools.key(k[0][0]) } %>
 	
+	<!-- Trends -->
+	<%= line_chart school_trends %>	
 
 
 </div>

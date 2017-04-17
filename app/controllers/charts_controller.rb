@@ -31,13 +31,6 @@ class ChartsController < ApplicationController
     render json: [{name: 'Zip code', data: result}]
   end
 
-  # Trends by date
-  def school_trends
-    results = Student.between_times(params[:start_date].to_date, params[:end_date].to_date).joins(:attendances).select('attendances.created_at').group('students.school').group_by_month('attendances.created_at').count.each { |k| k[0][0] = Student.schools.key(k[0][0]) }
-    render json: [{name: 'School Trend', data: result}]
-  end 
-
-
 end
 
 
