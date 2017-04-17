@@ -15,6 +15,8 @@ class Csvdata
 	end
 
 	# Looks through the CSV and saves a Student and their attendances based on their column values
+	#
+	# Run this to populate the CSV with all previus students and their attendances on dates.
 	def Csvdata.seedStudents
 		CSV.foreach("student_night.csv", {headers: true, return_headers: false}) do |row|
 
@@ -27,14 +29,25 @@ class Csvdata
 			referral: 6
 			)
 
+			Csvdate.save_student_attendances(row, student)
+			
+		end
+	end
+
+	# Give a student object and row, records all their attendances into database
+	#
+	# student - Student , row - csv row
+	#
+	# saves all attendances to an event
+	def Csvdata.save_student_attendances(row, student)
+
 			attendances = Csvdata.attendanceDates(row)
+
 			attendances.each do |attendance| 
 				new_att = Attendance.new(student_id: student.id,
 													 			 event_id: Event.find_by(date: Csvdata.convert(attendance)).id)
 				new_att.save
 			end
-
-		end
 	end
 
 	# Given a row looks through each header value to see if value is 1
@@ -50,6 +63,7 @@ class Csvdata
 		return dates
 	end
 
+	# Takes a date that looks like "3/4/10" and transforms it "2010-04-10"
 	def Csvdata.convert(attendance)
 		attendance = attendance.split("/")
 		attendance = Time.new("20" + attendance[2],
@@ -58,7 +72,8 @@ class Csvdata
 		attendance = attendance.strftime("%F")
 	end
 
+	# If a school is a valid enum, returns it, otherwise set to "other school"
 	def Csvdata.set_valid_school(school)
-		Student.schools.keys.include? school ? school : "other school"
+		(Student.schools.keys.include? school) ? school : "other school"
 	end
 end
