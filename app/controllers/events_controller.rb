@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
 	def index
+		@events = Event.where("date < ?", -1.days.ago)
 	end
 
 	def new

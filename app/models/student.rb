@@ -38,7 +38,8 @@ class Student < ActiveRecord::Base
 		'Junior in college'        => 14,
 		'Sophomore in college'     => 15,
 		'Senior in college'        => 16,
-		'Grad'                     => 17
+		'Grad'                     => 17,
+		'other'										 => 999
 	}
 
 	enum school: {
@@ -136,7 +137,13 @@ class Student < ActiveRecord::Base
 		'Westside Middle School' =>	92,
 		'Wheaton College' =>	93,
 		'WMU' =>	94,
-		'Xavier U' =>	95
+		'Xavier U' =>	95,
+		'U of Missouri - Columbia' => 96,
+		'St. Stephen' => 97,
+		'Creighton' => 98,
+		'Grace U' => 99,
+		'other school' => 999
+
 	}
 
 	  enum referral: {
@@ -146,6 +153,8 @@ class Student < ActiveRecord::Base
 		'Internet Search'						=> 3,
 		'Social media'              => 4,
 		"Film Stream's website"     => 5,
+		'other source'							=> 999
+
 	}
 
 end
