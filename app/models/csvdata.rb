@@ -106,6 +106,8 @@ class Csvdata
 		year.nil? ? "" : year
 		if Csvdata.year_compare(year)
 			return year
+		elsif Csvdata.year_compare(year.to_i)
+			return year.to_i
 		elsif Csvdata.year_compare(year.to_s.downcase.capitalize)
 			return year.to_s.downcase.capitalize
 		elsif !Csvdata.year_contains(year.to_s).nil?
