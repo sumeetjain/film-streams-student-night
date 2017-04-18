@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'Hamilton-Light';
+  src:font-url('Hamilton-Light.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1{
+	font-family: Hamilton-Light;
+	font-size: 60px;
+}
+
 .navbar{
 	border-radius: 0px;
 }
