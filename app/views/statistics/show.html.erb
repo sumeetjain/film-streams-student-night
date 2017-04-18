@@ -1,16 +1,11 @@
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <div class="container">
 
-	<div class="row">
-	  <div class="col-sm-4"><%= pie_chart @referrals %></div>
-	  <div class="col-sm-4"><%= column_chart @movies %></div>
-	  <div class="col-sm-4"><%= column_chart @schools %></div>
-	</div>
-	<br>
-	<div class="row">
-	  <div class="col-sm-4"><%= column_chart @years %></div>
-	  <div class="col-sm-4"></div>
-	  <div class="col-sm-4"><%= column_chart @zipcodes %></div>
-	</div>
 
-</div>
+
+	  <%= pie_chart @schools.sort_by{|k,v| v}.reverse, adapter: "google"%>
+	  <%= pie_chart @years.sort_by{|k,v| v}.reverse, adapter: "google"%>
+	  <%= pie_chart @zipcodes.sort_by{|k,v| v}.reverse, adapter: "google"%>
+	  <%= pie_chart @referrals.sort_by{|k,v| v}.reverse, adapter: "google" %>
+	  <%= pie_chart @movies.sort_by{|k,v| v}.reverse, adapter: "google" %>
+

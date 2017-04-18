@@ -2,7 +2,7 @@ class ChartsController < ApplicationController
 
    # Total by date
   def attendances_by_date
-    result = Attendance.between_times(params[:start_date].to_date, params[:end_date].to_date).group_by_month(:created_at).count
+    result = Attendance.between_times(params[:start_date].to_date, params[:end_date].to_date).group_by_year(:created_at).count
     render json: [{name: 'Attendances', data: result}]
   end
 

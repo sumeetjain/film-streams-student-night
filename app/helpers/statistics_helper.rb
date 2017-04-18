@@ -55,7 +55,8 @@ module StatisticsHelper
   end
 
   def student_attends_by_year
-    Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student).select('students.name').group(:name).count
+    students = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student).select('students.name').group(:name).count
+    students.sort_by{|k,v| v}.reverse
   end
 
   private
