@@ -17,7 +17,7 @@ class Csvdata
 	# Looks through the CSV and saves a Student and their attendances based on their column values
 	#
 	# Run this to populate the CSV with all previus students and their attendances on dates.
-	def Csvdata.seedStudents
+
 		saves = 0
 		fails = 0
 		error_list = []
@@ -144,6 +144,7 @@ class Csvdata
 			return student
 		elsif !student.errors.messages[:email].nil?
 			if student.errors.messages[:email].include? "has already been taken"
+				debugger
 				student = Student.find_by(email: student.email)
 			elsif student.errors.messages[:email].include?("is invalid") || student.errors.messages[:email].include?("can't be blank")
 				student.email = "invalid" + rand(9999).to_s + "@invalid.com"
