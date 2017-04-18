@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  include EventsHelper
   DEFAULT_TITLE = "Free Movie Night"
 
 	has_many :movies
@@ -14,4 +15,5 @@ class Event < ActiveRecord::Base
   def title
     self.attributes["title"] || DEFAULT_TITLE
   end
+
 end

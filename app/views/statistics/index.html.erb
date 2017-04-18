@@ -2,6 +2,121 @@
 <div class="container">
 
 
+
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Year</th>
+			<th>Total Attendances</th>
+			<th>Unique Students</th>
+			<th>Schools</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%  @years.each do |year|  %>
+					<tr>
+						<td><%= year %></td>
+						<td><%= Event.new.total_student_attendances(year) %></td>
+						<td><%= Event.new.unique_student_attendances(year) %></td>
+						<td><%= Event.new.unique_schools(year) %></td>
+
+					</tr>
+			<% end %>
+	</tbody>
+</table>
+
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>EVENT</th>
+			<th>Number of Schools Represented</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%  @events.each do |event|  %>
+					<tr>
+						<td><%= event %></td>
+						<td><%= Event.new.school_by_event(event) %></td>
+					</tr>
+			<% end %>
+	</tbody>
+</table>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Schools</th>
+			<th>All Time Represented</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%  Event.new.school_all_time_attendances.each do |school, num| %>
+					<tr>
+						<td><%= school %></td>
+						<td><%= num %></td>
+					</tr>
+			<% end %>
+	</tbody>
+</table>
+
+
+
+
+<span>Date Range</span>
+	<form action="/statistics" method="get">
+		<input type='date' name='start_date' value="<%= params['start_date'] || (Time.now.midnight - 365.day).strftime("%Y-%m-%d") %>" maxlength='4' />
+		<input type='date' name='end_date' value="<%= params['end_date'] || (Time.now.midnight).strftime("%Y-%m-%d") %>" maxlength='4' />
+		<button type='submit'>Submit</button>
+</form>
+<br>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Attends in <%= params[:year] || Date.today.year %></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%  student_attends_by_year.each do |student, num| %>
+					<tr>
+						<td><%= student %></td>
+						<td><%= num %></td>
+					</tr>
+			<% end %>
+	</tbody>
+</table> 
+
+<form action="/statistics" method="get">
+	<select name="year" value="3">
+	<%= @years.each do |year| %>
+		<option <%= (params[:year] == year.to_s) ? "selected='selected'" : "" %>value='<%= year %>'><%=year%></option>
+	<% end %>
+	</select>
+	<button class='btn btn-link' type='submit'>Update Chart</button>
+</form>
+
+<%= pie_chart schools_name_by_year %>
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
 	<span>Date Range</span>
 	<form action="/statistics" method="get">
 		<input type='date' name='start_date' value="<%= params['start_date'] || (Time.now.midnight - 365.day).strftime("%Y-%m-%d") %>" maxlength='4' />
@@ -15,17 +130,21 @@
 		<button type='submit'>All Time</button>
 	</form>
 
-	<form action="/statistics" method="get">
-		<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year).strftime("%Y-%m-%d") %>"/>
-		<input type='hidden' name='end_date' value="<%=(Time.now.midnight + 1.day).strftime("%Y-%m-%d") %>"/>
-		<button type='submit'>This Year</button>
-	</form>
+ 	<form action="/statistics" method="get">
+	<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year).strftime("%Y-%m-%d") %>"/>
+	<input type='hidden' name='end_date' value="<%=(Time.now.midnight + 1.day).strftime("%Y-%m-%d") %>"/>
+	<button type='submit'>This Year</button>
+</form>
 
 	<form action="/statistics" method="get">
 		<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year - 1.year).strftime("%Y-%m-%d") %>"/>
 		<input type='hidden' name='end_date' value="<%=(Time.new.end_of_year - 1.year).strftime("%Y-%m-%d") %>"/>
 		<button type='submit'>Last Year</button>
 	</form>
+
+
+
+
 
 	<!-- total by date -->
 	<%= attendances_by_date %>
@@ -34,9 +153,34 @@
 	<%= schools_by_date %>
 	<%= grade_by_date %>
 	<%= zip_by_date %>
-	
+
 	<!-- Trends -->
 	<%= line_chart school_trends %>	
+	<%= line_chart referral_trends %>
+
+<%= select_tag "PickAYear", options_for_select(@years) %>
 
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
 </div>

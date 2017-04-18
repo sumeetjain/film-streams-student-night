@@ -142,11 +142,10 @@ class Student < ActiveRecord::Base
 	  enum referral: {
 		'From a friend'             => 0,
 		'From my teacher'           => 1,
-		'From my school'            => 2,
+		"Film Stream's enewsletter" => 2,
 		'Internet Search'						=> 3,
 		'Social media'              => 4,
 		"Film Stream's website"     => 5,
-
 	}
 
 end
