@@ -1,7 +1,11 @@
 class EventsController < ApplicationController
 
 	def index
-		@events = Event.where("date < ?", -1.days.ago)
+		@events = Event.where("date > ?", 1.days.ago)
+		if !@events.nil?
+			@events.sort_by {|obj| obj.date}
+		end
+		@events = @events.sort_by {|obj| obj.date}
 	end
 
 	def new

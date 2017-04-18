@@ -1,5 +1,5 @@
 <h1>Hello Admin, Master of the Universe</h1>
-
+<%= button_to "Create New Event", new_event_path,  :method => "get", class: "btn-lg btn-default" %>
 <%= button_to "View All Events Statistics", statistics_path,  :method => "get", class: "btn-lg btn-default" %>
 
 <% @events.each do |event| %>
