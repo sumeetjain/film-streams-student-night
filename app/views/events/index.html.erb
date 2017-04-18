@@ -1,6 +1,6 @@
 <h1>Hello Admin, Master of the Universe</h1>
 
-<%= button_to "View All Events Statistics", stats_path,  :method => "get", class: "btn-lg btn-default" %>
+<%= button_to "View All Events Statistics", statistics_path,  :method => "get", class: "btn-lg btn-default" %>
 
 <% @events.each do |event| %>
 	<div class="row">
@@ -16,6 +16,7 @@
 
 					<a href="events/<%= event.id %>" class="btn btn-default borderless">Edit<span class="glyphicon glyphicon-edit"></span>
 				  </a>
+
 				</div>
 					
 				</div>
