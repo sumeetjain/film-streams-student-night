@@ -144,7 +144,6 @@ class Csvdata
 			return student
 		elsif !student.errors.messages[:email].nil?
 			if student.errors.messages[:email].include? "has already been taken"
-				debugger
 				student = Student.find_by(email: student.email.downcase)
 			elsif student.errors.messages[:email].include?("is invalid") || student.errors.messages[:email].include?("can't be blank")
 				student.email = "invalid" + rand(9999).to_s + "@invalid.com"
