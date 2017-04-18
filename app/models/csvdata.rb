@@ -32,11 +32,18 @@ class Csvdata
 			referral: 999
 			)
 
+			student = Csvdata.make_valid(student)
+
 			if student.save
 				Csvdata.save_student_attendances(row, student)
 				saves += 1
 			else
 				error_list << student.errors.messages
+
+				#{:email=>["has already been taken"]}
+				#{:email=>["is invalid"]}
+				#{:email=>["can't be blank"]}
+				#{:zip=>["can't be blank"]}
 				fails += 1
 			end					
 		end
@@ -130,6 +137,22 @@ class Csvdata
 			end
 		end
 		return nil
+	end
+
+	Csvdata.make_valid(student)
+		if student.valid?
+			return student
+		elsif student.errors.messages[:email].include? "has already been taken"
+			student = Student.find_by(email: student.email)
+		elsif student.errors.messages[:email].include?("is invalid") || student.errors.messages[:email].include?("can't be blank")
+			student.email = "invalid" + rand(9999).to_s + "@invalid.com"
+			student.valid? ? student : next
+		elsif student.errors.messages[:zip].include? "can't be blank"
+			student.zip = "99999"
+			student.valid? ? student : next
+		else
+			return student
+		end
 	end
 
 end
