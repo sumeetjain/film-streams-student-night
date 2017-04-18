@@ -41,9 +41,9 @@ class EventsController < ApplicationController
 	def update
 		@event = Event.find(params[:id])
 		if @event.update_attributes(event_params)
-			flash[:success] = "Movie updated!"
+			flash[:success] = "Event updated!"
 		else
-			flash[:danger] = "Invalid"
+			flash[:danger] = "Invalid Event Info"
 		end
 		redirect_to event_path(@event.id)
 	end
