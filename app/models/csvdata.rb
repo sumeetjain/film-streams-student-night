@@ -39,11 +39,6 @@ class Csvdata
 				saves += 1
 			else
 				error_list << student.errors.messages
-
-				#{:email=>["has already been taken"]}
-				#{:email=>["is invalid"]}
-				#{:email=>["can't be blank"]}
-				#{:zip=>["can't be blank"]}
 				fails += 1
 			end					
 		end
@@ -139,15 +134,22 @@ class Csvdata
 		return nil
 	end
 
+	# Big ugly filter conditional. Takes a student, and for each error, fixes (most) errors.
+	#
+	# Recursive - calls itself again until all errors are fixed.
+	#
+	# Returns a saveable student.
 	def Csvdata.make_valid(student)
 		if student.valid?
 			return student
-		elsif student.errors.messages[:email].include? "has already been taken"
-			student = Student.find_by(email: student.email)
-		elsif student.errors.messages[:email].include?("is invalid") || student.errors.messages[:email].include?("can't be blank")
-			student.email = "invalid" + rand(9999).to_s + "@invalid.com"
-			student.valid? ? student : Csvdata.make_valid(student)
-		elsif student.errors.messages[:zip].include? "can't be blank"
+		elsif !student.errors.messages[:email].nil?
+			if student.errors.messages[:email].include? "has already been taken"
+				student = Student.find_by(email: student.email)
+			elsif student.errors.messages[:email].include?("is invalid") || student.errors.messages[:email].include?("can't be blank")
+				student.email = "invalid" + rand(9999).to_s + "@invalid.com"
+				student.valid? ? student : Csvdata.make_valid(student)
+			end
+		elsif !student.errors.messages[:zip].nil?
 			student.zip = "99999"
 			student.valid? ? student : Csvdata.make_valid(student)
 		else
