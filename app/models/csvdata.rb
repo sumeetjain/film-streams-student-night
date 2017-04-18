@@ -138,6 +138,11 @@ class Csvdata
 	#
 	# Recursive - calls itself again until all errors are fixed.
 	#
+	# - If email has been take, finds identical record
+	# - If email is blank OR invalid, creates invalid email with random digit appended 
+	# - If zip is blank, fills in with 00000
+	# - If name is blank, fills with "none given"
+	#
 	# Returns a saveable student.
 	def Csvdata.make_valid(student)
 		if student.valid?
@@ -150,7 +155,10 @@ class Csvdata
 				student.valid? ? student : Csvdata.make_valid(student)
 			end
 		elsif !student.errors.messages[:zip].nil?
-			student.zip = "99999"
+			student.zip = "00000"
+			student.valid? ? student : Csvdata.make_valid(student)
+		elsif !student.errors.messages[:name].nil?
+			student.name = "none given"
 			student.valid? ? student : Csvdata.make_valid(student)
 		else
 			return student
