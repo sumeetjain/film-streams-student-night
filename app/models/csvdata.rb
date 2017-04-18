@@ -103,7 +103,8 @@ class Csvdata
 	#
 	# Returns a valid Enum for year
 	def Csvdata.set_valid_year(year)
-		if Csvdata.year_compare(year.to_s)
+		year.nil? ? "" : year
+		if Csvdata.year_compare(year)
 			return year
 		elsif Csvdata.year_compare(year.to_s.downcase.capitalize)
 			return year.to_s.downcase.capitalize
@@ -112,7 +113,6 @@ class Csvdata
 		else
 			return 999
 		end
-		# (Student.years.keys.include? year) ? year : "other"
 	end
 
 	# Takes a string (year) and checks if the array of proper year Enums contains it
