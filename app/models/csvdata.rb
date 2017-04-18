@@ -24,7 +24,7 @@ class Csvdata
 		CSV.foreach("student_night.csv", {headers: true, return_headers: false}) do |row|
 
 			student = Student.new(
-			email: row["E-MAIL"],
+			email: row["E-MAIL"].downcase,
 			name: "#{row["FIRST NAME"]} #{row["LAST NAME"]}",
 			school: Csvdata.set_valid_school(row["SCHOOL"]),
 			year: Csvdata.set_valid_year(row["YR"]),
@@ -145,7 +145,7 @@ class Csvdata
 		elsif !student.errors.messages[:email].nil?
 			if student.errors.messages[:email].include? "has already been taken"
 				debugger
-				student = Student.find_by(email: student.email)
+				student = Student.find_by(email: student.email.downcase)
 			elsif student.errors.messages[:email].include?("is invalid") || student.errors.messages[:email].include?("can't be blank")
 				student.email = "invalid" + rand(9999).to_s + "@invalid.com"
 				student.valid? ? student : Csvdata.make_valid(student)
