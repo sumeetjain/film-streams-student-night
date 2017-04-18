@@ -139,17 +139,17 @@ class Csvdata
 		return nil
 	end
 
-	Csvdata.make_valid(student)
+	def Csvdata.make_valid(student)
 		if student.valid?
 			return student
 		elsif student.errors.messages[:email].include? "has already been taken"
 			student = Student.find_by(email: student.email)
 		elsif student.errors.messages[:email].include?("is invalid") || student.errors.messages[:email].include?("can't be blank")
 			student.email = "invalid" + rand(9999).to_s + "@invalid.com"
-			student.valid? ? student : next
+			student.valid? ? student : Csvdata.make_valid(student)
 		elsif student.errors.messages[:zip].include? "can't be blank"
 			student.zip = "99999"
-			student.valid? ? student : next
+			student.valid? ? student : Csvdata.make_valid(student)
 		else
 			return student
 		end
