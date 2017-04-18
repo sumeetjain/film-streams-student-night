@@ -17,14 +17,14 @@ class Csvdata
 	# Looks through the CSV and saves a Student and their attendances based on their column values
 	#
 	# Run this to populate the CSV with all previus students and their attendances on dates.
-
+	def Csvdata.seedStudents
 		saves = 0
 		fails = 0
 		error_list = []
 		CSV.foreach("student_night.csv", {headers: true, return_headers: false}) do |row|
 
 			student = Student.new(
-			email: row["E-MAIL"].downcase,
+			email: row["E-MAIL"].to_s.downcase,
 			name: "#{row["FIRST NAME"]} #{row["LAST NAME"]}",
 			school: Csvdata.set_valid_school(row["SCHOOL"]),
 			year: Csvdata.set_valid_year(row["YR"]),
