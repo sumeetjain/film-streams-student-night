@@ -6,12 +6,12 @@
 	<%= line_chart [
 	  {name: "All Attendances", data: Attendance.all.group_by_year(:created_at).count.map},
 	  {name: "Unique Students", data: Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count.map},
-	  {name: "Unique Schools", data: Attendance.group_by_year('attendances.created_at').joins(:student).select('students.school').uniq.count.map} 
+	  {name: "Unique Schools", data: Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count.map} 
 
 	]%>  
 
 	<%= line_chart [
-	  {name: "Unique Schools", data: Attendance.group_by_year('attendances.created_at').joins(:student).select('students.school').uniq.count.map} 
+	  {name: "Unique Schools", data: Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count.map} 
 	]%>  
 
 	<span class="text-primary">Total Attendances = <%= @attendances %></span><br>

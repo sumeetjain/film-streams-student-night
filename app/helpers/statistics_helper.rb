@@ -60,8 +60,7 @@ module StatisticsHelper
 
   # Main Charts
   def schools_name_by_year
-    schools = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student).select('students.school').group(:school).count.transform_keys { |k| Student.schools.key(k) }
-    schools.sort_by{|k,v| v}.reverse
+    schools = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student => :school).order("count_all DESC").group("schools.name").count
   end
 
   def student_attends_by_year
