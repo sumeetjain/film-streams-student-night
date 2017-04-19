@@ -6,18 +6,18 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" type="text/css" href="/assets/custom.css.scss">
-  
+
 	<link rel="shortcut icon" href="http://www.filmstreams.org/wp-content/themes/filmstreams/inc/images/favicon.ico" />
 </head>
-<body>
-	<body>
+	<body class="box noise vignette">
+		<div class="page-wrap">
+			<%= render 'layouts/header' %>
 
-		<%= render 'layouts/header' %>
-
-		<%= yield %>
+			<%= yield %>
+			
+		</div>
 
 		<%= render 'layouts/footer' %>
 
 	</body>
-</body>
 </html>
