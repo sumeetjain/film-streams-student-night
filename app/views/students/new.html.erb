@@ -15,9 +15,8 @@
         <%= f.select( :year, Student.years.map { |key, value| [key, key] }, 
         {include_blank: "Select Year"},{ :class => 'form-control' })%>
 
-        <%= f.label :school %>
-        <%= f.select( :school, Student.schools.map { |key, value| [key, key] }, 
-        {include_blank: "Select School"},{ :class => 'form-control' })%>
+        <%= f.label :school_id %>
+        <%= f.select( :school_id, options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id), {include_blank: "Select School"}, { :class => 'form-control' }) %>
 
         <%= f.label :zip %>
         <%= f.text_field :zip, class: 'form-control' %>
