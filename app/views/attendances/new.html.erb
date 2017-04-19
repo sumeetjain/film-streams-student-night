@@ -9,7 +9,6 @@
 	    <%= label_tag(:movie_tile, movie.title ) %><br>
 	  <% end %>
 	  <button class="btn btn-success button_margin" name="commit" type='submit'>Finish</button>
-	  <%= link_to "Post", event_attendances_path, :method => :post %>
+	  <%= link_to "Post", event_attendances_path(:movie_id => "movie", :student_id => @student_id), :method => :post %>
 	</form>
 </div>
-

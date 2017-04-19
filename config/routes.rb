@@ -42,5 +42,5 @@ Rails.application.routes.draw do
   root to: 'users#index'
 
   # Why do i have to add this manually?
-  # post "/events/7/attendances/create" => 'attendances#create'
+  post "/events/:id/attendances/create" => 'attendances#create'
 end
