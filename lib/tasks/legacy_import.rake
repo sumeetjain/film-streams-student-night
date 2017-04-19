@@ -178,7 +178,7 @@ class Csvdata
 
 end
 
-task :legacy_importer => :environment do
+task :legacy_import => :environment do
 	Csvdata.seedEvents
 	Csvdata.seedStudents
 end
