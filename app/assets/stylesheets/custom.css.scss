@@ -200,3 +200,31 @@ html, body {
     100% { background-position: -3px 3px; }
 }
 
+nav.navbar.navbar-default.navbar-static-top{
+	margin-top: -20px;
+	color: black !important;
+}
+
+nav.navbar.navbar-default.navbar-static-top a{
+	// color: #9d9d9d;
+	color: #5BC0DE;
+	text-decoration: none;
+}
+
+nav.navbar.navbar-default.navbar-static-top a:hover{
+	color: black;
+}
+
+.range-button{
+	margin-top: 5px;
+
+}
+
+.attendances_by_title{
+	margin: 0 auto;
+	max-width: 400px;
+}
+
+.chart-title{
+	margin-bottom: 0px;
+}

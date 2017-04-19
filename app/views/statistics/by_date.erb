@@ -1,0 +1,74 @@
+<%= render 'layouts/stats_header' %>
+
+<div class="container">
+
+	<div class="form-group center">
+		<span>Date Range</span>
+			<form action="/statistics/by_date" method="get">
+				<input type='date' name='start_date' value="<%= params['start_date'] || (Time.now.midnight - 365.day).strftime("%Y-%m-%d") %>" maxlength='4' />
+				<input type='date' name='end_date' value="<%= params['end_date'] || (Time.now.midnight).strftime("%Y-%m-%d") %>" maxlength='4' />
+				<button type="submit" class="btn-primary">Submit</button>
+		</form>
+		<form action="/statistics/by_date" method="get" class='btn-group range-button'>
+			<input type='hidden' name='start_date' value="2009-01-01"/>
+			<input type='hidden' name='end_date' value="<%=(Time.now.midnight + 1.day).strftime("%Y-%m-%d") %>"/>
+			<button type='submit' class="btn-primary">All Time</button>
+		</form>
+
+		<form action="/statistics/by_date" method="get" class='btn-group range-button'>
+			<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year).strftime("%Y-%m-%d") %>"/>
+			<input type='hidden' name='end_date' value="<%=(Time.now.midnight + 1.day).strftime("%Y-%m-%d") %>"/>
+			<button type='submit' class="btn-primary">This Year</button>
+		</form>		
+		
+		<form action="/statistics/by_date" method="get" class='btn-group range-button'>
+			<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year - 1.year).strftime("%Y-%m-%d") %>"/>
+			<input type='hidden' name='end_date' value="<%=(Time.new.end_of_year - 1.year).strftime("%Y-%m-%d") %>"/>
+			<button type='submit' class="btn-primary">Last Year</button>
+		</form>		
+	</div>
+
+	<div class="row">
+		<div class="col-sm-4">
+			<h4>Students</h4>
+			<span>Total unique students <%= @students.length %>
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Student</th>
+						<th>Attends </th>	
+					</tr>
+				</thead>
+				<tbody>
+					<%  @students.each do |student, num| %>
+						<tr>
+							<td><%= student[1] %></td>
+							<td><%= num %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table> 
+		</div>
+	  <div class="col-sm-4">
+			<table class="table table-bordered">
+				<h4>Schools</h4>
+				<span>Total unique schools <%= @schools.length %>
+				<thead>
+					<tr>
+						<th>Schools</th>
+						<th>Attends</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @schools.each do |school, num| %>
+							<tr>
+								<td><%= school %></td>
+								<td><%= num %></td>
+							</tr>
+						<% end %>
+				</tbody>
+			</table>
+	  </div>
+	</div>
+</div>

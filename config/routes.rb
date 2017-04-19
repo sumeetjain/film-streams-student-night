@@ -22,10 +22,13 @@ Rails.application.routes.draw do
   # ---------------------------------------------------------------------------
 
   # This block handles charts
+  get "/statistics/by_date" => 'statistics#by_date'
+  get "/statistics/attendance" => 'statistics#attendance'
+  get "/statistics/all_time" => 'statistics#all_time'
+  get "/statistics/list" => 'statistics#list'
   resources :statistics
   resources :charts, only: [] do
     collection do
-
       get 'attendances_by_date'
       get 'referrals_by_date'
       get 'movies_by_date'
@@ -33,6 +36,7 @@ Rails.application.routes.draw do
       get 'grade_by_date'
       get 'zip_by_date'
       get 'school_trends'
+      get 'attendances_all_time'
     end
   end
  

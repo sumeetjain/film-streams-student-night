@@ -1,4 +1,4 @@
-window.addEventListener('turbolinks:load', function(){
+window.addEventListener('load', function(){
   document.getElementById("new_movie").addEventListener("click", new_movie);
   add_movies_listener();
 });
