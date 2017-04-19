@@ -1,6 +1,5 @@
-
 <div class="container">
-	<form controller="events/<%=@event.id%>/attendances"  action="create" method="post">"
+	<form controller="events/<%=@event.id%>/attendances"  action="create" method="post">
 		<input name="event_id" type="hidden" value="<%= @event.id %>">
 		<input name="student_id" type="hidden" value="<%= @student_id %>">
 	  <h4> Which Movie are you seeing </h4>
@@ -10,6 +9,6 @@
 	    <%= label_tag(:movie_tile, movie.title ) %><br>
 	  <% end %>
 	  <button class="btn btn-success button_margin" name="commit" type='submit'>Finish</button>
+	  <%= link_to "Post", event_attendances_path(:movie_id => "movie", :student_id => @student_id), :method => :post %>
 	</form>
 </div>
-

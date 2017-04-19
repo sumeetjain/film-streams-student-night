@@ -1,0 +1,584 @@
+10
+ABC
+Abraham Lincoln
+Abraham Lincoln High School
+Albany Middle
+ALHS
+Appalachian State
+Arizona
+Arizona State
+Ashland-Greenwood
+ASU
+Auburn Public School
+Augustana
+Augustana College
+Ausburg College
+Ball State
+Ball State U
+Bancroft
+Bayor U
+Bel. East
+Bellevue
+Bellevue East
+Bellevue U
+Bellevue Uni.
+Bellevue University
+Bellevue West
+Bellview West
+Bellvue
+Bellvue East
+Bellvue West
+Benedictine College
+Benedictive College
+Bennington high
+Benson
+Benson High School
+Berkley
+Bethel U
+Beveridge
+BHSU
+Blair
+Blair High School
+Boston College
+Bowdoin College
+Bowling Green State
+Brandeis U
+Brown U
+Brown Univ.
+Brownell Talbot
+Brownelle Talbot
+Bryan HS
+Bryan Middle
+Bryan Middle School
+Buena Vista
+Buffet Middle
+Buffett
+Buffett Middle
+Buffett Middle School
+Burke
+Burke High School
+Burlingame High
+byiu
+BYU
+BYU in Utah
+Capilano U
+Capitol
+Carl Sandburg College
+Carleton College
+Cenral
+Central
+Central CC
+Central HS
+Chadron State College
+Chapman U
+CHI Radiology
+Chicago-Kent Law
+Christ the King
+CHS
+CIA
+City College
+Claremont McKenna
+Claremont McKenna College
+Clark Atlanta U
+Clarkson
+Clarkson College
+Clemson U
+CNMC
+COBA
+Colgate U
+College of Saint Mary
+College of St. Benedict
+College of St. Mary
+College of St. Mary's
+College of Wooster
+College St. Benedict
+Colorado College
+Colorado School of Media
+Colorado St.
+Colorado State
+Columbia
+Columbia College
+Columbia College Chicago
+Columbia Uni.
+Columbia Univ.
+Columbus State U
+Concordia College
+Concordia U
+concordia university
+Cornell College
+Cornell U
+Craven CC
+Creative Center
+Creighton
+Creighton Law
+Creighton -Pharm
+Creighton Dental
+Creighton MBA
+Creighton Med
+Creighton Pharm
+Creighton Pharmacy
+Creighton Prep
+Creighton School of Law
+Crestridge
+Crieghton
+Crieghton Med
+Crieghton Prep
+CSM
+CSU
+CT
+CU
+CU Boulder
+Culinary Institute of America
+CUMC
+Davidson College
+Deep Springs College
+Dental School
+Dentistry
+DePaul
+DePaul U
+Doane
+Doane College
+Doane Uni.
+Dominican
+Dominican Uni.
+Drake
+Drake U
+Duchene
+Duchense Academy
+Duchesne
+Dundee Elementary
+Duschene
+Eckerd College
+Elkhorn High School
+Elkhorn Public
+Elkhorn Valley View
+ELL
+Emerson College
+Emperial Flight Academy
+Essex U UK
+Fashion Institute
+FAU
+Feinberg School of Medicine
+Fireridge Elementary
+Fontenelle
+Fontys Uni.
+Fordham
+Fordham University
+Fort Lewis College
+FTTA
+Gateway Ele
+George Mason
+George Washington U
+Georgetown
+Georgetown U
+Georgia State U
+Georgia Tech
+Gilder
+GMS
+Gomez Haritage
+Gomez Heritage
+Gonzaga
+Good Shepherd
+Grace U
+Grace Uni.
+Graceland
+Grand Canyon U
+Grand View
+Grave Uni.
+Green Mt. College
+Grinnell
+Grinnell College
+Gross
+Harvard
+Hastings
+Haute
+Hebrew College
+Herman
+Herzing University
+Hillsdale College
+home school
+Homeschool
+homeschool/mcc
+Hunter College
+Illinois Central
+ILSU
+Indiana Univ.
+Iowa CC
+Iowa Sate
+Iowa St.
+Iowa State
+Iowa State U
+Iowa Western
+IPF
+ISP/Career Center
+ISU
+Ithaca College
+ITT
+ITT Tech
+ITT Technical Institute
+IU
+IUPUI
+IWCC
+JMU
+Kansas
+Kansas City Art Institute
+Kaplan
+KAS
+KCAI
+Kiewit Middle School
+King Science
+KSU
+KU
+Kundalini Research Institute
+Lancaster U
+Laney College
+LaVista Jr High
+Law
+Lehigh University
+Lewis and Clark
+Lewis and Clark College
+Lewis Central
+Lewis Central High School
+LFCC
+Lincoln Southeast C.C.
+Lincoln Way North
+LMU
+London School of Business and Finance
+Lousiana State U
+Loyola
+Loyola Chicago
+Loyola Marymount
+Loyola Marymount U
+Loyola New Orleans
+Loyola U
+Loyola U - Maryland
+LSU
+Luthern school of theology of Chicago
+Macalester College
+Makup Designory
+Maranette U
+Marian
+Marian High
+Marian High School
+Marquette
+Marquette U
+Marrs
+Marrs Middle School
+Maryland Institute college of art
+MCAD
+MCC
+MCC Sarpy
+MCC South
+MCC/UNO
+McGill Uni
+McGill Uni.
+McMillan
+Mercy
+Mercy High School
+Merton
+Methodist
+Metro
+Metro Com. Col.
+Miami
+Miami U
+Michigan State
+Michigan State U
+Middleborn
+Middlebury
+Middlebury College
+Midwives college of Utah
+Millard Learning Center
+Millard Norh
+Millard North
+Millard North High School
+Millard S
+Millard South
+Millard West
+Millikin U
+Mission Middle
+Missouri State
+Missouri State U
+Missouri Western
+Missouri Western St. Uni.
+MIT
+Mizzou
+Morningside
+Morningside College
+Morrestown High
+Mount Michael
+MPS
+MS&T
+MT
+Mt. View
+NDSU
+NE Methodist College
+NE Wesleyan
+Neb Wesleyan
+Neb. Wesleyan
+Nebraska Christian
+Nebraska Methodist
+Nebraska Methodist College
+Nebraska Wesleyan
+Nebraska Wesleyan U
+New Mexico Highlands
+New School U
+New York Film Academy
+Norris Middle
+North
+North Central College
+North High School
+North Park U
+Northern Iowa
+Northern Mich. U
+Northern VA CC
+Northwest
+Northwest High
+Northwest High School
+Northwest Missouri State
+Northwestern
+Northwestern College
+Northwestern U
+Norwegian U of Life Sciences
+Notre Dame
+NW Missouri
+NWMSU
+NWU
+NYP
+NYU
+Oak Park River Forest
+Oakdale Elementary
+OCAP
+Oklahoma City U
+Olin College of Engineering
+OLL
+Omaha Christian Academy
+Omaha North
+Omaha South
+Omaha South HS
+Omaha Street School
+OSMHC
+Pacific
+Pamona College
+Papillion
+Papillion LaVista South
+Papillion-La Vista
+Papillion-Lavista South
+Papillion-Lavista South High
+Paris College of Art
+Parrish/Burke/OPS
+Parsons
+Pavis College of Art
+Penn State
+Peru State College
+Pho. Unv.
+Platteview
+PNCA
+Pomona College
+Portland State Univ.
+Pre-K
+Prep
+PSU
+R.M. Marrs
+Ralston High School
+Ramen Llull
+Reed
+Regis
+Regis U
+Research College Nursing
+Rice
+RISD
+risp
+Rochester Institute of Technology
+Rockhurst
+Rockhurst College
+Rockhurst U
+Rockhurst Uni.
+Roncalli High School
+Rosedale Heights
+Rutgers
+Sacred Heart
+SAIC
+Saint Albert
+Saint Albert High School
+Saint Johns U
+Saint Louis Uni.
+Saint Mary
+Saint Mary's
+Sam Houston State U
+Sandberg Inst.
+Santa Clara Uni.
+SCC
+SCHOOL
+SDSH
+SDSU
+Seton Hall
+Sewanee
+SFSU
+SJU
+Skutt
+Skutt Catholic
+SLU
+SMM
+SMU
+South
+South High
+South High School
+Southeast Community
+Southest Com
+Spartanburg High School
+Springfield High
+St Albert Catholic HS
+St Cecilias
+St Mary College
+St Olaf College
+St Pete College FL
+St. Albert
+St. Albolt
+St. Benedict
+St. George
+St. George Uni.
+St. George's U
+St. John's
+St. John's U
+St. Kates
+St. Margaret Mary
+St. Margaret Mary's
+St. Mary
+St. Mary's
+St. Olof College
+St. Pius X/St. Leo
+St. Stephen
+Standford U
+Stanford
+stevens inst
+Strayer
+Sunset Hills
+Suny Purchase
+Swanson
+Syracuse U
+Templeton High School
+Templeton Middle School
+Texas A&M
+Texas A&M U
+The American Ueristy Cairo
+The Creative Center
+The Fashion Institute of Tech.
+Treynor
+Treynor High
+Treynor High School
+Trinity U
+Truman
+Truman Sate
+Truman State
+Truman State U
+Tulone
+U Hawaii - Hilo
+U Mass
+U of Alabama
+U of British Columbia
+U of Buffalo
+U of Califorinia - Berkeley
+U of Central OK
+U of Chicago
+U of Colorado
+U of Dallas
+U of Dallas/Creighton
+U of Delaware
+U of Denver
+U of Det. Mercy
+U of Essex UK
+U of I
+U of Illinois
+U of Iowa
+U of Kansas
+U of Maryland
+U of Michigan
+U of Minnesota
+U of Minnesota - Mpls
+U of Missouri - Columbia
+U of MO Columbia
+U of Oklahoma
+U of PHX
+U of Portland
+U of Puget Sound
+U of South Dakota
+U of South Florida
+U of Southern California
+U of St. Thomas
+U of Utah
+U of Vienn
+U of Washington
+U of Wis LaCrosse
+U of Wisconsin - Madison
+U of Wisconsin - Milwaukee
+U of Wisconsin Stout
+U Puget Sound
+U Tulsa
+U Virginia
+U-of-Wisconsin
+UC Berkeley
+UC Berkley
+UC San Diego
+UCBerkeley
+UCD
+UCDavis
+UCM
+Uerity of Michigan
+Uersal College of Healing Arts
+Uersitat Ramon
+Uersite Blaise-Pascal
+UFL
+UI
+Umich
+UMIV
+UMSL
+UNA
+UNC
+UNI
+Uni Missouri KC
+UNI. Of Evansville
+Uni. Of Kansas
+Union College
+Union U
+Union Uni.
+United States Military Academy
+Univ. Southern CA
+University of Cambridge
+University of Iowa
+University of Oklahoma
+UNK
+unknown
+UNL
+UNL Law
+UNL-Law
+UNLV
+UNMC
+UNMC COP
+UNMC Nursing
+UNO
+UNO-PKI
+UNO`
+Uof I
+Uof Kansas
+UofA
+USC
+USD
+USF Distance Learning
+UT Austin
+Utah State
+Utah Valley U
+UVU
+UW - La Crosse
+UW Madison
+UW-La Crosse
+UWL
+Vassar College
+Verrado Middle
+VOA
+Wahoo
+Warren Wilson College
+Wash U in St. Louis
+Washburn U
+Washington U
+Wayne St.
+Wayne State
