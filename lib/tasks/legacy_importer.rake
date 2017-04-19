@@ -22,7 +22,8 @@ class Csvdata
 		saves = 0
 		fails = 0
 		error_list = []
-		CSV.foreach("student_night.csv", {headers: true, return_headers: false}) do |row|
+		file_path = File.join(Rails.root, 'lib', 'student_night.csv')
+		CSV.foreach(file_path, {headers: true, return_headers: false}) do |row|
 
 			student = Student.new(
 			email: row["E-MAIL"].to_s.downcase,
@@ -96,6 +97,11 @@ class Csvdata
 
 	# Creates the school if needed. Then returns the school's ID.
 	def Csvdata.set_valid_school(school)
+		puts "Setting valid school for #{school}"
+		if school.nil?
+			school = "Other School"
+		end
+		
 		saved_school = School.find_or_create_by(name: school.chomp)
 		saved_school.id
 	end
@@ -170,4 +176,9 @@ class Csvdata
 		end
 	end
 
+end
+
+task :legacy_importer => :environment do
+	Csvdata.seedEvents
+	Csvdata.seedStudents
 end
