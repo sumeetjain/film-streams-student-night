@@ -1,7 +1,8 @@
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <%= render 'layouts/stats_header' %>
 
+
 <div class="container">
+
 	<div class="row">
 	  <div class="col-sm-2">
 			<form action="/statistics/list" method="get">
@@ -28,36 +29,6 @@
 				</tbody>
 			</table>
 	  </div>
-	  <div class="col-sm-10">
-
-
-	  	<h3>Event <%=params[:event]%></h3>
-			<%= bar_chart @schools.sort_by{|k,v| v}.reverse, xtitle: "Attends", ytitle: "Schools" %>
-		  <%= bar_chart @years.sort_by{|k,v| v}.reverse, xtitle: "Attends", ytitle: "School Years"%>
-		  <table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Zip codes</th>
-						<th>Attends</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%  Hash[@zipcodes.sort_by{|k, v| v}.reverse].each do |zip, num|  %> 
-								<tr>
-									<td> <%= zip %></td>
-									<td> <%= num %></td>
-								</tr>
-						<% end %>
-				</tbody>
-			</table>
-		
-		  <%= pie_chart @referrals.sort_by{|k,v| v}.reverse, adapter: "google"%>
-	
-		  <%= pie_chart @movies.sort_by{|k,v| v}.reverse, adapter: "google"%>
-	  </div>
 	</div>
 </div>
-
-
-
 

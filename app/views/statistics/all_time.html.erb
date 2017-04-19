@@ -1,36 +1,30 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+<%= render 'layouts/stats_header' %>
 
 <div class="container">
-	<form action="/statistics/schools" method="get">
-		<select name="year" value="3">
-		<%= @years.each do |year| %>
-			<option <%= (params[:year] == year.to_s) ? "selected='selected'" : "" %>value='<%= year %>'><%=year%></option>
-		<% end %>
-		</select>
-		<button class='btn btn-link' type='submit'>Update Chart</button>
-	</form>
-
 	<div class="row">
 	  <div class="col-sm-6">
 			<table class="table table-bordered">
-				<h4>Schools By Event</h4>
+				<h4>Stats By Event</h4>
 				<thead>
 					<tr>
 						<th>EVENT</th>
-						<th>Number of Schools Represented</th>
+						<th>Students</th>
+						<th>Schools</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%  @events.each do |event|  %>
 								<tr>
 									<td><%= event %></td>
-									<td><%= Event.new.school_by_event(event) %></td>
+									<td><%= Event.new.students_by_event(event) %></td>
+									<td><%= Event.new.school_by_event(event)   %></td>
 								</tr>
 						<% end %>
 				</tbody>
 			</table>
 	  </div>
+
 	  <div class="col-sm-6">
 			<table class="table table-bordered">
 				<h4>Schools All Time</h4>

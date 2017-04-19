@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get "/statistics/by_date" => 'statistics#by_date'
   get "/statistics/attendance" => 'statistics#attendance'
   get "/statistics/all_time" => 'statistics#all_time'
+  get "/statistics/list" => 'statistics#list'
   resources :statistics
   resources :charts, only: [] do
     collection do

@@ -1,0 +1,19 @@
+<%= render 'layouts/stats_header' %>
+
+
+<div class="container">
+
+		<!-- total by date -->
+
+		<%= referrals_by_date %>
+		<%= movies_by_date %>
+		<%= schools_by_date %>
+		<%= grade_by_date %>
+		<%= zip_by_date %>
+
+		<!-- Trends -->
+		<%= line_chart school_trends %>	
+		<%= line_chart referral_trends %>
+
+	<%= select_tag "PickAYear", options_for_select(@years) %>
+</div>

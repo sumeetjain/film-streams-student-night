@@ -1,17 +1,18 @@
-<nav class="navbar navbar-default navbar-static-top">
-  <div class="container">
-    <h1>hellp</h1>
-  </div>
-</nav>
+<%= render 'layouts/stats_header' %>
+
 
 <div class="container">
 
-<%= line_chart [
-  {name: "Attendances", data: Attendance.all.group_by_year(:created_at).count.map},
-  {name: "Unique Attendances", data: Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count.map}
-  
-] %>  
+	<%= line_chart [
+	  {name: "All Attendances", data: Attendance.all.group_by_year(:created_at).count.map},
+	  {name: "Unique Students", data: Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count.map},
+	  {name: "Unique Schools", data: Attendance.group_by_year('attendances.created_at').joins(:student).select('students.school').uniq.count.map} 
 
+	]%>  
+
+	<%= line_chart [
+	  {name: "Unique Schools", data: Attendance.group_by_year('attendances.created_at').joins(:student).select('students.school').uniq.count.map} 
+	]%>  
 
 	<span class="text-primary">Total Attendances = <%= @attendances %></span><br>
   <span class="text-primary">Avg Yearly Attendances = <%= @attendances/@years.length %></span><br>
@@ -38,85 +39,3 @@
 	</table>
 </div>
 
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-
-
-
-
-	<span>Date Range</span>
-	<form action="/statistics" method="get">
-		<input type='date' name='start_date' value="<%= params['start_date'] || (Time.now.midnight - 365.day).strftime("%Y-%m-%d") %>" maxlength='4' />
-		<input type='date' name='end_date' value="<%= params['end_date'] || (Time.now.midnight).strftime("%Y-%m-%d") %>" maxlength='4' />
-		<button type='submit'>Submit</button>
-	</form>
-
-	<form action="/statistics" method="get">
-		<input type='hidden' name='start_date' value="2000-01-01"/>
-		<input type='hidden' name='end_date' value="<%=(Time.now.midnight + 1.day).strftime("%Y-%m-%d") %>"/>
-		<button type='submit'>All Time</button>
-	</form>
-
- 	<form action="/statistics" method="get">
-	<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year).strftime("%Y-%m-%d") %>"/>
-	<input type='hidden' name='end_date' value="<%=(Time.now.midnight + 1.day).strftime("%Y-%m-%d") %>"/>
-	<button type='submit'>This Year</button>
-</form>
-
-	<form action="/statistics" method="get">
-		<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year - 1.year).strftime("%Y-%m-%d") %>"/>
-		<input type='hidden' name='end_date' value="<%=(Time.new.end_of_year - 1.year).strftime("%Y-%m-%d") %>"/>
-		<button type='submit'>Last Year</button>
-	</form>
-
-
-
-
-
-	<!-- total by date -->
-
-	<%= referrals_by_date %>
-	<%= movies_by_date %>
-	<%= schools_by_date %>
-	<%= grade_by_date %>
-	<%= zip_by_date %>
-
-	<!-- Trends -->
-	<%= line_chart school_trends %>	
-	<%= line_chart referral_trends %>
-
-<%= select_tag "PickAYear", options_for_select(@years) %>
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</div>
-</div>

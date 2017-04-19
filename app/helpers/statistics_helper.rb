@@ -12,7 +12,7 @@ module StatisticsHelper
   end
 
   def referrals_by_date 
-    column_chart referrals_by_date_charts_path(:start_date => @start_date, :end_date => @end_date), download: true, refresh: 60, donut: true, height: '250px',
+    bar_chart referrals_by_date_charts_path(:start_date => @start_date, :end_date => @end_date), download: true, refresh: 60, donut: true, height: '250px',
     xtitle: "Referrals", ytitle: "Referrals"
   end
 
@@ -54,10 +54,19 @@ module StatisticsHelper
     Student.between_times(@start_date.to_date, @end_date.to_date).joins(:attendances).select('attendances.created_at').group('students.referral').group_by_year('attendances.created_at').count.each { |k| k[0][0] = Student.referrals.key(k[0][0]) }
   end 
 
+  def event_list_by_year
+    Event.by_year(@year).select(:id, :date).order(id: :desc)
+  end
+
   # Main Charts
   def schools_name_by_year
-    schools = Attendance.by_year(@year).joins(:student).select('students.school').group(:school).count.transform_keys { |k| Student.schools.key(k) }
+    schools = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student).select('students.school').group(:school).count.transform_keys { |k| Student.schools.key(k) }
     schools.sort_by{|k,v| v}.reverse
+  end
+
+  def student_attends_by_year
+    students = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student).group(:email, :name).count
+    students.sort_by{|k,v| v}.reverse
   end
 
   def student_attends_by_year
