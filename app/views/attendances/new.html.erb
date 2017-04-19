@@ -1,6 +1,5 @@
-
 <div class="container">
-	<form controller="events/<%=@event.id%>/attendances"  action="create" method="post">"
+	<form controller="events/<%=@event.id%>/attendances"  action="create" method="post">
 		<input name="event_id" type="hidden" value="<%= @event.id %>">
 		<input name="student_id" type="hidden" value="<%= @student_id %>">
 	  <h4> Which Movie are you seeing </h4>
