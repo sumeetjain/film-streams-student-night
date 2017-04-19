@@ -27,7 +27,7 @@ class Csvdata
 			student = Student.new(
 			email: row["E-MAIL"].to_s.downcase,
 			name: "#{row["FIRST NAME"]} #{row["LAST NAME"]}",
-			school: Csvdata.set_valid_school(row["SCHOOL"]),
+			school_id: Csvdata.set_valid_school(row["SCHOOL"]),
 			year: Csvdata.set_valid_year(row["YR"]),
 			zip: row["zip"],
 			referral: 999
@@ -94,9 +94,10 @@ class Csvdata
 			attendance = attendance.strftime("%F")
 	end
 
-	# If a school is a valid enum, returns it, otherwise set to "other school"
+	# Creates the school if needed. Then returns the school's ID.
 	def Csvdata.set_valid_school(school)
-		(Student.schools.keys.include? school) ? school : "other school"
+		saved_school = School.find_or_create_by(name: school.chomp)
+		saved_school.id
 	end
 
 	# Takes a year unformatted. If valid, returns, checks for capitalization errors, containing keywords
