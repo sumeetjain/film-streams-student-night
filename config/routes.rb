@@ -4,8 +4,6 @@ Rails.application.routes.draw do
    post 'movies/:id' => 'movies#update'
 
   # resources :movies
-
-
   resources :users
   resources :login
   resources :stats, only: [:index]

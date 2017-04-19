@@ -1,7 +1,11 @@
 class EventsController < ApplicationController
 
 	def index
-		@events = Event.where("date < ?", -1.days.ago)
+		@events = Event.where("date > ?", 1.days.ago)
+		if !@events.nil?
+			@events.sort_by {|obj| obj.date}
+		end
+		@events = @events.sort_by {|obj| obj.date}
 	end
 
 	def new
@@ -40,7 +44,11 @@ class EventsController < ApplicationController
 
 	def update
 		@event = Event.find(params[:id])
-		@event.update_attributes(event_params)
+		if @event.update_attributes(event_params)
+			flash[:success] = "Event updated!"
+		else
+			flash[:danger] = "Invalid Event Info"
+		end
 		redirect_to event_path(@event.id)
 	end
 	
@@ -49,6 +57,6 @@ class EventsController < ApplicationController
 	end
 
 	def edit
-		
+		debugger
 	end
 end

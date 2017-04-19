@@ -5,23 +5,30 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
+built in 
+	ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-darwin16]
+	Rails 4.2.8
+	Using PostgreSQL 9.6.2
 
 * Database creation
+	Create a pg connection
+	bundle install
+	Rake db:migrate
 
 * Database initialization
+You need to seed the database with all the legacy info:
+		Open rails console
+		run two functions:
+			1. Csvdata.seedEvents
+			2. Csvdata.seedStudents
 
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+bundle exec rspec
 
 * Deployment instructions
 
-The spec, from the client:
+
+The original spec, from the client:
 
 Here are a few reports we’d love to have. Let us know if they are doable:
 
