@@ -24,10 +24,12 @@ Rails.application.routes.draw do
   # ---------------------------------------------------------------------------
 
   # This block handles charts
+  get "/statistics/by_date" => 'statistics#by_date'
+  get "/statistics/attendance" => 'statistics#attendance'
+  get "/statistics/all_time" => 'statistics#all_time'
   resources :statistics
   resources :charts, only: [] do
     collection do
-
       get 'attendances_by_date'
       get 'referrals_by_date'
       get 'movies_by_date'
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
       get 'grade_by_date'
       get 'zip_by_date'
       get 'school_trends'
+      get 'attendances_all_time'
     end
   end
  
@@ -44,5 +47,5 @@ Rails.application.routes.draw do
   root to: 'users#index'
 
   # Why do i have to add this manually?
-  post "/events/7/attendances/create" => 'attendances#create'
+  post "/events/:id/attendances/create" => 'attendances#create'
 end

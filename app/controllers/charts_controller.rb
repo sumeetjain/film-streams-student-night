@@ -6,6 +6,11 @@ class ChartsController < ApplicationController
     render json: [{name: 'Attendances', data: result}]
   end
 
+  def attendances_all_time
+    result = Attendance.all.group_by_year(:created_at).count
+    render json: [{name: 'Attendances', data: result}]
+  end
+
   def referrals_by_date
     result = Student.between_times(params[:start_date].to_date, params[:end_date].to_date).joins(:attendances).select('students.referral').group(:referral).count.transform_keys { |k| Student.referrals.key(k) }
     render json: [{name: 'Referrals', data: result}]

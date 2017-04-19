@@ -3,8 +3,10 @@ class StatisticsController < ApplicationController
 	before_filter :set_dates
 
 	def index
+
+		@attendances = Event.new.total_student_attendances
 		@years = Event.all.map(&:date).map(&:year).uniq
-		@events = Event.order(date: :desc).map(&:date).uniq
+		# @events = Event.order(date: :desc).map(&:date).uniq
 	end
 
 	def show
@@ -17,6 +19,21 @@ class StatisticsController < ApplicationController
 		Student.joins(:attendances).select('attendances.created_at').group('students.school').group_by_month('attendances.created_at').count.transform_keys{ |k| k[0] = Student.schools.key(k[0]) }
 	end
 
+	def attendance
+		@attendances = Event.new.total_student_attendances
+		@years = Event.all.map(&:date).map(&:year).uniq
+	end
 
+	def all_time
+		student_attends_by_year
+		@years = Event.all.map(&:date).map(&:year).uniq
+		@events = Event.order(date: :desc).map(&:date).uniq
+	end
+
+	def by_date
+		@students = student_attends_by_year
+		@schools = schools_name_by_year
+		# @years = Event.all.map(&:date).map(&:year).uniq
+		# @events = Event.order(date: :desc).map(&:date).uniq
+	end
 end
-
