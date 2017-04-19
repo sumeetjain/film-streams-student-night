@@ -92,6 +92,20 @@ h3 {
 	color: #679ac9;
 }
 
+.custom-btn-dngr{
+    border-radius:0px;
+    margin-top: 8px;
+    background-color: #679ac9;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.custom-btn-dngr:hover{
+    background-color: #fff;
+    border: 1px solid #679ac9;
+    color: #679ac9;
+}
+
 .cusom-btn-default{
 	color:white;
 }

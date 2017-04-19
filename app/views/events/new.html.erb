@@ -3,17 +3,17 @@
 	  <div class="row">
 	    <div class="col-md-6 col-md-offset-3">
 	      <h2 class="text-center">What are the details?</h2>
-	       <%= render 'layouts/event_errors' %>
-	      <%= form_for @event do |f| %>
+      	<%= render 'layouts/event_errors' %>
+      	<%= form_for @event do |f| %>
 
-	        <%= f.label :title %>
-	        <%= f.text_field :title, class: 'form-control' %>
+        	<%= f.label :title %>
+        	<%= f.text_field :title, class: 'form-control' %>
 
-	        <%= f.label :date %>
-	        <%= f.date_field :date, class: 'form-control' %>
+        	<%= f.label :date %>
+        	<%= f.date_field :date, class: 'form-control' %>
 
-	        <%= f.submit "Save Event", class: "btn btn-primary button_margin" %>
-	      <% end %>
+        	<%= f.submit "Save Event", class: "btn custom-btn range-button" %>
+      	<% end %>
 	    </div>
 	  </div>
 	</div>
