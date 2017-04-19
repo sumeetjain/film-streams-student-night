@@ -51,6 +51,14 @@ h3 {
 	font-size: 25px;
 }
 
+.p-0{
+    padding:0px !important;
+}
+
+.p-1{
+    padding:15px;
+}
+
 .flashes{
 	position: relative;
 	color: white;
@@ -95,15 +103,16 @@ h3 {
 .custom-btn-dngr{
     border-radius:0px;
     margin-top: 8px;
-    background-color: #679ac9;
+    background-color: #d9534f;
     border: 1px solid #fff;
     color: #fff;
 }
 
 .custom-btn-dngr:hover{
     background-color: #fff;
-    border: 1px solid #679ac9;
-    color: #679ac9;
+    border: 1px solid #d9534f;
+    color: #d9534f;
+    font-weight:900;
 }
 
 .cusom-btn-default{
