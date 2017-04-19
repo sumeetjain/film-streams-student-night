@@ -1,39 +1,47 @@
 <div class="container">
-	<h1 class = "text-center">Coming Soon</h1>
-
+	<h1 class = "text-center">Upcoming Student Nights</h1>
+	<hr>
 	<!-- not sure if i want these buttons at all -->
 <!-- 	<div class = "btn-group">
 		<%= button_to "Create New Event", new_event_path,  :method => "get", class: "btn-lg btn-default" %>
 		<%= button_to "View All Events Statistics", statistics_path,  :method => "get", class: "btn-lg btn-default" %>		
 	</div> -->
 
-
-	<% @events.each do |event| %>
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="row">
-					<h2 class="col-md-4"><%= (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y ')) %></h2>
-					<h2 class="col-md-8 text-center"><%= event.title.capitalize %></h2>
-				</div>
-				<div class="col-md-offset-5 text-left">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Date
+				</th>
+				<th>
+					Title
+				</th>
+				<th>
 					
-					<!-- view edit delete buttons -->
-					<div class="row text-right">
-						<div class="btn-group">
-
+				</th>
+			</tr>			
+		</thead>
+		<tbody>
+			<% @events.each do |event| %>
+				<tr>
+					<td>
+						<%= (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y ')) %>
+					</td>
+					<td>
+						<%= event.title %>
+					</td>
+					<td>
 						<a href="events/<%= event.id %>" class="btn btn-default borderless">
-							Edit<span class="glyphicon glyphicon-edit"></span>
+							Edit <span class="glyphicon glyphicon-edit"></span>
 					  </a>
 					  <a href="events/<%= event.id %>/checkins/new" class="btn btn-default borderless">
 					  	Student Sign In<span class="glyphicon glyphicon-view"></span>
-					  </a>
-
-
-						</div>
-						
-					</div>
-				</div>
-		  </div>
-		</div>
-	<% end %>	
+		 			  </a>
+					</td>
+				</tr>
+			<% end %>	
+			
+		</tbody>
+		
+	</table>
 </div>

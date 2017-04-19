@@ -3,7 +3,7 @@
 
 <div class="container">
 	<div class="row">
-	  <div class="col-sm-2">
+	  <div class="col-sm-3">
 			<form action="/statistics/list" method="get">
 				<select name="year" value="3">
 				<%= @event_years.each do |year| %>
@@ -28,17 +28,25 @@
 				</tbody>
 			</table>
 	  </div>
-	  <div class="col-sm-10">
+	  <div class="col-sm-9">
 
 
-	  	<h3>Event <%=params[:event]%></h3>
-			<%= bar_chart @schools.sort_by{|k,v| v}.reverse, xtitle: "Attends", ytitle: "Schools" %>
-		  <%= bar_chart @years.sort_by{|k,v| v}.reverse, xtitle: "Attends", ytitle: "School Years"%>
+	  	<h3 class="text-center"><%=params[:event]%></h3>
+	  	<p class="text-center">Report containing attendance (total visits) for this event.</p>
+	  	<hr>
+
+	  	<h4>By School</h4>
+			<%= bar_chart @schools.sort_by{|k,v| v}.reverse %>
+			<br><br>
+
+			<h4>By Grade</h4>
+		  <%= bar_chart @years.sort_by{|k,v| v}.reverse %>
+		  <br><br>
 		  <table class="table table-bordered">
 				<thead>
 					<tr>
 						<th>Zip codes</th>
-						<th>Attends</th>
+						<th>Attendances</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,9 +58,19 @@
 						<% end %>
 				</tbody>
 			</table>
+
+<br>
+			<hr>
+			<br>
 		
+			<h4 class="text-center">Referrals</h4>
 		  <%= pie_chart @referrals.sort_by{|k,v| v}.reverse, adapter: "google"%>
+
+<br>
+		  <hr>
 	
+	<br>
+		  <h4 class="text-center">Movies</h4>
 		  <%= pie_chart @movies.sort_by{|k,v| v}.reverse, adapter: "google"%>
 	  </div>
 	</div>
