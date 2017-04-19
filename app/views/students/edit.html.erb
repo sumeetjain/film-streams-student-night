@@ -23,7 +23,7 @@
         <%= f.label :zip %>
         <%= f.text_field :zip, class: 'form-control' %>
 
-        <%= f.label :referral %>
+        <%= f.label :referral, 'How did you hear about us?' %>
         <%= f.select( :referral, Student.referrals.map { |key, value| [key, key] }, 
         {include_blank: "How did you hear about free movie night?"},{ :class => 'form-control' })%>
 

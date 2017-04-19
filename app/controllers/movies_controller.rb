@@ -17,19 +17,19 @@ class MoviesController < ApplicationController
 	def save(movie)
 		movie = Movie.new(movie_params(movie))
 		movie.save
-		flash[:success] = "movie(s) saved"
+		flash[:notice] = "movie(s) saved"
 	end
 
 	def edit(key, movie)
 		current_movie = Movie.find(key.to_i)
 		current_movie.update_attributes(movie_params(movie))
-		flash[:success] = "Movie(s) edited"
+		flash[:notice] = "Movie(s) edited"
 	end
 
 	def delete(key)
 		movie = Movie.find(key.to_i)
 		movie.delete
-		flash[:danger] = "movie(s) deleted"
+		flash[:alert] = "movie(s) deleted"
 	end
 
 	def movie_params(movie)

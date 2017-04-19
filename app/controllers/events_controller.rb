@@ -28,7 +28,7 @@ class EventsController < ApplicationController
 		if load_current_user
 			event = Event.find(params[:id])
 			event.delete
-			flash[:danger] = "Event deleted."
+			flash[:alert] = "Event deleted."
 		end 
 	    redirect_to events_path
 	end
@@ -45,9 +45,9 @@ class EventsController < ApplicationController
 	def update
 		@event = Event.find(params[:id])
 		if @event.update_attributes(event_params)
-			flash[:success] = "Event updated!"
+			flash[:notice] = "Event updated!"
 		else
-			flash[:danger] = "Invalid Event Info"
+			flash[:alert] = "Invalid Event Info"
 		end
 		redirect_to event_path(@event.id)
 	end

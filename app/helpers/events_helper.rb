@@ -22,4 +22,8 @@ module EventsHelper
   	schools.sort_by{|k,v| v}.reverse
   end
 
+  def movies_by_event(event)
+    movies = Movie.find_by(event_id: event.id)
+  end
+
 end

@@ -1,12 +1,10 @@
-<h5>Hello Student Please check-in!</h5>
-
-
-<div class="container bottom_space">
+<div class="container">
+  <h4 class="text-center">Check in and give us some feedback!</h4>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
 
        <%= form_for([@event, @checkin]) do |f| %>
-
+        <%= f.label :email, class: "label-padding" %>
         <%= f.text_field :email, class: 'form-control' %>
 
         <%= f.label :email_confirmation, class: "label-padding" %>
