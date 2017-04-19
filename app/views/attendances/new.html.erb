@@ -1,13 +1,25 @@
-<div class="container">
-	<form controller="events/<%=@event.id%>/attendances"  action="create" method="post">
-		<input name="event_id" type="hidden" value="<%= @event.id %>">
-		<input name="student_id" type="hidden" value="<%= @student_id %>">
-	  <h4> Which Movie are you seeing </h4>
-	  <% @event.movies.each do |movie| %> 
-	    <%= radio_button_tag(:movie_id, movie.id) %>
-	    <%= label_tag(:movie_time, (Time.parse(movie.time.to_s).strftime('%l:%M'' %P')) ) %>
-	    <%= label_tag(:movie_tile, movie.title ) %><br>
-	  <% end %>
-	  <button class="btn btn-success button_margin" name="commit" type='submit'>Finish</button>
-	</form>
+<div class="container bottom_space">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2 class="text-center">Complete Checkin</h2>
+      <h4 class="text-center">What movie are you seeing tonight?</h4>
+
+      <hr>
+
+      <%= form_for [@event, @attendance] do |f| %>
+      	<%= f.hidden_field :event_id %>
+      	<%= f.hidden_field :student_id %>
+
+      	<% @event.movies.each do |movie| %> 
+      		<label>
+      			<%= f.radio_button :movie_id, movie.id %>&nbsp;
+      			<%= movie.title %> at <%= Time.parse(movie.time.to_s).strftime('%l:%M'' %P') %>
+      		</label>
+      		<br>
+      	<% end %>
+
+      	<%= f.submit "Finish Checkin!", class: "btn custom-btn" %>
+      <% end %>
+    </div>
+  </div>
 </div>

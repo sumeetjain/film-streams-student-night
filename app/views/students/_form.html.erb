@@ -1,0 +1,33 @@
+<%= form_for([@event, @student]) do |f| %>
+
+  <%= f.hidden_field :email, class: 'form-control' %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :year %>
+    <%= f.select( :year, Student.years.map { |key, value| [key, key] }, 
+    {include_blank: "Select Year"},{ :class => 'form-control' })%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :school_id %>
+    <%= f.select( :school_id, options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id), {include_blank: "Select School"}, { :class => 'form-control' })%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :zip %>
+    <%= f.text_field :zip, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :referral, 'How did you hear about us?' %>
+    <%= f.select( :referral, Student.referrals.map { |key, value| [key, key] }, 
+    {include_blank: "How did you hear about free movie night?"},{ :class => 'form-control' })%>
+  </div>
+
+  <%= f.submit "Continue!", class: "btn custom-btn" %>
+<% end %>

@@ -1,32 +1,14 @@
 <!-- FORM FOR CREATING A NEW STUDENT --><div class="container bottom_space">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h2 class="text-center">Please make sure all fields are filled</h2>
+      <h2 class="text-center">Welcome!</h2>
+      <h4 class="text-center">Please complete your student profile below.</h4>
+
+      <hr>
+      
       <%= render 'layouts/student_errors' %>
-      <%= form_for([@event, @student]) do |f| %>
 
-        <%= f.label :email %>
-        <%= f.text_field :email, class: 'form-control' %>
-
-        <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control' %>
-
-        <%= f.label :year %>
-        <%= f.select( :year, Student.years.map { |key, value| [key, key] }, 
-        {include_blank: "Select Year"},{ :class => 'form-control' })%>
-
-        <%= f.label :school_id %>
-        <%= f.select( :school_id, options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id), {include_blank: "Select School"}, { :class => 'form-control' }) %>
-
-        <%= f.label :zip %>
-        <%= f.text_field :zip, class: 'form-control' %>
-
-        <%= f.label :referral %>
-        <%= f.select( :referral, Student.referrals.map { |key, value| [key, key] }, 
-        {include_blank: "How did you hear about PGRM?"},{ :class => 'form-control' })%>
-
-        <%= f.submit "Save Student", class: "btn btn-primary button_margin" %>
-      <% end %>
+      <%= render 'form' %>
     </div>
   </div>
 </div>

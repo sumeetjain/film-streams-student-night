@@ -1,5 +1,7 @@
-<div class="flashes text-center">
-	<% flash.each do |message_type, message| %>
-	  <div class="text-center bg-<%= message_type %>"><%= message %></div>
-	<% end %> 
-</div>
+<% if flash[:notice] || flash[:alert] %>
+  <div class="flashes text-center">
+  	<% flash.each do |message_type, message| %>
+  	  <div class="text-center bg-<%= message_type %>"><%= message %></div>
+  	<% end %> 
+  </div>
+<% end %>

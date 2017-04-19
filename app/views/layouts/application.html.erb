@@ -5,19 +5,31 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-  <link rel="stylesheet" type="text/css" href="/assets/custom.css.scss">
 
 	<link rel="shortcut icon" href="http://www.filmstreams.org/wp-content/themes/filmstreams/inc/images/favicon.ico" />
 </head>
-	<body> <!-- class="noise vignette" -->
-		<div class="page-wrap">
-			<%= render 'layouts/header' %>
+	<body>
+    <div class="cHeader">
+      <%= render 'layouts/header' %>
+    </div>
 
-			<%= yield %>
+    <div class="cMain">
+      <%= yield %>
+    </div>
+
+    <div class="cFooter">
+      <%= render 'layouts/footer' %>
+    </div>
+
+   <!-- class="noise vignette" -->
+		<!-- <div class="page-wrap">
+			
+
+			
 			
 		</div>
-
-		<%= render 'layouts/footer' %>
+ -->
+		
 
 	</body>
 </html>

@@ -1,3 +1,14 @@
+// Establish a three-row page hierarchy.
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.cMain{
+    flex-grow: 1;
+}
+
+// Custom Fonts
 @font-face {
   font-family: 'Hamilton-Light';
   src:font-url('Hamilton-Light.otf');
@@ -42,8 +53,18 @@ h3 {
 
 .flashes{
 	position: relative;
-	color:white;
-	top:-10px;
+	color: white;
+	top: -20px;
+
+    div{
+        padding: 10px 0;
+    }
+}
+.bg-notice{
+    background-color: #679ac9;
+}
+.bg-alert {
+    background-color: #BB5154;
 }
 
 .navbar{
@@ -51,24 +72,27 @@ h3 {
 }
 .navbar-brand{
 	font-family: Hamilton-Light;
+    text-transform: uppercase;
 	font-size:40px;
 }
 
 /* -------------button styling ---------------------*/
 
-.btn{
+.custom-btn{
 	border-radius:0px;
-	margin: 8px;
-	background-color: black;
-	border:none;
+	margin-top: 8px;
+	background-color: #679ac9;
+	border: 1px solid #fff;
+    color: #fff;
 }
 
-.btn:hover{
-	background-color: black;
-	color: #2e6da4;
+.custom-btn:hover{
+	background-color: #fff;
+    border: 1px solid #679ac9;
+	color: #679ac9;
 }
 
-.btn-default{
+.cusom-btn-default{
 	color:white;
 }
 
@@ -76,30 +100,24 @@ h3 {
 
 /*---------------begin footer styles----------------------------------*/
 
-* {
-  margin: 0; 
-}
-html, body {
-  height: 100%;
-}
-.page-wrap {
-  min-height: 100%;
-  /* equal to footer height */
-  margin-bottom: -35px; 
-}
-.page-wrap:after {
-  content: "";
-  display: block;
-}
-.site-footer, .page-wrap:after {
-  height: 35px;
-}
 .site-footer {
 	/*relative pushes this above noise*/
 	position:relative;
 	padding:5px;
   background-color:black;
   text-align:center;
+  font-size: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 60px;
+}
+
+.site-footer a{
+    color: #333;
+
+    &:hover{
+        color: #666;
+    }
 }
 
 /*--------------begin vingette and noise--------*/
