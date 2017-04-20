@@ -36,4 +36,19 @@ class StatisticsController < ApplicationController
 		@students = student_attends_by_year
 		@schools = schools_name_by_year
 	end
+
+
+
+  # ghetto
+	def find_student
+		@student = Student.find_by(:email => params[:id] + "." + params[:format])
+		id = @student.id
+		redirect_to("/statistics/student/#{id}")
+	end
+
+
+	# ghetto 
+	def student
+		@student = Student.find(params[:id])
+	end
 end

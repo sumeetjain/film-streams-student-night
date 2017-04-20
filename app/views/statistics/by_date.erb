@@ -43,7 +43,7 @@
 				<tbody>
 					<%  @students.each do |student, num| %>
 						<tr>
-							<td><%= student[1] %></td>
+							<td><a href="/statistics/find_student/<%=student[0]%>"><%= student[1] %></a></td>
 							<td><%= num %></td>
 						</tr>
 					<% end %>

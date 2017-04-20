@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get "/statistics/attendance" => 'statistics#attendance'
   get "/statistics/all_time" => 'statistics#all_time'
   get "/statistics/list" => 'statistics#list'
+  get "/statistics/student/:id" => 'statistics#student'
+  get "/statistics/find_student/:id" => 'statistics#find_student'
   resources :statistics
   resources :charts, only: [] do
     collection do
