@@ -17,10 +17,7 @@ built in
 
 * Database initialization
 You need to seed the database with all the legacy info:
-		Open rails console
-		run two functions:
-			1. Csvdata.seedEvents
-			2. Csvdata.seedStudents
+	bundle exec rake legacy_import
 
 * How to run the test suite
 bundle exec rspec

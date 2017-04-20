@@ -178,7 +178,7 @@ class Csvdata
 
 	# Creates an admin account
 	def Csvdata.seedAdmin
-		User.create(name: filmstreams, password: studentnight, password_confirmation: studentnight)
+		User.create(name: "filmstreams", password: "studentnight", password_confirmation: "studentnight")
 	end
 
 end
@@ -186,4 +186,5 @@ end
 task :legacy_import => :environment do
 	Csvdata.seedEvents
 	Csvdata.seedStudents
+	Csvdata.seedAdmin
 end
