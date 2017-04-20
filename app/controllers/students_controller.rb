@@ -27,7 +27,7 @@ class StudentsController < ApplicationController
 		@student = Student.new(student_params)
 
   	if @student.save
-      Gibbon::Request.lists(ENV["MAILCHIMP_LIST_ID"]).members.create(body: {email_address: @student.email, status: "subscribed", merge_fields: {FNAME: @student.first_name, LNAME: @student.last_name}})
+      @student.add_to_mailchimp
 
       flash[:student_id] = @student.id
       redirect_to new_event_attendance_path(params[:event_id])
