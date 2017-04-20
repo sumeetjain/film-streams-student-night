@@ -321,6 +321,29 @@ img.bg {
   left: -400px;
 }
 
-img.fade{
-  opacity:0.2;
+.student_table td{
+    font-size: 15px;
+}
+.btn-space {
+    margin-top: 5px !important;
+}
+
+.button-block{
+    width: 100%;
+}
+
+.form-control.selectpicker{
+    display: inline-block;
+    max-width: 125px;
+
+}
+
+.badge {
+    font-size: 15px;
+}
+
+.list-group.summary-box{
+    max-width: 250px;
+    margin: 0 auto;
+    text-align: center;
 }

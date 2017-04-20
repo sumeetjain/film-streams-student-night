@@ -3,14 +3,15 @@
 
 <div class="container">
 	<div class="row">
-	  <div class="col-sm-3">
+	  <div class="col-sm-2">
 			<form action="/statistics/list" method="get">
-				<select name="year" value="3">
+				<select name="year" value="3" class="form-control">
+			
 				<%= @event_years.each do |year| %>
 					<option <%= (params[:year] == year.to_s) ? "selected='selected'" : "" %>value='<%= year %>'><%=year%></option>
 				<% end %>
 				</select>
-				<button class='btn btn-link' type='submit'>Update List</button>
+				<button class='btn btn-default btn-space button-block' type='submit'>Update List</button>
 			</form>
 			<table class="table table-bordered">
 				<h4>Stats by event</h4>
@@ -21,26 +22,63 @@
 				</thead>
 				<tbody>
 					<%  event_list_by_year.each do |event|  %>
+						<% if event.attendances.count > 0 %>
+							<tr>
+								<td><a href="/statistics/<%= event.id %>?year=<%=params[:year]%>&event=<%=event.date%>"><%= event.date %></a></td>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+	  </div>
+	  <div class="col-sm-10">
+	  	<h3 class="text-center"><%=@event_info.title%> on <%=params[:event]%></h3>
+	  	<p class="text-center">Report containing attendance (total visits) for this event.</p>
+	  	<hr>
+
+			<h4>Summary</h4>
+
+			<ul class="list-group summary-box">
+			  <li class="list-group-item justify-content-between">
+			    Students
+			    <span class="badge badge-default badge-pill"><%=@event_info.attendances.count%></span>
+			  </li>
+			  <li class="list-group-item justify-content-between">
+			    Schools
+			    <span class="badge badge-default badge-pill"><%= @schools.keys.count%></span>
+			  </li>
+			  <li class="list-group-item justify-content-between">
+			    Grade Levels
+			    <span class="badge badge-default badge-pill"><%=@years.count %></span>
+			  </li>
+			  <li class="list-group-item justify-content-between">
+			    Zip Codes
+			    <span class="badge badge-default badge-pill"><%=@zipcodes.count %></span>
+			  </li>
+
+			</ul>
+	  	<br><br>
+	  	<h4>By School</h4>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Attendances</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%  Hash[@schools.sort_by{|k,v| v}.reverse].each do |name, num|  %> 
 								<tr>
-									<td><a href="/statistics/<%= event.id %>?year=<%=params[:year]%>&event=<%=event.date%>"><%= event.date %></a></td>
+									<td> <%= name %></td>
+									<td> <%= num %></td>
 								</tr>
 						<% end %>
 				</tbody>
 			</table>
-	  </div>
-	  <div class="col-sm-9">
-
-
-	  	<h3 class="text-center"><%=params[:event]%></h3>
-	  	<p class="text-center">Report containing attendance (total visits) for this event.</p>
-	  	<hr>
-
-	  	<h4>By School</h4>
-			<%= bar_chart @schools.sort_by{|k,v| v}.reverse %>
 			<br><br>
 
 			<h4>By Grade</h4>
-		  <%= bar_chart @years.sort_by{|k,v| v}.reverse %>
+		  <%= bar_chart @years.sort_by{|k,v| v}.reverse, download: true  %>
 		  <br><br>
 		  <table class="table table-bordered">
 				<thead>

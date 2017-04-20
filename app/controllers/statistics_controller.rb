@@ -6,8 +6,9 @@ class StatisticsController < ApplicationController
 		@attendances = Event.new.total_student_attendances
 		@years = Event.all.map(&:date).map(&:year).uniq
 	end
-
+  
 	def show
+		@event_info = Event.find(params[:id])
 		@events = Event.select(:id, :date).order(id: :desc)
 		@event_years = Event.all.order(id: :desc).map(&:date).map(&:year).uniq
 		@zipcodes = Student.joins(:attendances).select('students.zip').where("attendances.event_id = #{params[:id].to_i}").group(:zip).count
@@ -18,7 +19,7 @@ class StatisticsController < ApplicationController
   end
 
 	def list
-		@events = Event.select(:id, :date).order(id: :desc)
+		@events = Event.order(date: :desc).map(&:date).uniq
 		@event_years = Event.all.order(id: :desc).map(&:date).map(&:year).uniq
 	end
 
@@ -35,5 +36,15 @@ class StatisticsController < ApplicationController
 	def by_date
 		@students = student_attends_by_year
 		@schools = schools_name_by_year
+	end
+
+	def student
+		@student = Student.find(params[:id])
+	end
+	
+	def school
+		@uniq_schools = uniq_schools_by_id(params[:id])
+		@attendances= schools_by_id(params[:id])
+		@school = School.find(params[:id])
 	end
 end

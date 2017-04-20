@@ -1,0 +1,68 @@
+<%= render 'layouts/stats_header' %>
+
+<div class="container">
+
+
+	<h3>About <%=@student.name %></h3>
+	<table class="table table-bordered student_table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>School</th>
+				<th>Email</th>
+				<th>Year</th>
+				<th>Zip</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @student.name %></td>
+				<td><%= @student.school.name %></td>
+				<td><%= @student.email %></td>
+				<td><%= @student.year %></td>
+				<td><%= @student.zip %></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<table class="table table-bordered student_table">
+		<thead>
+			<tr>
+				<th>Attendances</th>
+				<th>Referral</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @student.attendances.count %></td>
+				<td><%= @student.referral %></td>
+			</tr>
+		</tbody>
+	</table>
+	<%= line_chart attends_by_student(@student.id) %>
+	<h3>Movies Attended</h3>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Movie</th>
+				<th>Date </th>
+				<th>Time </th>	
+			</tr>
+		</thead>
+		<tbody>
+			<%  @student.attendances.each do |attend| %>
+				<tr>
+					<% if attend.movie_id %>
+						<td><%= Movie.find(attend.movie_id).title %></td>
+						<td><%= Movie.find(attend.movie_id).event.date %></td>
+						<td><%= Movie.find(attend.movie_id).time.strftime("%I:%M %p")%></td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+
+
+</div>
+
