@@ -6,6 +6,7 @@
 	  <div class="col-sm-2">
 			<form action="/statistics/list" method="get">
 				<select name="year" value="3" class="form-control">
+			
 				<%= @event_years.each do |year| %>
 					<option <%= (params[:year] == year.to_s) ? "selected='selected'" : "" %>value='<%= year %>'><%=year%></option>
 				<% end %>
@@ -21,18 +22,23 @@
 				</thead>
 				<tbody>
 					<%  event_list_by_year.each do |event|  %>
-								<tr>
-									<td><a href="/statistics/<%= event.id %>?year=<%=params[:year]%>&event=<%=event.date%>"><%= event.date %></a></td>
-								</tr>
+						<% if event.attendances.count > 0 %>
+							<tr>
+								<td><a href="/statistics/<%= event.id %>?year=<%=params[:year]%>&event=<%=event.date%>"><%= event.date %></a></td>
+							</tr>
 						<% end %>
+					<% end %>
 				</tbody>
 			</table>
 	  </div>
 	  <div class="col-sm-10">
-	  	<h3 class="text-center"><%=params[:event]%></h3>
+	  	<h3 class="text-center"><%=@event_info.title%> on <%=params[:event]%></h3>
 	  	<p class="text-center">Report containing attendance (total visits) for this event.</p>
 	  	<hr>
 
+			<h4>Summary</h4>
+	  	<p class="text-center"><%=@event_info.attendances.count%> students, representing <%=@years.count %> grade levels, <%=@zipcodes.count %> zip codes, and <%= @schools.keys.count%> schools attended this event.</p>
+	  	<br><br>
 	  	<h4>By School</h4>
 			<%= bar_chart @schools.sort_by{|k,v| v}.reverse %>
 			<br><br>

@@ -8,6 +8,7 @@ class StatisticsController < ApplicationController
 	end
 
 	def show
+		@event_info = Event.find(params[:id])
 		@events = Event.select(:id, :date).order(id: :desc)
 		@event_years = Event.all.order(id: :desc).map(&:date).map(&:year).uniq
 		@zipcodes = Student.joins(:attendances).select('students.zip').where("attendances.event_id = #{params[:id].to_i}").group(:zip).count
