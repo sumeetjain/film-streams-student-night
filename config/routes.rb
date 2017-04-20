@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   # This block handles charts
   get "/statistics/by_date" => 'statistics#by_date'
   get "/statistics/attendance" => 'statistics#attendance'
-  get "/statistics/all_time" => 'statistics#all_time'
   get "/statistics/list" => 'statistics#list'
   get "/statistics/student/:id" => 'statistics#student'
   get "/statistics/school/:id" => 'statistics#school'

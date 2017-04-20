@@ -3,36 +3,32 @@
 
 <div class="container">
 	<div class="row">
-	  <div class="col-sm-4">
+	  <div class="col-sm-2">
 			<form action="/statistics/list" method="get">
-				<select name="year" value="3">
+				<select name="year" value="3" class="form-control">
 				<%= @event_years.each do |year| %>
 					<option <%= (params[:year] == year.to_s) ? "selected='selected'" : "" %>value='<%= year %>'><%=year%></option>
 				<% end %>
 				</select>
-				<button class='btn btn-link' type='submit'>Update List</button>
+				<button class='btn btn-default btn-space button-block' type='submit'>Update List</button>
 			</form>
 			<table class="table table-bordered">
 				<h4>Stats by event</h4>
 				<thead>
 					<tr>
 						<th>EVENT</th>
-						<th>Students</th>
-						<th>Schools</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%  event_list_by_year.each do |event|  %>
 								<tr>
 									<td><a href="/statistics/<%= event.id %>?year=<%=params[:year]%>&event=<%=event.date%>"><%= event.date %></a></td>
-									<td><%= Event.new.students_by_event(event.date) %></td>
-									<td><%= Event.new.school_by_event(event.date)   %></td>
 								</tr>
 						<% end %>
 				</tbody>
 			</table>
 	  </div>
-	  <div class="col-sm-8">
+	  <div class="col-sm-10">
 	  	<h3 class="text-center"><%=params[:event]%></h3>
 	  	<p class="text-center">Report containing attendance (total visits) for this event.</p>
 	  	<hr>
