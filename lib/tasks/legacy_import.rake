@@ -178,7 +178,7 @@ class Csvdata
 
 	# Creates an admin account
 	def Csvdata.seedAdmin
-		User.create(name: "filmstreams", password: "studentnight", password_confirmation: "studentnight")
+		User.create(name: "admin", password: "studentnight", password_confirmation: "studentnight", email: "kate@filmstreams.org")
 	end
 
 end

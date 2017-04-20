@@ -209,6 +209,7 @@ h3 {
 }
 
 .vignette:after{
+    z-index: -1; /* Push vignette to underlaying layer */
 }
 
 .noise{
@@ -319,13 +320,6 @@ img.bg {
   position: fixed;
   top: 50px;
   left: 0;
-}
-
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-  img.bg {
-    left: 50%;
-    margin-left: -512px;   /* 50% */
-  }
 }
 
 img.fade{
