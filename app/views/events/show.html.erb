@@ -15,7 +15,7 @@
 
 	        	<%= f.submit "Update Event", class: "btn custom-btn navbar-btn" %>
 
-	        	<a class="btn custom-btn navbar-btn pull-right" href="/events/<%=@event.id%>/checkins/new" role="button">Go To Student Sign In  <span class="glyphicon glyphicon-share"></span></a>
+	        	<a class="btn custom-btn navbar-btn pull-right" href="/events/<%=@event.id%>/checkins/new" role="button">Go To Student Check-In  <span class="glyphicon glyphicon-share"></span></a>
 
 	        	<%= button_to 'Delete Event', event_path(@event), class: 'btn custom-btn-dngr navbar-btn' , 
 		data: {:confirm => 'Are you sure? This will delete report information as well.'}, :method => :delete %>
@@ -35,7 +35,7 @@
 				</tr>
 				<tr>
 					<th class="p-0">
-						<span class ='btn custom-btn-grn navbar-btn' role='button' id='new_movie'>Add Movie <span class="glyphicon glyphicon-plus"></span> </span>
+						<span class ='btn btn-xs custom-btn-grn navbar-btn' role='button' id='new_movie'>Add Movie <span class="glyphicon glyphicon-plus"></span> </span>
 					</th>
 				</tr>
 			</thead>
