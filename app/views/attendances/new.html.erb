@@ -12,7 +12,7 @@
 
       	<% @event.movies.each do |movie| %> 
       		<label>
-      			<%= f.radio_button :movie_id, movie.id %>&nbsp;
+      			<%= f.radio_button :movie_id, movie.id,:required => true %>&nbsp;
       			<%= movie.title %> at <%= Time.parse(movie.time.to_s).strftime('%l:%M'' %P') %>
       		</label>
       		<br>
