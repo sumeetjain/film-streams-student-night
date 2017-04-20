@@ -19,6 +19,15 @@ class Student < ActiveRecord::Base
   	end
   end
 
+  def first_name
+  	name.split(" ").first
+  end
+
+  def last_name
+  	name_arr = name.split(" ")
+  	name_arr[1..name_arr.length].join(" ")
+  end
+
   # Enum's
   
   enum year: {
