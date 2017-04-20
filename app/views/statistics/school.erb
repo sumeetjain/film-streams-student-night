@@ -3,7 +3,12 @@
 <div class="container">
 
 	<h4>Trend for <%= @school.name %></h4>
-	<%= line_chart @attendances %>
+
+		<%= line_chart [
+	  {name: "All Attendances", data: @attendances.map},
+	  {name: "Unique Students", data: @uniq_schools.map}
+
+	]%>  
 
 	<br>
   <h4>All Time Attendances</h4>

@@ -24,9 +24,10 @@
 					<%  event_list_by_year.each do |event|  %>
 						<% if event.attendances.count > 0 %>
 							<tr>
+						
 								<td><a href="/statistics/<%= event.id %>?year=<%=params[:year]%>&event=<%=event.date%>"><%= event.date %></a></td>
-								<td><%= Event.new.students_by_event(event.date) %></td>
-								<td><%= Event.new.school_by_event(event.date)   %></td>
+								<td><%= event.attendances.count %></td>
+								<td><%= event.school_by_event(event.date)   %></td>
 							</tr>
 						<% end %>
 					<% end %>	
@@ -36,4 +37,4 @@
 	  <div class="col-sm-8">
 	  </div>
 	</div>
-</div>
+</div>										

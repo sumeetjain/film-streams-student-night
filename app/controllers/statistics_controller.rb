@@ -6,7 +6,7 @@ class StatisticsController < ApplicationController
 		@attendances = Event.new.total_student_attendances
 		@years = Event.all.map(&:date).map(&:year).uniq
 	end
-
+  
 	def show
 		@event_info = Event.find(params[:id])
 		@events = Event.select(:id, :date).order(id: :desc)
@@ -43,6 +43,7 @@ class StatisticsController < ApplicationController
 	end
 	
 	def school
+		@uniq_schools = uniq_schools_by_id(params[:id])
 		@attendances= schools_by_id(params[:id])
 		@school = School.find(params[:id])
 	end

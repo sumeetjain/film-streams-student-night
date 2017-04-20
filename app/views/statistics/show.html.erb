@@ -37,14 +37,48 @@
 	  	<hr>
 
 			<h4>Summary</h4>
-	  	<p class="text-center"><%=@event_info.attendances.count%> students, representing <%=@years.count %> grade levels, <%=@zipcodes.count %> zip codes, and <%= @schools.keys.count%> schools attended this event.</p>
+
+			<ul class="list-group summary-box">
+			  <li class="list-group-item justify-content-between">
+			    Students
+			    <span class="badge badge-default badge-pill"><%=@event_info.attendances.count%></span>
+			  </li>
+			  <li class="list-group-item justify-content-between">
+			    Schools
+			    <span class="badge badge-default badge-pill"><%= @schools.keys.count%></span>
+			  </li>
+			  <li class="list-group-item justify-content-between">
+			    Grade Levels
+			    <span class="badge badge-default badge-pill"><%=@years.count %></span>
+			  </li>
+			  <li class="list-group-item justify-content-between">
+			    Zip Codes
+			    <span class="badge badge-default badge-pill"><%=@zipcodes.count %></span>
+			  </li>
+
+			</ul>
 	  	<br><br>
 	  	<h4>By School</h4>
-			<%= bar_chart @schools.sort_by{|k,v| v}.reverse %>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Attendances</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%  Hash[@schools.sort_by{|k,v| v}.reverse].each do |name, num|  %> 
+								<tr>
+									<td> <%= name %></td>
+									<td> <%= num %></td>
+								</tr>
+						<% end %>
+				</tbody>
+			</table>
 			<br><br>
 
 			<h4>By Grade</h4>
-		  <%= bar_chart @years.sort_by{|k,v| v}.reverse %>
+		  <%= bar_chart @years.sort_by{|k,v| v}.reverse, download: true  %>
 		  <br><br>
 		  <table class="table table-bordered">
 				<thead>
@@ -63,17 +97,17 @@
 				</tbody>
 			</table>
 
-<br>
+			<br>
 			<hr>
 			<br>
 		
 			<h4 class="text-center">Referrals</h4>
 		  <%= pie_chart @referrals.sort_by{|k,v| v}.reverse, adapter: "google"%>
 
-<br>
+			<br>
 		  <hr>
 	
-	<br>
+			<br>
 		  <h4 class="text-center">Movies</h4>
 		  <%= pie_chart @movies.sort_by{|k,v| v}.reverse, adapter: "google"%>
 	  </div>
