@@ -313,13 +313,12 @@ img.bg {
   min-width: 1024px;
     
   /* Set up proportionate scaling */
-  width: 100%;
 
     
   /* Set up positioning */
   position: fixed;
   top: 50px;
-  left: 0;
+  left: -400px;
 }
 
 img.fade{
