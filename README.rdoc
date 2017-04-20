@@ -1,5 +1,7 @@
 == README
 
+Make sure you rename .env-example to just `.env` and get actual API keys.
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
