@@ -8,12 +8,12 @@
        <%= form_for([@event, @checkin]) do |f| %>
         <div class="form-group">
           <%= f.label :email, "Please enter your email address." %>
-          <%= f.text_field :email, class: 'form-control', :autocomplete => "off" %>
+          <%= f.text_field :email, class: 'form-control', :autocomplete => "off", :spellcheck=>"false" %>
         </div>
 
         <div class="form-group">
           <%= f.label :email_confirmation, "Type in your email once more, to confirm." %>
-          <%= f.text_field :email_confirmation, class: "form-control", :autocomplete => "off" %>
+          <%= f.text_field :email_confirmation, class: "form-control", :autocomplete => "off", :spellcheck=>"false" %>
         </div>
 
         <div class="row">
