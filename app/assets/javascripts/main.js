@@ -27,7 +27,7 @@ function new_row_info(event_id){
 	return  "<tr class='movie_row'>"+
 					"<td><input class='movie_name form-control' type='text' placeholder='Movie Name' id='movie_" + rowid + "_title' name='movie[" + rowid + "][title]' value=''></td>"+
 					"<td><input class='form-control' type='time' scope='row' placeholder='Time' id='movie_" + rowid + "_time' name='movie[" + rowid + "][time]' value=''></td>"+
- 		  		"<td class='nopadding'><input class='collapse delete_row' type='text' name='row_" + rowid + "[delete]' value='0'>"+
+ 		  		"<td class='delete_movie'><input class='collapse delete_row' type='text' name='row_" + rowid + "[delete]' value='0'>"+
 					"<span class='glyphicon glyphicon-remove text-danger remove_movie' role='button'></span>" +
 					"<input class='movie_class collapse' id='movie_" + rowid + "_name' name='movie[" + rowid + "][event_id]' value='" +  event_id + "'></td>" +
 			    "</tr>"	  

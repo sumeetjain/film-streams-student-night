@@ -59,6 +59,10 @@ h3 {
     padding:15px;
 }
 
+.m-0{
+    margin:0px !important;
+}
+
 .flashes{
 	position: relative;
 	color: white;
@@ -112,6 +116,21 @@ h3 {
     background-color: #fff;
     border: 1px solid #d9534f;
     color: #d9534f;
+    font-weight:900;
+}
+
+.custom-btn-grn{
+    border-radius:0px;
+    margin-top: 8px;
+    background-color: #2cd04f;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.custom-btn-grn:hover{
+    background-color: #fff;
+    border: 1px solid #2cd04f;
+    color: #2cd04f;
     font-weight:900;
 }
 

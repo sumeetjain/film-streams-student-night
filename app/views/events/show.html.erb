@@ -2,7 +2,7 @@
 	<div class="container bottom_space">
 	  <div class="row">
 	    <div class="col-md-6 col-md-offset-3">
-	      <h2 class="text-center">Movie Night Details</h2>
+	      <h2 class="text-center"><%=@event.title%> Details</h2>
 	      <input id="e_id" type="hidden" value="<%= @event.id %>">
 
 	      <%= form_for @event do |f| %>
@@ -13,21 +13,19 @@
 	        <%= f.label :date %>
 	        <%= f.date_field :date, class: 'form-control' %>
 
-	        <%= f.submit "Update Event", class: "btn custom-btn range-button" %>
-	      <% end %>
+	        	<%= f.submit "Update Event", class: "btn custom-btn navbar-btn" %>
 
+	        	<a class="btn custom-btn navbar-btn pull-right" href="/events/<%=@event.id%>/checkins/new" role="button">Go To Student Sign In  <span class="glyphicon glyphicon-share"></span></a>
+
+	        	<%= button_to 'Delete Event', event_path(@event), class: 'btn custom-btn-dngr navbar-btn' , 
+		data: {:confirm => 'Are you sure? This will delete report information as well.'}, :method => :delete %>
+
+	      <% end %>
 	    </div>
 	  </div>
-	</div>
+	</div>	
 
-
-	<div class="col-md-3">
-		<a class="btn custom-btn navbar-btn" href="/events/<%=@event.id%>/checkins/new" role="button">Go To Student Sign In  <span class="glyphicon glyphicon-share"></span></a>
-	</div>
-
-	
-
-	<form class="p-1" action="/movies/<%=@event.id%>" method="post">
+	<form class="p-1 col-md-8 col-md-offset-2" action="/movies/<%=@event.id%>" method="post">
 		<table class="table">
 			<thead class="">
 				<tr class="table-bordered">
@@ -37,7 +35,7 @@
 				</tr>
 				<tr>
 					<th class="p-0">
-						<span class ='btn custom-btn navbar-btn' role='button' id='new_movie'>Add Movie <span class="glyphicon glyphicon-plus"></span> </span>
+						<span class ='btn custom-btn-grn navbar-btn' role='button' id='new_movie'>Add Movie <span class="glyphicon glyphicon-plus"></span> </span>
 					</th>
 				</tr>
 			</thead>
@@ -58,14 +56,12 @@
 			</tbody>
 		</table>
 
-		<button class="btn custom-btn navbar-btn" name="commit" type='submit'>
-			Save Movies <span class="glyphicon glyphicon-save"></span>
+		<button class="btn custom-btn m-0" name="commit" type='submit'>
+			Save Movies&nbsp;&nbsp;<span class="glyphicon glyphicon-save"></span>
 		</button>
 
 		<br>
 
-		<%= button_to 'Delete Event', event_path(@event), class: 'btn custom-btn-dngr navbar-btn' , 
-		data: {:confirm => 'Are you sure? This will delete report information as well.'}, :method => :delete %>
 	</form>
 </div>
 
