@@ -1,5 +1,5 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <%= render 'layouts/stats_header' %>
-
 <div class="container">
 	<div class="row">
 	  <div class="col-sm-4">
@@ -35,6 +35,8 @@
 			</table>
 	  </div>
 	  <div class="col-sm-8">
+	  	<h4>Attendance trend for <%=params[:year]%>	</h4>
+			<%= line_chart Attendance.by_year(params[:year]).group_by_month(:created_at).count, adapter: "google" %>
 	  </div>
 	</div>
 </div>										
