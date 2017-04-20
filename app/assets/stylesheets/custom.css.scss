@@ -79,6 +79,13 @@ h3 {
     background-color: #BB5154;
 }
 
+.title{
+    color:white;
+    text-shadow:  2px 2px 2px black,
+                 -2px -2px 2px black,
+                  2px -2px 2px black,
+                 -2px 2px 2px black;
+}
 .navbar{
 	border-radius: 0px;
 }
@@ -287,4 +294,28 @@ nav.navbar.navbar-default.navbar-static-top a:hover{
 
 .chart-title{
 	margin-bottom: 0px;
+}
+
+/*background image*/
+img.bg {
+  z-index:-10;
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+    
+  /* Set up proportionate scaling */
+  width: 100%;
+
+    
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img.bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
 }
