@@ -3,7 +3,7 @@
 
 <div class="container">
 	<div class="row">
-	  <div class="col-sm-3">
+	  <div class="col-sm-4">
 			<form action="/statistics/list" method="get">
 				<select name="year" value="3">
 				<%= @event_years.each do |year| %>
@@ -17,20 +17,22 @@
 				<thead>
 					<tr>
 						<th>EVENT</th>
+						<th>Students</th>
+						<th>Schools</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%  event_list_by_year.each do |event|  %>
 								<tr>
 									<td><a href="/statistics/<%= event.id %>?year=<%=params[:year]%>&event=<%=event.date%>"><%= event.date %></a></td>
+									<td><%= Event.new.students_by_event(event.date) %></td>
+									<td><%= Event.new.school_by_event(event.date)   %></td>
 								</tr>
 						<% end %>
 				</tbody>
 			</table>
 	  </div>
-	  <div class="col-sm-9">
-
-
+	  <div class="col-sm-8">
 	  	<h3 class="text-center"><%=params[:event]%></h3>
 	  	<p class="text-center">Report containing attendance (total visits) for this event.</p>
 	  	<hr>

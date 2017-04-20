@@ -41,9 +41,10 @@
 					</tr>
 				</thead>
 				<tbody>
+
 					<%  @students.each do |student, num| %>
 						<tr>
-							<td><a href="/statistics/find_student/<%=student[0]%>"><%= student[1] %></a></td>
+							<td><a href="/statistics/student/<%=student[2]%>"><%= student[1] %></a></td>
 							<td><%= num %></td>
 						</tr>
 					<% end %>
@@ -63,7 +64,7 @@
 				<tbody>
 					<% @schools.each do |school, num| %>
 							<tr>
-								<td><%= school %></td>
+								<td><a href="/statistics/school/<%=school[1]%>"><%= school[0] %></a</td>
 								<td><%= num %></td>
 							</tr>
 						<% end %>

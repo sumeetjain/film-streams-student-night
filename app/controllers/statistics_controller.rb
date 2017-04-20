@@ -18,7 +18,7 @@ class StatisticsController < ApplicationController
   end
 
 	def list
-		@events = Event.select(:id, :date).order(id: :desc)
+		@events = Event.order(date: :desc).map(&:date).uniq
 		@event_years = Event.all.order(id: :desc).map(&:date).map(&:year).uniq
 	end
 
@@ -37,18 +37,12 @@ class StatisticsController < ApplicationController
 		@schools = schools_name_by_year
 	end
 
-
-
-  # ghetto
-	def find_student
-		@student = Student.find_by(:email => params[:id] + "." + params[:format])
-		id = @student.id
-		redirect_to("/statistics/student/#{id}")
-	end
-
-
-	# ghetto 
 	def student
 		@student = Student.find(params[:id])
+	end
+	
+	def school
+		@attendances= schools_by_id(params[:id])
+		@school = School.find(params[:id])
 	end
 end

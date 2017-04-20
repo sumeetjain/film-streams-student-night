@@ -1,0 +1,27 @@
+<%= render 'layouts/stats_header' %>
+
+<div class="container">
+
+	<h4>Trend for <%= @school.name %></h4>
+	<%= line_chart @attendances %>
+
+	<br>
+  <h4>All Time Attendances</h4>
+	<table class="table table-bordered student_table">
+		<thead>
+			<tr>
+				<th>Total</th>
+				<th>Unique</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+
+				<td><%= @attendances.values.inject { |a, b| a + b } %></td>
+				<td><%= @school.students.count %></td>
+				
+			</tr>
+		</tbody>
+	</table>
+</div>
+

@@ -62,13 +62,16 @@ module StatisticsHelper
     Student.joins(:attendances).group_by_year('attendances.created_at').where(:attendances => { :student_id => id }).count
   end 
 
+  def schools_by_id(id)
+    Attendance.joins(:student => :school).order("count_all DESC").group("schools.name").group_by_year('attendances.created_at').where(:students => { :school_id => id }).count
+  end 
 
   def schools_name_by_year
-    schools = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student => :school).order("count_all DESC").group("schools.name").count
+    schools = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student => :school).order("count_all DESC").group("schools.name", "students.school_id").count
   end
 
   def student_attends_by_year
-    students = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student).group(:email, :name).count
+    students = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student).group(:email, :name, 'attendances.student_id').count
     students.sort_by{|k,v| v}.reverse
   end
 
