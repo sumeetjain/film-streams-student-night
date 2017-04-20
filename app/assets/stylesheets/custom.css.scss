@@ -200,7 +200,6 @@ h3 {
 
 .noise:before, .vignette:after{    
     pointer-events: none;
-
     content: "";
     position: absolute;
     top: 0;
@@ -277,6 +276,9 @@ h3 {
     100% { background-position: -3px 3px; }
 }
 
+/*----------end vingette styles---------------*/
+
+/*-----------navbar in the charts views-------*/
 nav.navbar.navbar-default.navbar-static-top{
 	margin-top: -20px;
 	color: black !important;
@@ -301,7 +303,7 @@ nav.navbar.navbar-default.navbar-static-top a:hover{
 	margin-bottom: 0px;
 }
 
-/*background image*/
+/*---------background image----------------*/
 
 img.bg {
   z-index:-10;
@@ -315,7 +317,7 @@ img.bg {
     
   /* Set up positioning */
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
 }
 
