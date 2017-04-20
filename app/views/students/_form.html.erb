@@ -29,6 +29,13 @@
     {include_blank: "How did you hear about free movie night?"},{ :class => 'form-control' })%>
   </div>
 
+  <div class="form-group">
+    <label>
+      <%= f.check_box :newsletter %>
+      Okay to send you occasional updates about Student Night events?
+    </label>
+  </div>
+
   <div class="row">
     <%= f.submit "Continue!", class: "btn custom-btn col-xs-4 col-xs-offset-4" %>
   </div>

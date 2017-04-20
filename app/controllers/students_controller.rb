@@ -52,7 +52,7 @@ class StudentsController < ApplicationController
   private
 
 	def student_params
-		params.require(:student).permit(:email, :name, :school_id, :year, :zip, :referral)
+		params.require(:student).permit(:email, :name, :school_id, :year, :zip, :referral, :newsletter)
 	end
 
   def set_event

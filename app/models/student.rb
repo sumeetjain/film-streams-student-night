@@ -1,4 +1,5 @@
 class Student < ActiveRecord::Base
+	attr_accessor :newsletter
 
 	has_many :attendances
 	belongs_to :school
@@ -20,11 +21,13 @@ class Student < ActiveRecord::Base
   end
 
   def add_to_mailchimp
-  	begin
-  		Gibbon::Request.lists(ENV["MAILCHIMP_LIST_ID"]).members.create(body: {email_address: email, status: "subscribed", merge_fields: {FNAME: first_name, LNAME: last_name}})
-  	rescue Gibbon::MailChimpError => e
-  		# Deal with the error in any way? Undecided.
-  	end
+  	if newsletter == "1"
+	  	begin
+	  		Gibbon::Request.lists(ENV["MAILCHIMP_LIST_ID"]).members.create(body: {email_address: email, status: "subscribed", merge_fields: {FNAME: first_name, LNAME: last_name}})
+	  	rescue Gibbon::MailChimpError => e
+	  		# Deal with the error in any way? Undecided.
+	  	end
+	  end
   end
 
   def first_name
