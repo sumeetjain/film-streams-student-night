@@ -9,19 +9,19 @@
 				<input type='date' name='end_date' value="<%= params['end_date'] || (Time.now.midnight).strftime("%Y-%m-%d") %>" maxlength='4' />
 				<button type="submit" class="btn-primary">Submit</button>
 		</form>
-		<form action="/statistics/by_date" method="get" class='btn-group range-button'>
+		<form action="/statistics/by_date" method="get" class='btn-group navbar-btn'>
 			<input type='hidden' name='start_date' value="2009-01-01"/>
 			<input type='hidden' name='end_date' value="<%=(Time.now.midnight + 1.day).strftime("%Y-%m-%d") %>"/>
 			<button type='submit' class="btn-regular">All Time</button>
 		</form>
 
-		<form action="/statistics/by_date" method="get" class='btn-group range-button'>
+		<form action="/statistics/by_date" method="get" class='btn-group navbar-btn'>
 			<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year).strftime("%Y-%m-%d") %>"/>
 			<input type='hidden' name='end_date' value="<%=(Time.now.midnight + 1.day).strftime("%Y-%m-%d") %>"/>
 			<button type='submit' class="btn-regular">This Year</button>
 		</form>		
 		
-		<form action="/statistics/by_date" method="get" class='btn-group range-button'>
+		<form action="/statistics/by_date" method="get" class='btn-group navbar-btn'>
 			<input type='hidden' name='start_date' value="<%=(Time.new.beginning_of_year - 1.year).strftime("%Y-%m-%d") %>"/>
 			<input type='hidden' name='end_date' value="<%=(Time.new.end_of_year - 1.year).strftime("%Y-%m-%d") %>"/>
 			<button type='submit' class="btn-regular">Last Year</button>

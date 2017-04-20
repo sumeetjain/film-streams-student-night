@@ -63,6 +63,10 @@ h3 {
     margin:0px !important;
 }
 
+.p-rel{
+  position:relative;
+}
+
 .flashes{
 	position: relative;
 	color: white;
@@ -95,13 +99,13 @@ h3 {
 	font-size:40px;
 }
 
-.delete-icon{
+.delete_icon{
     top: 8px;
     left: 5px;
 }
 
-.delete-icon:hover{
-  
+.delete_icon:hover{
+    color:#ff0500;
 }
 
 
@@ -130,10 +134,8 @@ h3 {
 }
 
 .custom-btn-dngr:hover{
-    background-color: #fff;
-    border: 1px solid #d9534f;
-    color: #d9534f;
-    font-weight:900;
+    background-color: #ff0500;
+    color: white;
 }
 
 .custom-btn-grn{
@@ -148,7 +150,6 @@ h3 {
     background-color: #fff;
     border: 1px solid #2cd04f;
     color: #2cd04f;
-    font-weight:900;
 }
 
 .cusom-btn-default{
@@ -209,13 +210,12 @@ h3 {
 }
 
 .vignette:after{
-    z-index: -99; /* Push vignette to underlaying layer */
 }
 
 .noise{
     background: white;
     position: relative;
-    z-index: -10;
+    z-index: -98;
 }
 
 /* Keyframes */
