@@ -28,8 +28,8 @@
 			  <tr class="stats-sums">
 			  	<td>Total</td>
 			  	<td><%= @attendances %></td>
-			  	<td><%= Student.count %></td>
-			  	<td><%= School.count %></td>
+			  	<td><%= Attendance.uniq.pluck(:student_id).count %></td>
+			  	<td><%= Student.uniq.pluck(:school_id).count %></td>
 			  </tr>
 			  <tr>
 			  	<td>Ave</td>

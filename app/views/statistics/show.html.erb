@@ -63,6 +63,7 @@
 					<tr>
 						<th>Name</th>
 						<th>Attendances</th>
+						<th>Average</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -71,6 +72,7 @@
 			
 									<td> <a href="/statistics/school/<%=School.find_by(:name => name).id %>"><%= name %></a></td>
 									<td> <%= num %></td>
+									<td><%= ((num.to_f / @schools.values.sum.to_f) * 100).round(1)  %>%</td>
 								</tr>
 						<% end %>
 				</tbody>

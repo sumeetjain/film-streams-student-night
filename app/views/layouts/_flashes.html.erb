@@ -1,7 +1,11 @@
 <% if flash[:notice] || flash[:alert] %>
   <div class="flashes text-center">
   	<% flash.each do |message_type, message| %>
-  	  <div class="text-center bg-<%= message_type %>"><%= message %></div>
+  		<% if message.include? "You're checked in"%>
+  	  	<div class="text-center disappear_name bg-<%= message_type %>"><%= message %></div>
+  	  <% else %>
+  	  	<div class="text-center bg-<%= message_type %>"><%= message %></div>
+  	  <% end %> 
   	<% end %> 
   </div>
 <% end %>
