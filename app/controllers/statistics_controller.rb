@@ -3,8 +3,12 @@ class StatisticsController < ApplicationController
 	before_filter :set_dates
 
 	def index
-		@attendances = Event.new.total_student_attendances
+		@attendances = Attendance.count
+		@unique_students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
 		@years = Event.all.map(&:date).map(&:year).uniq
+		@students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
+		@unique_schools = Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count
+
 	end
   
 	def show

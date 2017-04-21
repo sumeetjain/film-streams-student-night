@@ -4,15 +4,15 @@
 	<div class="row">
 	  <div class="col-sm-4">
 			<form action="/statistics/list" method="get">
-				<select name="year" value="3" class="form-control selectpicker">
+				<select name="year" class="form-control selectpicker">
 				<%= @event_years.each do |year| %>
-					<option <%= (params[:year] == year.to_s) ? "selected='selected'" : "" %>value='<%= year %>'><%=year%></option>
+					<option <%= (params[:year] == year.to_s) ? "selected=selected" : "" %> value='<%= year %>'><%=year%></option>
 				<% end %>
 				</select>
 				<button class='btn btn-default btn-space' type='submit'>Update List</button>
 			</form>
+			<h4>Stats by event</h4>
 			<table class="table table-bordered">
-				<h4>Stats by event</h4>
 				<thead>
 					<tr>
 						<th>EVENT</th>

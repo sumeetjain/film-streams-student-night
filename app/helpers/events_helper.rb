@@ -4,11 +4,7 @@ module EventsHelper
   def year_student_attendances(year)
     Attendance.by_year(year).select(:student_id).count
   end
-
-  def total_student_attendances
-    Attendance.select(:student_id).count
-  end
-
+  
   def unique_student_attendances(year)
     Attendance.by_year(year).select(:student_id).uniq.count
   end
