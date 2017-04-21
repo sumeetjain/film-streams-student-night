@@ -57,6 +57,5 @@ class EventsController < ApplicationController
 	end
 
 	def edit
-		debugger
 	end
 end

@@ -16,7 +16,6 @@
 				<tbody>
 					<%  @events.each do |event|  %>
 								<tr>
-								<%debugger %>
 									<td><%= event %></td>
 									<td><%= Event.new.students_by_event(event) %></td>
 									<td><%= Event.new.school_by_event(event)   %></td>

@@ -18,7 +18,6 @@ class StudentsController < ApplicationController
   # GET /events/1/students/99
   #             :event_id  :id
   def edit
-    debugger
     @checkin = "true"
     @student = Student.find(params[:id])
   end
