@@ -25,18 +25,32 @@
 					<td><%= Event.new.unique_schools(year) %></td>
 				</tr>
 			<% end %>
-			  <tr class="stats-sums">
-			  	<td>Total</td>
-			  	<td><%= @attendances %></td>
-			  	<td><%= Attendance.uniq.pluck(:student_id).count %></td>
-			  	<td><%= Student.uniq.pluck(:school_id).count %></td>
-			  </tr>
-			  <tr>
-			  	<td>Ave</td>
-			  	<td><%= @attendances/@years.length %></td>
-			  	<td><%= @unique_students.values.sum/@unique_students.count %></td>
-			  	<td><%= @unique_schools.values.sum/@unique_schools.count %></td>
-			  </tr>
+		</tbody>
+	</table>
+
+	<h2>All Time</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Total Attendances</th>
+				<th>Unique Students</th>
+				<th>Unique Schools</th>
+			</tr>
+		</thead>
+		<tbody>
+		  <tr>
+		  	<td>Total</td>
+		  	<td><%= @attendances %></td>
+		  	<td><%= Attendance.uniq.pluck(:student_id).count %></td>
+		  	<td><%= Student.uniq.pluck(:school_id).count %></td>
+		  </tr>
+		  <tr>
+		  	<td>Avg</td>
+		  	<td><%= @attendances/@years.length %></td>
+		  	<td><%= @unique_students.values.sum/@unique_students.count %></td>
+		  	<td><%= @unique_schools.values.sum/@unique_schools.count %></td>
+		  </tr>
 		</tbody>
 	</table>
 </div>
