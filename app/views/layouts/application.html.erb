@@ -8,10 +8,16 @@
 
 	<link rel="shortcut icon" href="http://www.filmstreams.org/wp-content/themes/filmstreams/inc/images/favicon.ico" />
 </head>
-	<body class="" >
-    <div class="cHeader">
-      <%= render 'layouts/header' %>
-    </div>
+	<body>
+    <% if !@event %>
+      <div class="cHeader">
+        <%= render 'layouts/header' %>
+      </div>
+    <% else %>
+      <div class='cHeader'>
+        <%= render 'layouts/student_header' %>
+      </div>
+    <% end %>
 
     <div class="cMain">
       <%= yield %>
@@ -19,9 +25,7 @@
 
     <div class="cFooter">
       <%= render 'layouts/footer' %>
-    </div>
-
-   <!-- class="noise vignette" -->		
+    </div>	
 
 	</body>
 </html>

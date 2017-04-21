@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # These routes all deal with the administration of the system.
-   post 'movies/:id' => 'movies#update'
+  post 'movies/:id' => 'movies#update'
 
   resources :users
   resources :login

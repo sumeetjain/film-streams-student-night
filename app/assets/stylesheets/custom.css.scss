@@ -8,6 +8,22 @@ body{
     flex-grow: 1;
 }
 
+/*----navbar override for centering-------- */
+
+.navbar-center-fix{
+  float:none !important;
+  text-align: center;
+  margin: 0px;
+
+  div {
+    float:none !important;
+    margin: 0px !important;
+
+  }
+}
+
+
+
 // Custom Fonts
 @font-face {
   font-family: 'Hamilton-Light';
