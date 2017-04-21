@@ -5,8 +5,8 @@
 	<div class="form-group center">
 		<span>Date Range</span>
 			<form action="/statistics/by_date" method="get">
-				<input type='date' name='start_date' value="<%= params['start_date'] || (Time.now.midnight - 365.day).strftime("%Y-%m-%d") %>" maxlength='4' />
-				<input type='date' name='end_date' value="<%= params['end_date'] || (Time.now.midnight).strftime("%Y-%m-%d") %>" maxlength='4' />
+				<input type='date' name='start_date' value="<%= params['start_date'] || (Time.now.midnight - 365.day).strftime("%Y-%m-%d") %>" />
+				<input type='date' name='end_date' value="<%= params['end_date'] || (Time.now.midnight).strftime("%Y-%m-%d") %>" />
 				<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 		<form action="/statistics/by_date" method="get" class='btn-group navbar-btn'>
@@ -31,8 +31,7 @@
 	<div class="row">
 		<div class="col-sm-4">
 			<h4>Students</h4>
-			<span>Total unique students <%= @students.length %>
-
+			<span>Total unique students <%= @students.length %></span>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -52,9 +51,9 @@
 			</table> 
 		</div>
 	  <div class="col-sm-4">
+	  	<h4>Schools</h4>
+	  	Total unique schools <%= @schools.length %>
 			<table class="table table-bordered">
-				<h4>Schools</h4>
-				<span>Total unique schools <%= @schools.length %>
 				<thead>
 					<tr>
 						<th>Schools</th>
@@ -64,7 +63,7 @@
 				<tbody>
 					<% @schools.each do |school, num| %>
 							<tr>
-								<td><a href="/statistics/school/<%=school[1]%>"><%= school[0] %></a</td>
+								<td><a href="/statistics/school/<%=school[1]%>"><%= school[0] %></a></td>
 								<td><%= num %></td>
 							</tr>
 						<% end %>
