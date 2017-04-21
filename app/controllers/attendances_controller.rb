@@ -4,6 +4,7 @@ class AttendancesController < ApplicationController
 
 	def new
 		# Use this to show the movies for this event.
+		@checkin = "notnil"
 		@event = Event.find(params[:event_id])
 		@attendance = Attendance.new(event_id: @event.id, student_id: flash[:student_id])
 		

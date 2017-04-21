@@ -1,7 +1,6 @@
 # Every action in this controller has params[:event_id].
 
 class CheckinsController < ApplicationController
-
   before_filter :set_event
 
 	def new
