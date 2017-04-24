@@ -6,9 +6,26 @@ window.addEventListener('load', function(){
 
 function paginate_tables(table_pagers){
 	for (var i = 0; i <= table_pagers.length-1; i++) {
-		table_pagers[i].innerHTML = "<li> <a href=\'#\'>1</a> </li>"
+		table_pagers[i].innerHTML = make_nums(table_pagers[i]);
 	}
 }
+
+function make_nums(table_sibling){
+	table = table_sibling.previousElementSibling.children[1];
+	nums = table.childElementCount / 10;
+	debugger;
+
+	for (var i = 0; i <= nums-1; i++){
+	  var li = document.createElement('li');
+	  var a = document.createElement('a');
+	  a.textContent = i;
+	  a.href = "\'#\'"
+	  li.appendChild(a);
+	  table.appendChild(li);		
+	}
+};
+
+"<li> <a href=\'#\'>1</a> </li>"
 
 
 
