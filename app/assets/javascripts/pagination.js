@@ -1,33 +1,50 @@
 window.addEventListener('load', function(){
-	var table_pagers = document.getElementsByClassName("j_pagination");
-
-	hide_
-
-	paginate_tables(table_pagers);
+	var page_parents = document.getElementsByClassName("pagination");
+	var table_bodies = document.getElementsByClassName("paginate_body");
+	// for all trs, make that / 10 tabs
+	generate_page_tabs(page_parents);
+	// find the tabs
+	var tabs = document.getElementsByClassName("t_row");
+	debugger;
+	// hide all but first 10 trs for tables
+	show_ten_table_rows(table_bodies, 0, 9);
 });
 
-function paginate_tables(table_pagers){
-	for (var i = 0; i <= table_pagers.length-1; i++) {
-		make_nums(table_pagers[i],1,10);
+function show_ten_table_rows(table_bodies,min,max){
+	for (var i = 0; i <= table_bodies.length - 1; i++) {
+		rows = table_bodies[i].getElementsByTagName("tr");
+
+		for (var j = 0; j < rows.length; j++) {
+			if (j >= min && j <= max){
+				rows[j].style.display = "table-row";
+			} else {
+				rows[j].style.display = "none";
+			}			
+		}
 	}
 };
 
-function make_nums(table_sibling,low,up){
-	//set up based on nums here if nums < up
+function generate_page_tabs(page_parents){
+	for (var i = 0; i <= page_parents.length-1; i++) {
+		make_nums(page_parents[i],1,10);
+	}
+};
+
+function make_nums(table_sibling,min,max){
+	//set max based on nums here if nums < max
 	table = table_sibling.previousElementSibling.children[1];
 	nums = table.childElementCount / 10;
 
-	for (var i = low; i <= up; i++){
+	for (var i = min; i <= max; i++){
 	  var li = document.createElement('li');
 	  var a = document.createElement('a');
 	  a.textContent = i;
 	  a.href = "\'#\'"
 	  li.appendChild(a);
-	  table_sibling.appendChild(li);		
+	  table_sibling.appendChild(li);	
 	}
 };
 
-// show only first 10 on table by default. set 1 to active by default
 // add event listeners on pagers.
 // if 2 is clicked show 10-20 and set 2 to active. 3 => 20-30 etc
 // if 1 is active show 1-10 pagers

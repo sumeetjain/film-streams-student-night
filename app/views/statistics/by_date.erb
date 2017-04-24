@@ -32,17 +32,17 @@
 		<div class="col-sm-6">
 			<h4>Students</h4>
 
-			<table class="j_page_table table table-bordered">
+			<table class="table table-bordered">
 				<thead>
 					<tr>
 						<th>Student</th>
-						<th>Attends </th>	
+						<th>Attends</th>	
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="paginate_body">
 
 					<%  @students.each do |student, num| %>
-						<tr class=student_row>
+						<tr class="t_row">
 							<td><a href="/statistics/student/<%=student[2]%>"><%= student[1] %></a></td>
 							<td><%= num %></td>
 						</tr>
@@ -50,7 +50,7 @@
 				</tbody>
 			</table>
 			
-			<ul class="j_pagination">
+			<ul class="pagination">
 			</ul>			
 
 
@@ -58,15 +58,15 @@
 	  <div class="col-sm-6">
 	  	<h4>Schools</h4>
 
-			<table class="j_page_table table table-bordered">
+			<table class="table table-bordered">
 				<thead>
-					<tr class=school_row>
+					<tr class="t_row">
 						<th>Schools</th>
 						<th>Attends</th>
 						<th class="text-center">%</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="paginate_body">
 					<% @schools.each do |school, num| %>
 							<tr>
 								<td><a href="/statistics/school/<%=school[1]%>"><%= school[0] %></a></td>
@@ -77,7 +77,7 @@
 				</tbody>
 			</table>
 
-			<ul class="j_pagination">
+			<ul class="pagination">
 			</ul>	
 
 	  </div>
