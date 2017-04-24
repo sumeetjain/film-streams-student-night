@@ -1,5 +1,7 @@
 window.addEventListener('load', function(){
-	var table_pagers = document.getElementsByClassName("pagination");
+	var table_pagers = document.getElementsByClassName("j_pagination");
+
+	hide_
 
 	paginate_tables(table_pagers);
 });
