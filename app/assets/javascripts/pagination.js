@@ -1,39 +1,30 @@
 window.addEventListener('load', function(){
-	table_pagers = document.getElementsByClassName("pagination");
+	var table_pagers = document.getElementsByClassName("pagination");
 
 	paginate_tables(table_pagers);
 });
 
 function paginate_tables(table_pagers){
 	for (var i = 0; i <= table_pagers.length-1; i++) {
-		table_pagers[i].innerHTML = make_nums(table_pagers[i]);
+		make_nums(table_pagers[i]);
 	}
-}
+};
 
 function make_nums(table_sibling){
 	table = table_sibling.previousElementSibling.children[1];
 	nums = table.childElementCount / 10;
-	debugger;
-
 	for (var i = 0; i <= nums-1; i++){
 	  var li = document.createElement('li');
 	  var a = document.createElement('a');
-	  a.textContent = i;
+	  a.textContent = i+1;
 	  a.href = "\'#\'"
 	  li.appendChild(a);
-	  table.appendChild(li);		
+	  table_sibling.appendChild(li);		
 	}
 };
 
-"<li> <a href=\'#\'>1</a> </li>"
-
-
-
-
-// need to generate these for as many 10 pages
-//<li> <a href="#">i</a> </li>
-
-
-// this is the number of rows on the table
-pager.previousElementSibling.children[1].childElementCount
-// need to get the element
+// show only first 10 on table by default. set 1 to active by default
+// add event listeners on pagers.
+// if 2 is clicked show 10-20 and set 2 to active. 3 => 20-30 etc
+// if 1 is active show 1-10 pagers
+// if 6 is active show 2 - 11, 7 => 3 - 12 etc..
