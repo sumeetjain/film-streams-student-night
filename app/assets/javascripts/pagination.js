@@ -61,16 +61,24 @@ function make_nums(page_parent,min){
 	}
 }
 
+// for the current clicked paginator, gets num, adjacent table, and rows
+//
+// shows the proper rows for that paginator
+//
+// adjusts the tabs properly
 function listen_to_tabs(page_parent){
 	var tabs = page_parent.getElementsByClassName("jtab");
   for (var i = 0; i < tabs.length; i++){
   	tabs[i].addEventListener("click", function(){
-			num = parseInt(this.innerText);
-			table_body = this.parentElement.previousElementSibling.childNodes[3]
-			num_rows = table_body.getElementsByTagName('tr').length
-			show_ten_table_rows(table_body,num*10);
-			min = set_min(num,num_rows);
-			generate_page_tabs(page_parent,min);
+
+			clicked_num = parseInt(this.innerText);
+			table_body = this.parentElement.previousElementSibling.childNodes[3];
+			num_tabs = Math.ceil(table_body.getElementsByTagName('tr').length / 10);
+			show_ten_table_rows(table_body,clicked_num*10);
+
+
+			mid = set_mid(clicked_num,num_tabs);
+			generate_page_tabs(page_parent,mid);
 			listen_to_tabs(page_parent);
   	});
 	}
@@ -80,13 +88,15 @@ function listen_to_tabs(page_parent){
 // in order to display correct tabs at high and low numbers
 // if number is too low for tabs, return floor
 // if number is too high, ceiling minus 9
-function set_min(min, num_rows){
-	if (min < 6){
+// TODO fix this, it doesnt let us go back.  need a way to caputre childre number
+function set_mid(clicked_num, num_tabs){
+
+	if (clicked_num < 6){
 		return 1;
-	} else if (min + 9 > num_rows){
-		return num_rows - 9
-	} else{
-		return min;
+	} else if (clicked_num <= num_tabs-9){
+		return clicked_num - 5;
+	} else if (clicked_num > num_tabs - 9){
+		return num_tabs - 9;
 	}	
 }
 
@@ -94,12 +104,11 @@ function set_active_tab(tab){
 	//this just seems ugly
 }
 
-// listen to the current tabs, for each tab
-	
 
-// when a tab is clicked all tabs regenerate
-// when a tab is clicked, event listeners added to all tabs
-// set 1 to active by default, set clicked to active
-// if 6 is active show 2 - 11, 7 => 3 - 12 etc..
-// if numbers higher than 5 or less than 5 minus total are selected, this
-// will call make nums again.
+//If a number is greater than 6, generate 4 numbers above, and 5 below
+// 1-6 => min 1
+// 7 => min 2
+
+
+
+
