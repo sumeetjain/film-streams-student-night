@@ -38,11 +38,7 @@ function show_ten_table_rows(table_body,max){
 //
 // displays num tabs based on min
 function generate_page_tabs(page_parent,min){
-		debugger;
 		page_parent.innerHTML = "";
-		// if (min < 6){
-		// 	min = 1
-		// } else if (min > )
 		make_nums(page_parent,min);
 };
 
@@ -52,7 +48,6 @@ function generate_page_tabs(page_parent,min){
 //
 // Appends this to the end of the pager.
 function make_nums(page_parent,min){
-	//TODO ? set max based on nums here if nums < max
 	table_body = page_parent.previousElementSibling.children[1];
 	nums = table_body.childElementCount / 10;
 
@@ -72,10 +67,27 @@ function listen_to_tabs(page_parent){
   	tabs[i].addEventListener("click", function(){
 			num = parseInt(this.innerText);
 			table_body = this.parentElement.previousElementSibling.childNodes[3]
+			num_rows = table_body.getElementsByTagName('tr').length
 			show_ten_table_rows(table_body,num*10);
-			generate_page_tabs(page_parents,1);
+			min = set_min(num,num_rows);
+			generate_page_tabs(page_parent,min);
+			listen_to_tabs(page_parent);
   	});
 	}
+}
+
+
+// in order to display correct tabs at high and low numbers
+// if number is too low for tabs, return floor
+// if number is too high, ceiling minus 9
+function set_min(min, num_rows){
+	if (min < 6){
+		return 1;
+	} else if (min + 9 > num_rows){
+		return num_rows - 9
+	} else{
+		return min;
+	}	
 }
 
 function set_active_tab(tab){
