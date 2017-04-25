@@ -4,15 +4,24 @@ var page_parents = null;
 window.addEventListener('load', function(){
 	page_parents = document.getElementsByClassName("pagination");
 	table_bodies = document.getElementsByClassName("paginate_body");
+
+	// initially hide all but first 10 trs for tables
+	for (var i = 0; i < table_bodies.length; i++) {
+		show_ten_table_rows(table_bodies[i], 10);
+	}
+
 	// for all trs, make that / 10 tabs
-	generate_page_tabs(page_parents, 1);
-	// hide all but first 10 trs for tables
-	show_ten_table_rows(table_bodies, 10);
+	for (var i = 0; i < page_parents.length; i++) {
+		generate_page_tabs(page_parents[i], 1);
+		listen_to_tabs(page_parents[i]);
+	}
+
 });
 
-function show_ten_table_rows(table_bodies,max){
-	for (var i = 0; i <= table_bodies.length - 1; i++) {
-		rows = table_bodies[i].getElementsByTagName("tr");
+
+// for a table body, show 10 table rows depending on max num given
+function show_ten_table_rows(table_body,max){
+		rows = table_body.getElementsByTagName("tr");
 
 		for (var j = 0; j < rows.length; j++) {
 			if (j >= max-10 && j <= max-1){
@@ -21,51 +30,63 @@ function show_ten_table_rows(table_bodies,max){
 				rows[j].style.display = "none";
 			}			
 		}
-	}
 };
 
-// For each table parent, generates tabs
+// For each table parent, sets inner text to empty
 //
-// page_parents - initially a list of empty <ul>
-function generate_page_tabs(page_parents,min){
-	for (var i = 0; i <= page_parents.length-1; i++) {
-		page_parents[i].innerHTML = "";
-		make_nums(page_parents[i],min,min+9);
-	}
+// page_parent - initially an empty <ul>
+//
+// displays num tabs based on min
+function generate_page_tabs(page_parent,min){
+		debugger;
+		page_parent.innerHTML = "";
+		// if (min < 6){
+		// 	min = 1
+		// } else if (min > )
+		make_nums(page_parent,min);
 };
 
-// Creates <li> for each 10 <tr>s in <tbody>
+// Finds table body for pager, calcs number of pagers based on children /10
 //
-// Inserts numbers as <a> correspondingly
+// Creates new <a> and parent <li>
 //
-// 
-function make_nums(table_sibling,min,max){
-	//set max based on nums here if nums < max
-	table = table_sibling.previousElementSibling.children[1];
-	nums = table.childElementCount / 10;
+// Appends this to the end of the pager.
+function make_nums(page_parent,min){
+	//TODO ? set max based on nums here if nums < max
+	table_body = page_parent.previousElementSibling.children[1];
+	nums = table_body.childElementCount / 10;
 
-	for (var i = min; i <= max; i++){
+	for (var i = min; i <= min+9; i++){
 	  var li = document.createElement('li');
 	  li.className += "jtab";
 	  var a = document.createElement('a');
 	  a.textContent = i;
 	  li.appendChild(a);
-	  table_sibling.appendChild(li);	
+	  page_parent.appendChild(li);	
 	}
+}
 
-	// listen to the current tabs, for each tab
-	var tabs = document.getElementsByClassName("jtab");
-
+function listen_to_tabs(page_parent){
+	var tabs = page_parent.getElementsByClassName("jtab");
   for (var i = 0; i < tabs.length; i++){
-    	tabs[i].addEventListener("click", function(){
-				num = parseInt(this.innerText);
-				table_body = this.parentElement.previousElementSibling.childNodes[3]
-				show_ten_table_rows(table_body,num*10);
-				generate_page_tabs(page_parents,1,10);
-    	});
-  }
-}; 
+  	tabs[i].addEventListener("click", function(){
+			num = parseInt(this.innerText);
+			table_body = this.parentElement.previousElementSibling.childNodes[3]
+			show_ten_table_rows(table_body,num*10);
+			generate_page_tabs(page_parents,1);
+  	});
+	}
+}
 
+function set_active_tab(tab){
+	//this just seems ugly
+}
+
+// listen to the current tabs, for each tab
+	
+
+// when a tab is clicked all tabs regenerate
+// when a tab is clicked, event listeners added to all tabs
 // set 1 to active by default, set clicked to active
 // if 6 is active show 2 - 11, 7 => 3 - 12 etc..
 // if numbers higher than 5 or less than 5 minus total are selected, this
