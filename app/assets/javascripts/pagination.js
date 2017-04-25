@@ -1,8 +1,11 @@
+var table_bodies = null;
+var page_parents = null;
+
 window.addEventListener('load', function(){
-	var page_parents = document.getElementsByClassName("pagination");
-	var table_bodies = document.getElementsByClassName("paginate_body");
+	page_parents = document.getElementsByClassName("pagination");
+	table_bodies = document.getElementsByClassName("paginate_body");
 	// for all trs, make that / 10 tabs
-	generate_page_tabs(page_parents,1,10);
+	generate_page_tabs(page_parents, 1);
 	// hide all but first 10 trs for tables
 	show_ten_table_rows(table_bodies, 0);
 });
@@ -24,9 +27,10 @@ function show_ten_table_rows(table_bodies,min){
 // For each table parent, generates tabs
 //
 // page_parents - initially a list of empty <ul>
-function generate_page_tabs(page_parents,min,max){
+function generate_page_tabs(page_parents,min){
 	for (var i = 0; i <= page_parents.length-1; i++) {
-		make_nums(page_parents[i],min,max);
+		page_parents[i].innerHTML = "";
+		make_nums(page_parents[i],min,min+9);
 	}
 };
 
@@ -45,7 +49,6 @@ function make_nums(table_sibling,min,max){
 	  li.className += "jtab";
 	  var a = document.createElement('a');
 	  a.textContent = i;
-	  a.href = "\'#\'"
 	  li.appendChild(a);
 	  table_sibling.appendChild(li);	
 	}
