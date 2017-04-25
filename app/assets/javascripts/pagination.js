@@ -21,7 +21,7 @@ window.addEventListener('load', function(){
 
 // for a table body, show 10 table rows depending on max num given
 function show_ten_table_rows(table_body,max){
-		rows = table_body.getElementsByTagName("tr");
+		var rows = table_body.getElementsByTagName("tr");
 
 		for (var j = 0; j < rows.length; j++) {
 			if (j >= max-10 && j <= max-1){
@@ -71,15 +71,16 @@ function listen_to_tabs(page_parent){
   for (var i = 0; i < tabs.length; i++){
   	tabs[i].addEventListener("click", function(){
 
-			clicked_num = parseInt(this.innerText);
-			table_body = this.parentElement.previousElementSibling.childNodes[3];
-			num_tabs = Math.ceil(table_body.getElementsByTagName('tr').length / 10);
+			var clicked_num = parseInt(this.innerText);
+			var table_body = this.parentElement.previousElementSibling.childNodes[3];
+			var num_tabs = Math.ceil(table_body.getElementsByTagName('tr').length / 10);
 			show_ten_table_rows(table_body,clicked_num*10);
 
 
-			mid = set_mid(clicked_num,num_tabs);
+			var mid = set_mid(clicked_num,num_tabs);
 			generate_page_tabs(page_parent,mid);
 			listen_to_tabs(page_parent);
+			set_active_tab(page_parent,clicked_num);
   	});
 	}
 }
@@ -100,8 +101,13 @@ function set_mid(clicked_num, num_tabs){
 	}	
 }
 
-function set_active_tab(tab){
-	//this just seems ugly
+function set_active_tab(page_parent,clicked_num){
+	var li = page_parent.childNodes;
+	for (var i = 0; i < li.length; i++) {
+		if (li[i].innerText == clicked_num){
+			li[i].firstChild.className += " p-active";
+		} 
+	}
 }
 
 
