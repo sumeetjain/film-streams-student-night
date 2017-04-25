@@ -7,15 +7,15 @@ window.addEventListener('load', function(){
 	// for all trs, make that / 10 tabs
 	generate_page_tabs(page_parents, 1);
 	// hide all but first 10 trs for tables
-	show_ten_table_rows(table_bodies, 0);
+	show_ten_table_rows(table_bodies, 10);
 });
 
-function show_ten_table_rows(table_bodies,min){
+function show_ten_table_rows(table_bodies,max){
 	for (var i = 0; i <= table_bodies.length - 1; i++) {
 		rows = table_bodies[i].getElementsByTagName("tr");
 
 		for (var j = 0; j < rows.length; j++) {
-			if (j >= min && j <= min+9){
+			if (j >= max-10 && j <= max-1){
 				rows[j].style.display = "table-row";
 			} else {
 				rows[j].style.display = "none";
@@ -59,14 +59,14 @@ function make_nums(table_sibling,min,max){
   for (var i = 0; i < tabs.length; i++){
     	tabs[i].addEventListener("click", function(){
 				num = parseInt(this.innerText);
-				show_ten_table_rows(table_bodies,num);
+				table_body = this.parentElement.previousElementSibling.childNodes[3]
+				show_ten_table_rows(table_body,num*10);
 				generate_page_tabs(page_parents,1,10);
     	});
   }
 }; 
 
-// if 2 is clicked show 10-20 and set 2 to active. 3 => 20-30 etc
-// if 1 is active show 1-10 pagers
+// set 1 to active by default, set clicked to active
 // if 6 is active show 2 - 11, 7 => 3 - 12 etc..
 // if numbers higher than 5 or less than 5 minus total are selected, this
 // will call make nums again.
