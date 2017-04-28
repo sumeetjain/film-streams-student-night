@@ -166,7 +166,7 @@ class Csvdata
 				student.valid? ? student : Csvdata.make_valid(student)
 			end
 		elsif !student.errors.messages[:zip].nil?
-			student.zip = "00001"
+			student.zip = "10000"
 			student.valid? ? student : Csvdata.make_valid(student)
 		elsif !student.errors.messages[:name].nil?
 			student.name = "none given"
