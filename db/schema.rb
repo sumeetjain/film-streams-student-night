@@ -64,4 +64,8 @@ ActiveRecord::Schema.define(version: 20170419150510) do
     t.string   "email"
   end
 
+  create "referrals", force: :cascade do |t|
+    t.integer "referral_type"
+    t.integer "student_id"
+  end
 end
