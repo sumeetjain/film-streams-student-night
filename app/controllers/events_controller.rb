@@ -6,6 +6,8 @@ class EventsController < ApplicationController
 			@events.sort_by {|obj| obj.date}
 		end
 		@events = @events.sort_by {|obj| obj.date}
+
+		@past_events = Event.all.reverse
 	end
 
 	def new
