@@ -65,19 +65,4 @@ class Student < ActiveRecord::Base
 		'other'						=> 999
 	}
 
-	  enum referral: {
-		'From a friend'             => 0,
-		'From my teacher'           => 1,
-		"Film Streams' enewsletter or email" => 2,
-		'Internet Search'			=> 3,
-		'Social media'              => 4,
-		"Film Streams' website"     => 5,
-		'Radio'						=> 6,
-		'From a family member'		=> 7,
-		"Film Streams' Flyer"		=> 8,
-
-		'other source'							=> 999
-
-	}
-
 end
