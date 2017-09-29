@@ -36,6 +36,9 @@ class MoviesController < ApplicationController
 		movie.permit(:title, :time, :event_id)
 	end
 
+	def hidden
+	end
+
 end
 
 

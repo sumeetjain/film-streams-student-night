@@ -43,36 +43,26 @@ class Student < ActiveRecord::Base
   # Enum's
   
   enum year: {
-		'Kindergarten'             => 0,
-		'1st'                      => 1,
-		'2nd'                      => 2,
-		'3rd'                      => 3,
-		'4th'                      => 4,
-		'5th'                      => 5,
-		'6th'                      => 6,
-		'7th'                      => 7,
-		'8th'                      => 8,
-		'Freshman in High School'  => 9,
-		'Junior in High School'    => 10,
-		'Sophomore in High School' => 11,
-		'Senior in High School'    => 12,
-		'Freshman in  college'     => 13,
-		'Junior in college'        => 14,
-		'Sophomore in college'     => 15,
-		'Senior in college'        => 16,
-		'Grad'                     => 17,
-		'other'										 => 999
-	}
-
-	  enum referral: {
-		'From a friend'             => 0,
-		'From my teacher'           => 1,
-		"Film Stream's enewsletter" => 2,
-		'Internet Search'						=> 3,
-		'Social media'              => 4,
-		"Film Stream's website"     => 5,
-		'other source'							=> 999
-
+		'Kindergarten'             	=> 0,
+		'1st'                     	=> 1,
+		'2nd'                      	=> 2,
+		'3rd'                     	=> 3,
+		'4th'                      	=> 4,
+		'5th'                      	=> 5,
+		'6th'                     	=> 6,
+		'7th'                      	=> 7,
+		'8th'						=> 8,
+		'9th'  						=> 9,
+		'10th'   					=> 10,
+		'11th' 						=> 11,
+		'12th'						=> 12,
+		'College Freshman'			=> 13,
+		'College Sophomore'        	=> 14,
+		'College Junior'			=> 15,
+		'College Senior'			=> 16,
+		'Grad'						=> 17,
+		'Teacher'					=> 18,
+		'other'						=> 999
 	}
 
 end
