@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :stats, only: [:index]
   get  '/logout' => 'login#destroy'
 
+  get '/merge' => 'edit_students#index'
+
   # ---------------------------------------------------------------------------
 
   # This block of resources handles the entire process of a student
