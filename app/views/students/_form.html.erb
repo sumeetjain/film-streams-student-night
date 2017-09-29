@@ -24,8 +24,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :referral, 'How did you hear about us?' %>
-    <%= f.select( :referral, Referral.referral_types.map { |key, value| [key, key] }, 
+    <%= f.label :referral_types, 'How did you hear about us?' %>
+    <%= f.select( :referral_types, Referral.referral_types.map { |key, value| [key, key] }, 
     {include_blank: "How did you hear about free movie night?"},{ :class => 'form-control' })%>
   </div>
 
