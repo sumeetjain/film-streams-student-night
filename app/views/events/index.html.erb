@@ -40,7 +40,7 @@
 		
 	</table>
 
-	<h2>Past Events</h2>
+	<h2>Most Recent Events</h2>
 	<table class="table">
 		<thead>
 			<tr>
@@ -56,7 +56,7 @@
 			</tr>			
 		</thead>
 		<tbody>
-			<% @past_events.each do |event| %>
+			<% @past_events[0...9].each do |event| %>
 				<tr>
 					<td>
 						<%= (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y ')) %>
@@ -75,4 +75,6 @@
 		</tbody>
 		
 	</table>
+	 <a href="events/past" class="btn custom-btn borderless">
+	Show All Past Events<span class="glyphicon glyphicon-view"></span></a>
 </div>

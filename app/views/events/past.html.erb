@@ -1,0 +1,38 @@
+<div class="container p-rel">
+	<h1 class = "text-center">Past Events</h1>
+	<hr>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Date
+				</th>
+				<th>
+					Title
+				</th>
+				<th>
+					
+				</th>
+			</tr>			
+		</thead>
+		<tbody>
+			<% @past_events.each do |event| %>
+				<tr>
+					<td>
+						<%= (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y ')) %>
+					</td>
+					<td>
+						<%= event.title %>
+					</td>
+					<td>
+						<a href="events/<%= event.id %>" class="btn custom-btn borderless">
+							Edit <span class="glyphicon glyphicon-edit"></span>
+					  </a>
+					</td>
+				</tr>
+			<% end %>	
+			
+		</tbody>
+	</table>
+</div>
