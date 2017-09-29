@@ -1,8 +1,36 @@
 <div>
-	<% @student.each do |s| %>
-
-	<div><%= "#{s.name} - #{s.email}"%></div>
-	<% end %>
-
-
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Name
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					
+				</th>
+			</tr>			
+		</thead>
+		<tbody>
+			<% @student.each do |student| %>
+				<tr>
+					<td>
+						<%= student.name %>
+					</td>
+					<td>
+						<%= student.email %>
+					</td>
+					<td>
+						<a href="#" class="btn custom-btn borderless">
+							Edit <span class="glyphicon glyphicon-edit"></span>
+					  </a>
+					</td>
+				</tr>
+			<% end %>	
+			
+		</tbody>
+		
+	</table>
 </div>
