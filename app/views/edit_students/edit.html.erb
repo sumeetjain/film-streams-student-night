@@ -19,17 +19,17 @@
 
   <div>
     <%= f.label "name" %>
-    <%= f.text_field "name" %>
+    <%= f.text_area "name" %>
   </div>
 
   <div>
     <%= f.label "email" %>
-    <%= f.text_field "email" %>
+    <%= f.text_area "email" %>
   </div>
 
   <div>
     <%= f.label "email_confirmation" %>
-    <%= f.text_field "email_confirmation", {value: @student.email} %>
+    <%= f.text_area "email_confirmation", {value: @student.email} %>
   </div>
 
   <div>
