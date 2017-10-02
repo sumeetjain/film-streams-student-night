@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get  '/logout' => 'login#destroy'
 
   get '/merge' => 'edit_students#index'
+  get '/merge/edit' => 'edit_students#edit'
 
   # ---------------------------------------------------------------------------
 

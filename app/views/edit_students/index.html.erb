@@ -1,4 +1,16 @@
 <div>
+	<div class = "studentsEditing table">
+		<thead>
+			<tr>
+				<th>These are the students you would like to Merge --- </th>
+				<th>First student -- </th>
+				<th>Second Student --</th>
+				<th>
+					<a href="merge/edit" class="btn custom-btn borderless"> Submit Merge <span class="glyphicon glyphicon-edit"></span>
+					</a>
+				</th>
+		</thead>
+	</div>
 	<table class="table">
 		<thead>
 			<tr>
@@ -11,24 +23,33 @@
 				<th>
 					
 				</th>
+				<th>
+				</th>
 			</tr>			
 		</thead>
 		<tbody>
-			<% @student.each do |student| %>
-				<tr>
-					<td>
-						<%= student.name %>
-					</td>
-					<td>
-						<%= student.email %>
-					</td>
-					<td>
-						<a href="#" class="btn custom-btn borderless">
-							Edit <span class="glyphicon glyphicon-edit"></span>
-					  </a>
-					</td>
-				</tr>
-			<% end %>	
+			<div>
+				<% @student.each do |student| %>
+					<tr>
+						<td>
+							<%= student.name %>
+						</td>
+						<td>
+							<%= student.email %>
+						</td>
+						<td>
+							<a href="#" class="btn custom-btn borderless">
+								Edit <span class="glyphicon glyphicon-edit"></span>
+						  </a>
+						</td>
+						<td>
+							<a href="#" class="btn custom-btn borderless">
+								Merge <span class="glyphicon glyphicon-edit"></span>
+						  </a>
+						</td>
+					</tr>
+				<% end %>
+			</div>	
 			
 		</tbody>
 		
