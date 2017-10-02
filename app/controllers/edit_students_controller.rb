@@ -1,13 +1,12 @@
 class EditStudentsController < ApplicationController
 
 	def index
-		@student = Student.order('name ASC')
+		# TODO: Remove the limit once you're done.
+		@student = Student.order('name ASC').limit(30)
 	end
 
 	def edit
-		# @student1 = (student id FROM Student)
-		# @student2 = (student id FROM Student)
-		# @studentsMerge = [@student1, @student2]
+		@student = Student.find(3)
 	end
 
 	def update
