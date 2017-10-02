@@ -6,7 +6,23 @@ class EditStudentsController < ApplicationController
 	end
 
 	def edit
-		@student = Student.find(3)
+		@student = Student.find(params[:id])
+	end
+
+	def save
+		@student = Student.find(params[:id])
+
+		new_values = {
+			name:               params[:student][:name],
+			email:              params[:student][:email],
+			email_confirmation: params[:student][:email_confirmation],
+			school_id:          params[:student][:school_id]
+		}
+
+		@student.update_attributes!(new_values)
+
+		flash[:notice] = "Student updated!"
+		redirect_to "/merge"
 	end
 
 	def update

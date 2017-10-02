@@ -15,4 +15,29 @@
   back to the list of all students.
  -->
 
- 
+<%= form_for "student", {url: "/edit_students/save?id=#{@student.id}"} do |f| %>
+
+  <div>
+    <%= f.label "name" %>
+    <%= f.text_field "name" %>
+  </div>
+
+  <div>
+    <%= f.label "email" %>
+    <%= f.text_field "email" %>
+  </div>
+
+  <div>
+    <%= f.label "email_confirmation" %>
+    <%= f.text_field "email_confirmation", {value: @student.email} %>
+  </div>
+
+  <div>
+    <%= f.label "school" %>
+
+    <%= f.select "school_id", options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id) %>
+  </div>
+
+  <input type="submit">
+
+<% end %>
