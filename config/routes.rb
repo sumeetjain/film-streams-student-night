@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   get '/merge' => 'edit_students#index'
   get '/merge/edit' => 'edit_students#edit'
+  get '/merge/show' => 'edit_students#show'
   post '/edit_students/save' => 'edit_students#save'
+  post '/merge' => 'edit_students#show'
 
   # ---------------------------------------------------------------------------
 

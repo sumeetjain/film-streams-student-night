@@ -1,0 +1,40 @@
+<h2>Here are the results that were found for <str><%= @findStudent %></str></h2>
+<a href="/merge">Go Back To Search</a>
+<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Name
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					
+				</th>
+				<th>
+				</th>
+			</tr>			
+		</thead>
+		<tbody>
+			<div>
+				<% @student.each do |student| %>
+					<tr>
+						<td>
+							<%= student.name %>
+						</td>
+						<td>
+							<%= student.email %>
+						</td>
+						<td>
+							<a href="merge/edit?id=<%= student.id %>" class="btn custom-btn borderless">
+								Edit <span class="glyphicon glyphicon-edit"></span>
+						  </a>
+						</td>
+					</tr>
+				<% end %>
+			</div>	
+			
+		</tbody>
+		
+	</table>

@@ -3,13 +3,22 @@ class EditStudentsController < ApplicationController
 	def index
 		# TODO: Remove the limit once you're done.
 		# SELECT * FROM Student WHERE name LIKE 'A%'
+		# @foundStudent = find.@student
 		@student = Student.where("name LIKE 'A%'")
+
 	end
 
 	def edit
 		@student = Student.find(params[:id])
 	end
-
+	def find
+	end
+	def show
+		@findStudent = params[:findingStudents][:name].to_s
+		# @student = Student.all
+		@student = Student.where("name LIKE '%#{@findStudent}%'")
+		
+	end
 	def save
 		@student = Student.find(params[:id])
 
