@@ -2,7 +2,8 @@ class EditStudentsController < ApplicationController
 
 	def index
 		# TODO: Remove the limit once you're done.
-		@student = Student.order('name ASC').limit(30)
+		# SELECT * FROM Student WHERE name LIKE 'A%'
+		@student = Student.where("name LIKE 'A%'")
 	end
 
 	def edit
