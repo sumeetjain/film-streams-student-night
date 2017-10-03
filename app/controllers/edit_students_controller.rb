@@ -16,7 +16,7 @@ class EditStudentsController < ApplicationController
 	def show
 		@findStudent = params[:findingStudents][:name].to_s
 		# @student = Student.all
-		@student = Student.where("name LIKE '%#{@findStudent}%'")
+		@student = Student.where("name LIKE '%#{@findStudent}%'").order("name ASC")
 		
 	end
 	def save
@@ -24,6 +24,8 @@ class EditStudentsController < ApplicationController
 
 		new_values = {
 			name:               params[:student][:name],
+			year: 				params[:student][:year],
+			zip:  				params[:student][:zip],
 			email:              params[:student][:email],
 			email_confirmation: params[:student][:email_confirmation],
 			school_id:          params[:student][:school_id]

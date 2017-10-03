@@ -19,17 +19,27 @@
 
   <div>
     <%= f.label "name" %>
-    <%= f.text_area "name" %>
+    <%= f.text_field "name" %>
   </div>
 
   <div>
+    <%= f.label "year" %>
+    <%= f.select( :year, Student.years.map { |key, value| [key, key] },{ :class => 'form-control' })%>
+  </div>
+
+  <div>
+    <%= f.label "zip" %>
+    <%= f.text_field "zip" %>
+  </div>  
+
+  <div>
     <%= f.label "email" %>
-    <%= f.text_area "email" %>
+    <%= f.text_field "email" %>
   </div>
 
   <div>
     <%= f.label "email_confirmation" %>
-    <%= f.text_area "email_confirmation", {value: @student.email} %>
+    <%= f.text_field "email_confirmation", {value: @student.email} %>
   </div>
 
   <div>
