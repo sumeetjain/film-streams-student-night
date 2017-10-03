@@ -13,6 +13,7 @@
 					
 				</th>
 				<th>
+
 				</th>
 			</tr>			
 		</thead>
@@ -30,6 +31,9 @@
 							<a href="merge/edit?id=<%= student.id %>" class="btn custom-btn borderless">
 								Edit <span class="glyphicon glyphicon-edit"></span>
 						  </a>
+						</td>
+						<td>
+							<a href="merge/destroy?id=<%= student.id %>" class= "btn custom-btn-dngr navbar-btn"> Delete</a>
 						</td>
 					</tr>
 				<% end %>

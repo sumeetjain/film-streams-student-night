@@ -37,4 +37,11 @@ class EditStudentsController < ApplicationController
 		redirect_to "/merge"
 	end
 
+	def destroy
+		@student = Student.find(params[:id])
+  		@student.destroy
+  		flash[:alert] = "Student deleted."
+  		redirect_to '/merge'
+	end
+
 end

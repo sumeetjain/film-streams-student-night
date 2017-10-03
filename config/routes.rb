@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users
   resources :login
   resources :stats, only: [:index]
+  # resources :edit_students
   get  '/logout' => 'login#destroy'
 
   get '/merge' => 'edit_students#index'
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   get '/merge/show' => 'edit_students#show'
   post '/edit_students/save' => 'edit_students#save'
   post '/merge' => 'edit_students#show'
+  get 'merge/destroy' => 'edit_students#destroy'
+  delete '/merge/destroy' =>'edit_students#destroy'
 
   # ---------------------------------------------------------------------------
 
