@@ -27,6 +27,13 @@ class StudentsController < ApplicationController
 	def create
 		@student = Student.new(student_params)
 
+    params[:referrals].each do |referral_type|
+      Referral.create!(
+        :student_id => @student.id,
+        :referral_type => referral_type.to_i
+      )
+    end 
+
   	if @student.save
       @student.add_to_mailchimp
 
@@ -41,6 +48,15 @@ class StudentsController < ApplicationController
   # If their profile is valid, forward them on to complete their attendance.
   def update
     @student = Student.find(params[:id])
+
+  # TODO: Does not currently load old referrals
+  
+    # params[:referrals].each do |referral_type|
+    #   Referral.create!(
+    #     :student_id => @student.id,
+    #     :referral_type => referral_type.to_i
+    #   )
+    end 
 
     if @student.update_attributes(student_params)
       flash[:student_id] = @student.id
