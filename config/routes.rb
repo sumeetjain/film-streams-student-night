@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   resources :users
   resources :login
   resources :stats, only: [:index]
-  # resources :edit_students
   get  '/logout' => 'login#destroy'
 
+
+  # These routes all pertain to the editing of existing students
   get '/edit_students' => 'edit_students#index'
   get '/edit_students/edit' => 'edit_students#edit'
   get '/edit_students/show' => 'edit_students#show'
