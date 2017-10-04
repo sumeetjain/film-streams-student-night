@@ -1,25 +1,10 @@
 <!-- Purpose of this page is to edit a given student's info. -->
-
-<!-- 
-  Form for Student #3...
-
-  With fields for that student's
-  - Name
-  - Email
-  - School
-  - TODO: Referrals
- -->
-
-<!-- 
-  When this form is submitted, save the form data (obviously), and redirect
-  back to the list of all students.
- -->
 <div class="container">
   <div class="container bottom_space">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h1 class = "text-center">Edit Student</h1>
-        <div class = "text-center">
+        <!-- <div class = "text-center"> -->
           <%= form_for "student", {url: "/edit_students/save?id=#{@student.id}"} do |f| %>
 
             <div class="form-group">
@@ -30,6 +15,12 @@
             <div class="form-group">
               <%= f.label "year" %>
               <%= f.select( :year, Student.years.map { |key, value| [key, key] },{ :class => 'form-control' },{ :class => 'form-control' })%>
+            </div>
+
+            <div class="form-group">
+              <%= f.label "school_id" %>
+
+              <%= f.select( "school_id", options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id),{include_blank: "Select School"}, { :class => 'form-control' })%>
             </div>
 
             <div class="form-group">
@@ -46,14 +37,10 @@
               <%= f.label "email_confirmation" %>
               <%= f.text_field "email_confirmation", class: "form-control", value: @student.email %>
             </div>
-
-            <div class="form-group">
-              <%= f.label "school_id" %>
-
-              <%= f.select( "school_id", options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id),{include_blank: "Select School"}, { :class => 'form-control' })%>
+            <div class = "text-center">
+              <input type="submit" class = "btn custom-btn navbar-btn">
             </div>
-
-            <input type="submit" class = "btn custom-btn navbar-btn">
+            
 
 
           <% end %>
