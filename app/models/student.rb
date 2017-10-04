@@ -18,8 +18,12 @@ class Student < ActiveRecord::Base
 	def validates_email
 		if Student.where(email: email).exists?
     	return true
+  		end
   	end
-  end
+
+  	def self.find_student(student)
+  		Student.where("name LIKE '%#{student}%'").order("name ASC")
+  	end
 
   def add_to_mailchimp
   	if newsletter == "1"

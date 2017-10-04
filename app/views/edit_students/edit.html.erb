@@ -14,13 +14,13 @@
 
             <div class="form-group">
               <%= f.label "year" %>
-              <%= f.select( :year, Student.years.map { |key, value| [key, key] },{ :class => 'form-control' },{ :class => 'form-control' })%>
+              <%= f.select( :year, dropYears,{include_blank: "Select Year"},{ :class => 'form-control' })%>
             </div>
 
             <div class="form-group">
               <%= f.label "school_id" %>
 
-              <%= f.select( "school_id", options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id),{include_blank: "Select School"}, { :class => 'form-control' })%>
+              <%= f.select( "school_id", dropSchools,{include_blank: "Select School"}, { :class => 'form-control' })%>
             </div>
 
             <div class="form-group">
@@ -40,9 +40,6 @@
             <div class = "text-center">
               <input type="submit" class = "btn custom-btn navbar-btn">
             </div>
-            
-
-
           <% end %>
         </div>
       </div>

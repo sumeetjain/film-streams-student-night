@@ -13,9 +13,9 @@ class EditStudentsController < ApplicationController
 
 	def show
 		@findStudent = params[:findingStudents][:name].to_s
-		@student = Student.where("name LIKE '%#{@findStudent}%'").order("name ASC")
+		@student = Student.find_student(@findStudent)
 	end
-	
+
 	def save
 		@student = Student.find(params[:id])
 
@@ -35,10 +35,12 @@ class EditStudentsController < ApplicationController
 	end
 
 	def destroy
-		@student = Student.find(params[:id])
-  		@student.destroy
-  		flash[:alert] = "Student deleted."
-  		redirect_to '/edit_students'
+		if load_current_user
+			@student = Student.find(params[:id])
+			@student.delete
+			flash[:alert] = "Student deleted."
+		end 
+	    redirect_to '/edit_students'
 	end
 
 end

@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   get '/edit_students/show' => 'edit_students#show'
   post '/edit_students/save' => 'edit_students#save'
   post '/edit_students' => 'edit_students#show'
-  get 'edit_students/destroy' => 'edit_students#destroy'
   delete '/edit_students/destroy' =>'edit_students#destroy'
+
 
   # ---------------------------------------------------------------------------
 
