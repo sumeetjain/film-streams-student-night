@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.most_recent_past
-    Event.where("date < ?", Date.today).reverse[0..9]
+    Event.past_events[0..9]
   end
 
 end

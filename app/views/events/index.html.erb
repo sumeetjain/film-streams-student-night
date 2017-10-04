@@ -20,7 +20,7 @@
 			<% @events.each do |event| %>
 				<tr>
 					<td>
-						<%= (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y ')) %>
+						<%= event_date(event) %>
 					</td>
 					<td>
 						<%= event.title %>
@@ -59,7 +59,7 @@
 			<% @recent_events.each do |event| %>
 				<tr>
 					<td>
-						<%= (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y ')) %>
+						<%= event_date(event) %>
 					</td>
 					<td>
 						<%= event.title %>
