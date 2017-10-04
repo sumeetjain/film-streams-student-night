@@ -9,13 +9,13 @@ Rails.application.routes.draw do
   # resources :edit_students
   get  '/logout' => 'login#destroy'
 
-  get '/merge' => 'edit_students#index'
-  get '/merge/edit' => 'edit_students#edit'
-  get '/merge/show' => 'edit_students#show'
+  get '/edit_students' => 'edit_students#index'
+  get '/edit_students/edit' => 'edit_students#edit'
+  get '/edit_students/show' => 'edit_students#show'
   post '/edit_students/save' => 'edit_students#save'
-  post '/merge' => 'edit_students#show'
-  get 'merge/destroy' => 'edit_students#destroy'
-  delete '/merge/destroy' =>'edit_students#destroy'
+  post '/edit_students' => 'edit_students#show'
+  get 'edit_students/destroy' => 'edit_students#destroy'
+  delete '/edit_students/destroy' =>'edit_students#destroy'
 
   # ---------------------------------------------------------------------------
 

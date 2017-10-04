@@ -34,14 +34,14 @@ class EditStudentsController < ApplicationController
 		@student.update_attributes!(new_values)
 
 		flash[:notice] = "Student updated!"
-		redirect_to "/merge"
+		redirect_to "/edit_students"
 	end
 
 	def destroy
 		@student = Student.find(params[:id])
   		@student.destroy
   		flash[:alert] = "Student deleted."
-  		redirect_to '/merge'
+  		redirect_to '/edit_students'
 	end
 
 end

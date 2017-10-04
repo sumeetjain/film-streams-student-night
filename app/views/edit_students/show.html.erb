@@ -1,6 +1,7 @@
-<h2>Here are the results that were found for <str><%= @findStudent %></str></h2>
-<a href="/merge">Go Back To Search</a>
-<table class="table">
+<div class="container p-rel">
+	<h1 class = "text-center">Here are the results that were found for<%= @findStudent %></h1>
+	<div class = "text-center"><a href="/edit_students">Go Back To Search</a></div>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>
@@ -28,12 +29,12 @@
 							<%= student.email %>
 						</td>
 						<td>
-							<a href="merge/edit?id=<%= student.id %>" class="btn custom-btn borderless">
+							<a href="edit_students/edit?id=<%= student.id %>" class="btn custom-btn borderless">
 								Edit <span class="glyphicon glyphicon-edit"></span>
 						  </a>
 						</td>
 						<td>
-							<a href="merge/destroy?id=<%= student.id %>" class= "btn custom-btn-dngr navbar-btn"> Delete</a>
+							<a href="edit_students/destroy?id=<%= student.id %>" class= "btn custom-btn-dngr navbar-btn"> Delete</a>
 						</td>
 					</tr>
 				<% end %>
@@ -42,3 +43,4 @@
 		</tbody>
 		
 	</table>
+</div>

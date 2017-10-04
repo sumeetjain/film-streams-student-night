@@ -14,41 +14,51 @@
   When this form is submitted, save the form data (obviously), and redirect
   back to the list of all students.
  -->
+<div class="container">
+  <div class="container bottom_space">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1 class = "text-center">Edit Student</h1>
+        <div class = "text-center">
+          <%= form_for "student", {url: "/edit_students/save?id=#{@student.id}"} do |f| %>
 
-<%= form_for "student", {url: "/edit_students/save?id=#{@student.id}"} do |f| %>
+            <div>
+              <%= f.label "name" %>
+              <%= f.text_field "name" %>
+            </div>
 
-  <div>
-    <%= f.label "name" %>
-    <%= f.text_field "name" %>
+            <div>
+              <%= f.label "year" %>
+              <%= f.select( :year, Student.years.map { |key, value| [key, key] },{ :class => 'form-control' })%>
+            </div>
+
+            <div>
+              <%= f.label "zip" %>
+              <%= f.text_field "zip" %>
+            </div>  
+
+            <div>
+              <%= f.label "email" %>
+              <%= f.text_field "email" %>
+            </div>
+
+            <div>
+              <%= f.label "email_confirmation" %>
+              <%= f.text_field "email_confirmation", {value: @student.email} %>
+            </div>
+
+            <div>
+              <%= f.label "school_id" %>
+
+              <%= f.select "school_id", options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id) %>
+            </div>
+
+            <input type="submit" class = "btn custom-btn navbar-btn">
+
+
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <%= f.label "year" %>
-    <%= f.select( :year, Student.years.map { |key, value| [key, key] },{ :class => 'form-control' })%>
-  </div>
-
-  <div>
-    <%= f.label "zip" %>
-    <%= f.text_field "zip" %>
-  </div>  
-
-  <div>
-    <%= f.label "email" %>
-    <%= f.text_field "email" %>
-  </div>
-
-  <div>
-    <%= f.label "email_confirmation" %>
-    <%= f.text_field "email_confirmation", {value: @student.email} %>
-  </div>
-
-  <div>
-    <%= f.label "school_id" %>
-
-    <%= f.select "school_id", options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id) %>
-  </div>
-
-  <input type="submit">
-
-
-<% end %>
+</div>
