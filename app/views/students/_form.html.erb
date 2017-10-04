@@ -25,14 +25,50 @@
 
   <div class="form-group">
     <%= f.label :referrals, 'How did you hear about us?' %>
+    <% used_referrals = [] %>
+    <% past_referrals = Referral.where(student_id: @student.id) %>
+
+    <%= @student.attributes %>
+
+    <br><br>
+    <%= past_referrals[0].attributes %>
+
+       <br><br>
+    <%= past_referrals[1].attributes %>
+
+       <br><br>
+    <%= past_referrals[2].attributes %>
+
+       <br><br>
+    <%= past_referrals[3].attributes %>
+       <br><br>
+    <%= past_referrals[4].attributes %>
+       <br><br>
+    <%= past_referrals[5].attributes %>
+       <br><br>
+       <br><br>
+
+    <% past_referrals.each do |referral| %>
+      <% used_referrals.push(referral.referral_type) %>
+    <% end %>
+
+
 
     <% Referral.referral_types.each do |referral| %>
-      <div>
-        <%= referral[0] %>
-        <input type="checkbox" name="referrals[]" value="<%= referral[1] %>">
-      </div>
+      <% if used_referrals.include?(referral[0]) %>
+        <div>
+          <%= referral[0] %>
+          <input type="checkbox" name="referrals[]" value="<%= referral[1] %>" checked>
+        </div>
+      <% else %>
+        <div>
+          <%= referral[0] %>
+          <input type="checkbox" name="referrals[]" value="<%= referral[1] %>">
+        </div>
+       <% end %>
     <% end %>
   </div>
+  <% used_referrals.clear %>
 
   <div class="form-group">
     <label>

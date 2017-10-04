@@ -20,19 +20,22 @@ class StudentsController < ApplicationController
   def edit
     @checkin = "true"
     @student = Student.find(params[:id])
+    past_referrals = Referral.find_by(student_id: @student.id)
+    
   end
 
   # The new-student form submits here.
   # If their profile is valid, forward them on to complete their attendance.
 	def create
 		@student = Student.new(student_params)
-
-    params[:referrals].each do |referral_type|
-      Referral.create!(
-        :student_id => @student.id,
-        :referral_type => referral_type.to_i
-      )
-    end 
+    if !params[:referrals] == nil
+      params[:referrals].each do |referral_type|
+        Referral.create!(
+          :student_id => @student.id,
+          :referral_type => referral_type.to_i
+        )
+      end 
+    end
 
   	if @student.save
       @student.add_to_mailchimp
@@ -50,14 +53,14 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
 
   # TODO: Does not currently load old referrals
-  
+
     # params[:referrals].each do |referral_type|
     #   Referral.create!(
     #     :student_id => @student.id,
     #     :referral_type => referral_type.to_i
     #   )
-    end 
-
+    # end  
+    
     if @student.update_attributes(student_params)
       flash[:student_id] = @student.id
       redirect_to new_event_attendance_path(params[:event_id])
