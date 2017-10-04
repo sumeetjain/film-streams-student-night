@@ -25,9 +25,10 @@
 
   <div class="form-group">
     <%= f.label :referrals, 'How did you hear about us?' %>
-    <% used_referrals = [] %>
     <% past_referrals = Referral.where(student_id: @student.id) %>
-    
+    <h1>test</h1>
+    <%= past_referrals.length %>
+    <h1>end</h1>
     <%= @student.attributes %>
 
     <br><br>
@@ -47,7 +48,7 @@
     <%= past_referrals[5].attributes %>
        <br><br>
        <br><br>
-
+    <% used_referrals = [] %>
     <% past_referrals.each do |referral| %>
       <% used_referrals.push(referral.referral_type) %>
     <% end %>

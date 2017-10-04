@@ -1,7 +1,8 @@
 module ReferralsHelper
 
-	  # Database queries for referrals
+	# Database queries for referrals
 
+  #Returns an array of all the referrals for a particular student
   def test_referral_grab(student_id)
     Referral.where(student_id: @student.id)
   end

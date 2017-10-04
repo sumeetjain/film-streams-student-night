@@ -19,9 +19,7 @@ class StudentsController < ApplicationController
   #             :event_id  :id
   def edit
     @checkin = "true"
-    @student = Student.find(params[:id])
-    past_referrals = Referral.find_by(student_id: @student.id)
-    
+    @student = Student.find(params[:id])    
   end
 
   # The new-student form submits here.
@@ -52,14 +50,18 @@ class StudentsController < ApplicationController
   def update
     @student = Student.find(params[:id])
 
-  # TODO: Does not currently load old referrals
 
-    # params[:referrals].each do |referral_type|
-    #   Referral.create!(
-    #     :student_id => @student.id,
-    #     :referral_type => referral_type.to_i
-    #   )
-    # end  
+  # TODO: I want to write some code so that when a request is sent here, many things happen
+
+  # If params[:referrals] is nil, I want to check to see if there are any referrals for that student already in the
+  # database - If there are, I want to remove all of those entries.
+
+  # If params[:referrals] is not nil, I want to get all of the referrals for that student_id from the database
+  # If there are no referrals already, I want to add all of the referrals from params to the DB for the student.
+  # If there are referrals already, I want store all of them. I then want to see if any of the entries match any of the params
+  # If the referrals from the DB match the params, do nothing and discard those from memory.
+  # If there are referrals from params that do not match any of the entries in the database, add them to the database
+  # If there are referrals in the database, that do not match any of the params, remove them from the database.
     
     if @student.update_attributes(student_params)
       flash[:student_id] = @student.id
