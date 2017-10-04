@@ -27,7 +27,7 @@
     <%= f.label :referrals, 'How did you hear about us?' %>
     <% used_referrals = [] %>
     <% past_referrals = Referral.where(student_id: @student.id) %>
-
+    
     <%= @student.attributes %>
 
     <br><br>
