@@ -1,0 +1,2 @@
+class MergeStudentsController < ApplicationController
+end
