@@ -22,35 +22,35 @@
         <div class = "text-center">
           <%= form_for "student", {url: "/edit_students/save?id=#{@student.id}"} do |f| %>
 
-            <div>
+            <div class="form-group">
               <%= f.label "name" %>
-              <%= f.text_field "name" %>
+              <%= f.text_field "name", class: "form-control"%>
             </div>
 
-            <div>
+            <div class="form-group">
               <%= f.label "year" %>
-              <%= f.select( :year, Student.years.map { |key, value| [key, key] },{ :class => 'form-control' })%>
+              <%= f.select( :year, Student.years.map { |key, value| [key, key] },{ :class => 'form-control' },{ :class => 'form-control' })%>
             </div>
 
-            <div>
+            <div class="form-group">
               <%= f.label "zip" %>
-              <%= f.text_field "zip" %>
+              <%= f.text_field "zip", class: "form-control" %>
             </div>  
 
-            <div>
+            <div class="form-group">
               <%= f.label "email" %>
-              <%= f.text_field "email" %>
+              <%= f.text_field "email", class: "form-control" %>
             </div>
 
-            <div>
+            <div class="form-group">
               <%= f.label "email_confirmation" %>
-              <%= f.text_field "email_confirmation", {value: @student.email} %>
+              <%= f.text_field "email_confirmation", class: "form-control", value: @student.email %>
             </div>
 
-            <div>
+            <div class="form-group">
               <%= f.label "school_id" %>
 
-              <%= f.select "school_id", options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id) %>
+              <%= f.select( "school_id", options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id),{include_blank: "Select School"}, { :class => 'form-control' })%>
             </div>
 
             <input type="submit" class = "btn custom-btn navbar-btn">
