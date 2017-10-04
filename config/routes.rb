@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # This block of resources handles the entire process of a student
   # checking in -> verifying/adding info -> completing attendance.
+  get "/events/past" => "events#past", :as => 'past_events'
   resources :events, except: [:edit] do
     resources :checkins, only: [:new, :create]
     resources :attendances
