@@ -56,7 +56,7 @@
 			</tr>			
 		</thead>
 		<tbody>
-			<% @past_events[0...9].each do |event| %>
+			<% @recent_events.each do |event| %>
 				<tr>
 					<td>
 						<%= (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y ')) %>

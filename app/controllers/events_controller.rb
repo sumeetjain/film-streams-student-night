@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 		end
 		@events = @events.sort_by {|obj| obj.date}
 
-		@past_events = Event.where("date < ?", Date.today).reverse
+		@recent_events = Event.most_recent_past
 	end
 
 	def new
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
 	end
 
 	def past
-		@past_events = Event.where("date < ?", Date.today).reverse
+		@past_events = Event.past_events
 	end
 
 	def show
