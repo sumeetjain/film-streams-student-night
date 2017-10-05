@@ -1,7 +1,6 @@
 # Every action in this controller has params[:event_id].
 
 class StudentsController < ApplicationController
-  require "referral.rb"
   before_filter :set_event
 
   # This is where user ends up if they're new to Film Streams!
@@ -53,14 +52,13 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @current_referrals = Referral.where(student_id: @student.id)
 
-    raise params[]
     # If false, and no referrals
     if !params.key?("referrals") 
       if !@current_referrals == nil
         @current_referrals.destroy
       end
     # If true, and referrals
-    elsif params.key?("referrals")]
+    elsif params.key?("referrals")
       if @current_referrals == nil
         params[:referrals].each do |referral_type|
           Referral.create!(
@@ -72,21 +70,21 @@ class StudentsController < ApplicationController
          # I want to go through every possible_referral_type.
         Referral.referral_types.each do |possible_referral_type| 
         #   For each one, I want to check the params[referrals] and see if there is one that matches the possible type
-          if params[:referrals].include?(possible_referral_type[1])
+          if params[:referrals].include?(possible_referral_type[1].to_s)
             # If there is, I want to see if there is already one in the DB with that value
             if Referral.where(["student_id = ? and referral_type = ?", @student.id, possible_referral_type[1]]) == nil
               # If there is not, add it.
               Referral.create!(
                 :student_id => @student.id,
-                :referral_type => possible_referral_type
+                :referral_type => possible_referral_type[1]
               )
                # If there is, do nothing.
             end
             # For each one there is no match to, check and see if there is an entry in the DB
-          elsif get_specific_referral(@student.id, possible_referral_type)
+          elsif Referral.where(["student_id = ? and referral_type = ?", @student.id, possible_referral_type[1]])
               # If there is, remove it.
-              @specific_referral = get_specific_referral(@student.id, possible_referral_type)
-              @specific_referral.destroy
+              @specific_referral = Referral.where(["student_id = ? and referral_type = ?", @student.id, possible_referral_type[1]])
+              Referral.destroy(@specific_referral[0].id)
               # If not, do nothing
           end
         end 

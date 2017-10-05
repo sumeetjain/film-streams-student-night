@@ -33,16 +33,6 @@
       <% referrals_to_compare.push(referral.referral_type) %>
     <% end %>
 
-
-  
-    <h1>here </h1>
-    <%= current_referrals[0].referral_type %>
-    <%= current_referrals[1].referral_type %>
-    <%= current_referrals[2].referral_type %>
-    <%= current_referrals[0].student_id %>
-
-    <h1> there </h1>
-
     <% Referral.referral_types.each do |referral| %>
       <% if referrals_to_compare.include?(referral[0]) %>
         <div> 

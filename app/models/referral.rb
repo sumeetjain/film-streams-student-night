@@ -35,6 +35,10 @@ class Referral < ActiveRecord::Base
 		return Referral.where(student_id: student_id)
 	end
 
+	def get_specific_referral(student_id, referral_type)
+        return Referral.where(["student_id = ? and referral_type = ?",student_id, referral_type])
+	end
+
 	def build_referral_checkbox_group(student_id)
 
 	    # past_referrals.each do |referral| 
