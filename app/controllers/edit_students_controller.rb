@@ -35,11 +35,9 @@ class EditStudentsController < ApplicationController
 	end
 
 	def destroy
-		if load_current_user
-			@student = Student.find(params[:id])
-			@student.delete
-			flash[:alert] = "Student deleted."
-		end 
+		@student = Student.find(params[:id])
+		@student.delete
+		flash[:alert] = "Student deleted."
 	    redirect_to '/edit_students'
 	end
 

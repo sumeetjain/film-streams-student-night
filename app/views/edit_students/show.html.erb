@@ -32,13 +32,11 @@
 							<a href="edit_students/edit?id=<%= student.id %>" class="btn custom-btn borderless"> Edit <span class="glyphicon glyphicon-edit"></span></a>
 						</td>
 						<td>
-							<%= button_to 'Delete Student', edit_students_path(@student), class: 'btn custom-btn-dngr navbar-btn', data: {:confirm => 'Are you sure? This will delete the student'}, :method => :delete %>
+							<%= button_to('Destroy', "/edit_students/destroy?id=#{student.id}", class: 'btn custom-btn-dngr navbar-btn', method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }) %>
 						</td>
 					</tr>
 				<% end %>
 			</div>	
-			
 		</tbody>
-		
 	</table>
 </div>
