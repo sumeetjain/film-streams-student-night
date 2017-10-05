@@ -1,4 +1,17 @@
 class Event < ActiveRecord::Base
+  LOCATIONS = {
+    ruth_sokolof: {
+      title: "Ruth Sokolof",
+      logo: "/images/ruth_sokolof.gif",
+      brand_colors: "#333333"
+    },
+    dundee: {
+      title: "The Dundee",
+      logo: "/images/dundee.gif",
+      brand_colors: "#666666"
+    }
+  }
+
   include EventsHelper
   DEFAULT_TITLE = "Free Movie Night"
 
@@ -23,10 +36,24 @@ class Event < ActiveRecord::Base
 
   def self.most_recent_past
     Event.past_events[0..9]
+  end 
+
+  def location_details
+    LOCATIONS{Event.locations}
+  end
+
+  def self.location_names
+    theaters = []
+    n = 0
+    Event.locations.each do |location|
+      theaters << Event::LOCATIONS.values[n].values[0]
+      n += 1
+    end
+    return theaters
   end
 
   enum location: {
-    'Ruth Sokolof'             => 0,
-    'Dundee'                      => 1,
+    :ruth_sokolof => 0,
+    :dundee       => 1,
   }
 end

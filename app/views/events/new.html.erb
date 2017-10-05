@@ -13,7 +13,7 @@
         	<%= f.date_field :date, class: 'form-control' %>
 
           <%= f.label :location %>
-          <%= f.select :location, Event.locations.map { |key, value| [key, key] }, 
+          <%= f.select :location, Event.location_names,
               {include_blank: "Select Location"}, class: 'form-control' %>
 
           <div class="row">
