@@ -28,12 +28,7 @@ class StudentsController < ApplicationController
 	def create
 		@student = Student.new(student_params)
     if !params[:referrals] == nil
-      params[:referrals].each do |referral_type|
-        Referral.create!(
-          :student_id => @student.id,
-          :referral_type => referral_type.to_i
-        )
-      end 
+      @student.update_referrals(params[:referrals])
     end
 
   	if @student.save
