@@ -1,6 +1,7 @@
 # Every action in this controller has params[:event_id].
 
 class StudentsController < ApplicationController
+  require "referral.rb"
   before_filter :set_event
 
   # This is where user ends up if they're new to Film Streams!
@@ -19,7 +20,8 @@ class StudentsController < ApplicationController
   #             :event_id  :id
   def edit
     @checkin = "true"
-    @student = Student.find(params[:id])    
+    @student = Student.find(params[:id])
+    @referral = Referral.new(student: @student)    
   end
 
   # The new-student form submits here.
@@ -49,8 +51,48 @@ class StudentsController < ApplicationController
   # If their profile is valid, forward them on to complete their attendance.
   def update
     @student = Student.find(params[:id])
+    @current_referrals = Referral.where(student_id: @student.id)
 
-
+    raise params[]
+    # If false, and no referrals
+    if !params.key?("referrals") 
+      if !@current_referrals == nil
+        @current_referrals.destroy
+      end
+    # If true, and referrals
+    elsif params.key?("referrals")]
+      if @current_referrals == nil
+        params[:referrals].each do |referral_type|
+          Referral.create!(
+            :student_id => @student.id,
+            :referral_type => referral_type.to_i
+          )
+        end 
+      else
+         # I want to go through every possible_referral_type.
+        Referral.referral_types.each do |possible_referral_type| 
+        #   For each one, I want to check the params[referrals] and see if there is one that matches the possible type
+          if params[:referrals].include?(possible_referral_type[1])
+            # If there is, I want to see if there is already one in the DB with that value
+            if Referral.where(["student_id = ? and referral_type = ?", @student.id, possible_referral_type[1]]) == nil
+              # If there is not, add it.
+              Referral.create!(
+                :student_id => @student.id,
+                :referral_type => possible_referral_type
+              )
+               # If there is, do nothing.
+            end
+            # For each one there is no match to, check and see if there is an entry in the DB
+          elsif get_specific_referral(@student.id, possible_referral_type)
+              # If there is, remove it.
+              @specific_referral = get_specific_referral(@student.id, possible_referral_type)
+              @specific_referral.destroy
+              # If not, do nothing
+          end
+        end 
+      end
+    end
+      
   # TODO: I want to write some code so that when a request is sent here, many things happen
 
   # If params[:referrals] is nil, I want to check to see if there are any referrals for that student already in the

@@ -27,34 +27,11 @@
   <div class="form-group">
     <%= f.label :referrals, 'How did you hear about us?' %>
 
-    <% referrals_to_compare = [] %>
-    <% current_referrals = Referral.where(student_id: @student.id) %>
-    <% current_referrals.each do |referral| %>
-      <% referrals_to_compare.push(referral.referral_type) %>
-    <% end %>
-
-
-  
-    <h1>here </h1>
-    <%= current_referrals[0].referral_type %>
-    <%= current_referrals[1].referral_type %>
-    <%= current_referrals[2].referral_type %>
-    <%= current_referrals[0].student_id %>
-
-    <h1> there </h1>
-
     <% Referral.referral_types.each do |referral| %>
-      <% if referrals_to_compare.include?(referral[0]) %>
-        <div> 
-          <%= referral[0] %>
-          <input type="checkbox" name="referrals[]" value="<%= referral[1] %>" checked>
-        </div>
-      <% else %>
-        <div> 
-          <%= referral[0] %>
-          <input type="checkbox" name="referrals[]" value="<%= referral[1] %>">
-        </div>
-      <% end %>
+      <div> 
+        <%= referral[0] %>
+        <input type="checkbox" name="referrals[]" value="<%= referral[1] %>">
+      </div>
     <% end %>
 
   </div>

@@ -1,4 +1,4 @@
-module ReferralsHelper
+module StudentsHelper
 
 	# Database queries for referrals
 
