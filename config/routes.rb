@@ -7,15 +7,15 @@ Rails.application.routes.draw do
   resources :login
   resources :stats, only: [:index]
   get  '/logout' => 'login#destroy'
-
+  resources :admin_students
 
   # These routes all pertain to the editing of existing students
-  get '/edit_students' => 'edit_students#index'
-  get '/edit_students/edit' => 'edit_students#edit'
-  get '/edit_students/show' => 'edit_students#show'
-  post '/edit_students/save' => 'edit_students#save'
-  post '/edit_students' => 'edit_students#show'
-  delete '/edit_students/destroy' =>'edit_students#destroy'
+  # get '/edit_students' => 'edit_students#index'
+  # get '/edit_students/edit' => 'edit_students#edit'
+  # get '/edit_students/show' => 'edit_students#show'
+  # post '/edit_students/save' => 'edit_students#save'
+  # get '/edit_students/find' => 'edit_students#find'
+  # delete '/edit_students/destroy' =>'edit_students#destroy'
 
 
   # ---------------------------------------------------------------------------

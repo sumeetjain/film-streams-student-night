@@ -1,7 +1,10 @@
-class EditStudentsController < ApplicationController
+class AdminStudentsController < ApplicationController
 
 	def index
-		@student= Student.all
+		# @student = Student.all
+		if params[:findingStudents] != nil
+			redirect_to "/admin_students/show?name=#{params[:findingStudents][:name]}"
+		end
 	end
 
 	def edit
@@ -9,14 +12,15 @@ class EditStudentsController < ApplicationController
 	end
 
 	def find
+		redirect_to "admin_students/show"
 	end
 
 	def show
-		@findStudent = params[:findingStudents][:name].to_s
+		@findStudent = params[:name].to_s
 		@student = Student.find_student(@findStudent)
 	end
 
-	def save
+	def update
 		@student = Student.find(params[:id])
 
 		new_values = {
@@ -31,14 +35,14 @@ class EditStudentsController < ApplicationController
 		@student.update_attributes!(new_values)
 
 		flash[:notice] = "Student updated!"
-		redirect_to "/edit_students"
+		redirect_to "/admin_students"
 	end
 
 	def destroy
 		@student = Student.find(params[:id])
 		@student.delete
 		flash[:alert] = "Student deleted."
-	    redirect_to '/edit_students'
+	    redirect_to '/admin_students'
 	end
 
 end

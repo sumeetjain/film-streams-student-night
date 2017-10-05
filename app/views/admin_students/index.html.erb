@@ -5,12 +5,13 @@
 	    		<h1 class="text-center">Search for student area.</h1>
 	      		<h2 class="text-center">If your search yields nothing try typing part of the name</h2>
 	      		<div>
-	   				<%= form_for "findingStudents" do |f| %>
+	   				<%= form_for "findingStudents", method: 'get' do |f| %>
 		      			<div class= "form-group">
 			      			<%= f.label "name" %>
 			      	   		<%= f.text_field "name", class: "form-control"%>
+			      	   		<%= f.submit "Search", class: "btn custom-btn col-xs-4 col-xs-offset-4" %>
 		      			</div>
-		      			<input type="submit" class= "btn custom-btn col-xs-4 col-xs-offset-4">
+		      			<!-- <input type="submit" class= "btn custom-btn col-xs-4 col-xs-offset-4"> -->
 	      			<% end %>
       			</div>
 	  		</div>

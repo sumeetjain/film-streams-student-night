@@ -1,6 +1,6 @@
 <div class="container p-rel">
 	<h1 class = "text-center">Here are the results that were found for <%= @findStudent %></h1>
-	<div class = "text-center"><a href="/edit_students">Go Back To Search</a></div>
+	<div class = "text-center"><a href="/admin_students">Go Back To Search</a></div>
 	<table class="table">
 		<thead>
 			<tr>
@@ -29,10 +29,10 @@
 							<%= student.email%>
 						</td>
 						<td>
-							<a href="edit_students/edit?id=<%= student.id %>" class="btn custom-btn borderless"> Edit <span class="glyphicon glyphicon-edit"></span></a>
+							<a href="/admin_students/<%= student.id%>/edit" class="btn custom-btn borderless"> Edit <span class="glyphicon glyphicon-edit"></span></a>
 						</td>
 						<td>
-							<%= button_to('Destroy', "/edit_students/destroy?id=#{student.id}", class: 'btn custom-btn-dngr navbar-btn', method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }) %>
+							<%= button_to('Destroy', "/admin_students/#{student.id}/destroy", class: 'btn custom-btn-dngr navbar-btn', method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }) %>
 						</td>
 					</tr>
 				<% end %>

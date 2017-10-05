@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'dotenv-rails', groups: [:development, :test]
-
+gem 'pry'
 gem "chartkick"
 gem 'groupdate'
 gem 'by_star'
