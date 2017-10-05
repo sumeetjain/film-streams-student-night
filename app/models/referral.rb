@@ -50,7 +50,7 @@ class Referral < ActiveRecord::Base
 	    end
 		return returnHTML
 	end
-# end
+end
 
 
 # 	      	if get_referrals_for_student(student_id).include?(referral[0]) 
