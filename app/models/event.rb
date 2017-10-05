@@ -5,10 +5,11 @@ class Event < ActiveRecord::Base
 	has_many :movies
   has_many :attendances
 
+
 	
 	validates :date, presence: true
   validates :title, presence: true
-
+  validates :location, presence: true
   # Get the title of the event, or the default.
   # 
   # Returns the title String.
@@ -24,4 +25,8 @@ class Event < ActiveRecord::Base
     Event.past_events[0..9]
   end
 
+  enum location: {
+    'Ruth Sokolof'             => 0,
+    'Dundee'                      => 1,
+  }
 end

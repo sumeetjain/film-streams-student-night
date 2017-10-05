@@ -11,6 +11,11 @@
 
         	<%= f.label :date %>
         	<%= f.date_field :date, class: 'form-control' %>
+
+          <%= f.label :location %>
+          <%= f.select :location, Event.locations.map { |key, value| [key, key] }, 
+              {include_blank: "Select Location"}, class: 'form-control' %>
+
           <div class="row">
             <%= f.submit "Save Event", class: "btn custom-btn col-xs-4 col-xs-offset-4" %>
           </div>          
