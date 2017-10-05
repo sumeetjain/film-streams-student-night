@@ -1,7 +1,6 @@
 class AdminStudentsController < ApplicationController
 
 	def index
-		# @student = Student.all
 		if params[:findingStudents] != nil
 			redirect_to "/admin_students/show?name=#{params[:findingStudents][:name]}"
 		end

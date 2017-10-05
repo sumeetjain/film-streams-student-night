@@ -32,7 +32,7 @@
 							<a href="/admin_students/<%= student.id%>/edit" class="btn custom-btn borderless"> Edit <span class="glyphicon glyphicon-edit"></span></a>
 						</td>
 						<td>
-							<%= button_to('Destroy', "/admin_students/#{student.id}/destroy", class: 'btn custom-btn-dngr navbar-btn', method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }) %>
+							<%= button_to('Destroy', "/admin_students/#{student.id}", class: 'btn custom-btn-dngr navbar-btn', method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }) %>
 						</td>
 					</tr>
 				<% end %>

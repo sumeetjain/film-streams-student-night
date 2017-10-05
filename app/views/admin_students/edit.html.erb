@@ -4,9 +4,7 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h1 class = "text-center">Edit Student</h1>
-        <!-- <div class = "text-center"> -->
           <%= form_for "student", url: "/admin_students/#{@student.id}", method: 'patch' do |f| %>
-
             <div class="form-group">
               <%= f.label "name" %>
               <%= f.text_field "name", class: "form-control"%>
