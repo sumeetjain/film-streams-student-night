@@ -14,6 +14,16 @@ class Student < ActiveRecord::Base
 	validates :email, presence: true,  uniqueness: { case_sensitive: false },
 					  format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
 
+  def update_referrals(new_referrals)
+    # Remove all this student's referrals from the DB.
+    self.referrals.destroy_all
+
+    # Add new_referrals to this student.
+    new_referrals.each do |r|
+      Referral.create!(student_id: self.id, referral_type: r.to_i)
+    end
+  end
+
 
 	def validates_email
 		if Student.where(email: email).exists?
