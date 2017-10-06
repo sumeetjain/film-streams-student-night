@@ -31,6 +31,7 @@ class StudentsController < ApplicationController
   	if @student.save
       @student.add_to_mailchimp
       flash[:student_id] = @student.id
+      @student.add_referrals(params[:referrals])
       redirect_to new_event_attendance_path(params[:event_id])
     else  
       render :new
