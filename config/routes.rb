@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :login
   resources :stats, only: [:index]
   get  '/logout' => 'login#destroy'
+  resources :admin_students
 
   # ---------------------------------------------------------------------------
 
