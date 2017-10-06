@@ -6,6 +6,7 @@ class Student < ActiveRecord::Base
 	has_many :attendances
 	belongs_to :school
 	
+	validates_associated :referrals, presence: true
 	validates :name, presence: true
 	validates :school, presence: true
 	validates :year, presence: true
