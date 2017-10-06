@@ -27,18 +27,15 @@ class StudentsController < ApplicationController
   # If their profile is valid, forward them on to complete their attendance.
 	def create
 		@student = Student.new(student_params)
-    if !params[:referrals] == nil
-      @student.update_referrals(params[:referrals])
-    end
 
   	if @student.save
       @student.add_to_mailchimp
-
       flash[:student_id] = @student.id
       redirect_to new_event_attendance_path(params[:event_id])
-    else
+    else  
       render :new
     end
+
   end
 
   # The edit-student form submits here.
