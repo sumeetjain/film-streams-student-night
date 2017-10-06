@@ -2,7 +2,6 @@ class Student < ActiveRecord::Base
 	attr_accessor :newsletter
 
 	has_many :referrals
-
 	has_many :attendances
 	belongs_to :school
 	
