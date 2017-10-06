@@ -6,7 +6,7 @@ gem "chartkick"
 gem 'groupdate'
 gem 'by_star'
 gem 'bootstrap-sass'
-
+gem 'pry'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

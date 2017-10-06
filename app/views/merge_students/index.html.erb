@@ -1,0 +1,30 @@
+<!-- 
+# @p1 = { "name" => "John", "email" => "jt@wow.com", "attend" => 15 }
+# @p2 = { "name" => "John", "email" => "jt2@wow.com", "attend" => 3 }
+# binding.pry
+# h1 = { "name" => @p1["name"], "email" => @p1["email"]}
+# h2 = { "name" => @p2["name"], "email" => @p2["email"]}
+# h1 = h1.merge(h2) { |key, v1, v2| v2 }
+#                 #=> {"a"=>100, "b"=>200, "c"=>300}
+# binding.pry -->
+<table>
+	<thead>
+		<tr>
+			<th>id_________    </th>
+			<th>Name</th>
+			<th>Attendances</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @attend.each do |a| %>
+		<tr>
+			<td><%= a.id %></td>
+			<td><%= a.name %></td>
+			<td><%= a.attendances.count %></td>
+		</tr>
+		<% end %>
+	</tbody>
+
+</table>
+                
+
