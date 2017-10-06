@@ -16,19 +16,23 @@ class Student < ActiveRecord::Base
 
 	# Adds referrals for a new student 
 	def add_referrals(referrals)
-		referrals.each do |r|
-      		Referral.create!(student_id: self.id, referral_type: r.to_i)
-  	    end
+		if !referrals == nil
+			referrals.each do |r|
+	      		Referral.create!(student_id: self.id, referral_type: r.to_i)
+	  	    end
+	  	end
 	end
 
   	def update_referrals(new_referrals)
   	    # Remove all this student's referrals from the DB.
    	    self.referrals.destroy_all
 
-  	     # Add new_referrals to this student.
-        new_referrals.each do |r|
-      		Referral.create!(student_id: self.id, referral_type: r.to_i)
-  	    end
+	    # Add new_referrals to this student.
+		if !new_referrals == nil
+	        new_referrals.each do |r|
+	      		Referral.create!(student_id: self.id, referral_type: r.to_i)
+	  	    end
+	  	end
     end
 
 	def validates_email
