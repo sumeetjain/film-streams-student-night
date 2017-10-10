@@ -33,4 +33,7 @@ module EventsHelper
     (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y '))
   end
 
+  def event_location(event)
+    Event::LOCATIONS[event.location.to_sym][:title]
+  end
 end

@@ -40,10 +40,8 @@ class Event < ActiveRecord::Base
 
   def self.location_name_list
     theaters = []
-    n = 0
     Event.locations.each do |location|
-      theaters << Event::LOCATIONS.values[n][:title]
-      n += 1
+      theaters << Event::LOCATIONS[location[0].to_sym][:title]
     end
     return theaters
   end
