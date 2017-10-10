@@ -36,17 +36,13 @@ class Event < ActiveRecord::Base
 
   def self.most_recent_past
     Event.past_events[0..9]
-  end 
-
-  def location_details
-    LOCATIONS{Event.locations}
   end
 
-  def self.location_names
+  def self.location_name_list
     theaters = []
     n = 0
     Event.locations.each do |location|
-      theaters << Event::LOCATIONS.values[n].values[0]
+      theaters << Event::LOCATIONS.values[n][:title]
       n += 1
     end
     return theaters

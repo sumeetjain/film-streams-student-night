@@ -13,7 +13,7 @@
         	<%= f.date_field :date, class: 'form-control' %>
 
           <%= f.label :location %>
-          <%= f.select :location, Event.location_names,
+          <%= f.select :location, options_for_select([[Event.location_name_list[0], :ruth_solokof], [Event.location_name_list[1], :dundee]]),
               {include_blank: "Select Location"}, class: 'form-control' %>
 
           <div class="row">
