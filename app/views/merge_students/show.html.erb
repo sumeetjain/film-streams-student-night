@@ -1,4 +1,4 @@
-<h1>These are the students you would like to merge</h1>
+<!-- <h1>These are the students you would like to merge</h1>
 
 <div>
 	<%= @student1.name %>
@@ -6,4 +6,65 @@
 <div>
 	<%= @student2.name %>
 </div>
-
+ -->
+<div class="container p-rel">
+	<h1 class = "text-center">Here are the students you would like to merge <%= @findStudent %></h1>
+	<div class = "text-center"><a href="/merge_students">Go Back To Search</a></div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Status
+				</th>
+				<th>
+					Name
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					School
+				</th>
+				<th>
+					Attendances
+				</th>
+			</tr>			
+		</thead>
+		<tbody>
+				<tr>
+					<td>
+						Merge
+					</td>
+					<td>
+						<%= @student1.name %>
+					</td>
+					<td>
+						<%= @student1.email %>
+					</td>
+					<td>
+						<%= @student1.school.name %>
+					</td>
+					<td>
+						<%= @student1.attendances.count %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Keep
+					</td>
+					<td>
+						<%= @student2.name %>
+					</td>
+					<td>
+						<%= @student2.email %>
+					</td>
+					<td>
+						<%= @student2.school.name %>
+					</td>
+					<td>
+						<%= @student2.attendances.count %>
+					</td>
+				</tr>
+		</tbody>
+	</table>
+</div>
