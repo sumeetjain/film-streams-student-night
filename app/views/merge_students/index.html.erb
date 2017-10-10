@@ -7,24 +7,27 @@
 # h1 = h1.merge(h2) { |key, v1, v2| v2 }
 #                 #=> {"a"=>100, "b"=>200, "c"=>300}
 # binding.pry -->
-<table>
-	<thead>
-		<tr>
-			<th>id_________    </th>
-			<th>Name</th>
-			<th>Attendances</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @attend.each do |a| %>
-		<tr>
-			<td><%= a.id %></td>
-			<td><%= a.name %></td>
-			<td><%= a.attendances.count %></td>
-		</tr>
-		<% end %>
-	</tbody>
 
-</table>
+
+<div class="container bottom_space">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2 class="text-center">Pick the students you would like to merge</h2>
+      <h4 class="text-center">The first name will be the one that is added to the second</h4>
+      <%= form_for "student" do |f| %>
+
+      	<%= f.label :Change %>
+      	<%= f.select(:name, options_from_collection_for_select(Student.all.limit(30), :id, :name), { include_blank: true }, { :class => 'form-control' })%>
+
+      	<%= f.label :Keep %>
+      	<%= f.select(:name, options_from_collection_for_select(Student.all.limit(30), :id, :name), { include_blank: true }, { :class => 'form-control' })%>
+      	<div class="row">
+      	  <%= f.submit "Continue!", class: "btn custom-btn col-xs-4 col-xs-offset-4" %>
+      	</div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
                 
 
