@@ -14,13 +14,13 @@
     <div class="col-md-6 col-md-offset-3">
       <h2 class="text-center">Pick the students you would like to merge</h2>
       <h4 class="text-center">The first name will be the one that is added to the second</h4>
-      <%= form_for "student" do |f| %>
+      <%= form_for "studentMerge", method: 'get' do |f| %>
 
-      	<%= f.label :Change %>
-      	<%= f.select(:name, options_from_collection_for_select(Student.all.limit(30), :id, :name), { include_blank: true }, { :class => 'form-control' })%>
+      	<%= f.label :change %>
+      	<%= f.select(:firstStudent, options_from_collection_for_select(Student.all.limit(30), :id, :name), { include_blank: true }, { :class => 'form-control' })%>
 
-      	<%= f.label :Keep %>
-      	<%= f.select(:name, options_from_collection_for_select(Student.all.limit(30), :id, :name), { include_blank: true }, { :class => 'form-control' })%>
+      	<%= f.label :keep %>
+      	<%= f.select(:secondStudent, options_from_collection_for_select(Student.all.limit(30), :id, :name), { include_blank: true }, { :class => 'form-control' })%>
       	<div class="row">
       	  <%= f.submit "Continue!", class: "btn custom-btn col-xs-4 col-xs-offset-4" %>
       	</div>
