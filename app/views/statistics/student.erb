@@ -62,8 +62,9 @@
 	</table>
 	<h3>Referral Sources</h3>
 	<ul>
+	<li>
 	<% @student.referrals.each do |referral| %>
-		<li><%= referral.referral_type %></li>
+		<%= referral.referral_type %>,</li>
 	<% end %>
 	<ul>
 
