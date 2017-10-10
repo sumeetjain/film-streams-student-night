@@ -14,6 +14,31 @@ class MergeStudentsController < ApplicationController
 		@student1 = Student.find(params[:change])
 		@student2 = Student.find(params[:keep])
 	end
+
+	def edit
+		@student1 = Student.find(params[:attend])
+		@student2 = Student.find(params[:id])
+		@student2.attendances = @student2.attendances.append(@student1.attendances)
+	end
+
+	def update
+
+		@student = Student.find(params[:id])
+
+		new_values = {
+			name:               params[:student][:name],
+			year: 				params[:student][:year],
+			zip:  				params[:student][:zip],
+			email:              params[:student][:email],
+			email_confirmation: params[:student][:email_confirmation],
+			school_id:          params[:student][:school_id]
+		}
+
+		@student.update_attributes!(new_values)
+
+		flash[:notice] = "Students Merged!"
+		redirect_to "/merge_students"
+	end
 end
 
 # What I need to do...
