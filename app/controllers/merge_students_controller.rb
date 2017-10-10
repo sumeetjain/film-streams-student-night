@@ -18,7 +18,8 @@ class MergeStudentsController < ApplicationController
 	def edit
 		@student1 = Student.find(params[:attend])
 		@student2 = Student.find(params[:id])
-		@student2.attendances = @student2.attendances.append(@student1.attendances)
+		@student2.update_attribute("attendances", Student.addAttend(@student2, @student1))
+		flash[:notice] = "Student updated!"
 	end
 
 	def destroy

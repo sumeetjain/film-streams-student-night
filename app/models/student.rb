@@ -18,8 +18,13 @@ class Student < ActiveRecord::Base
 	def validates_email
 		if Student.where(email: email).exists?
     	return true
+  		end
   	end
-  end
+
+
+	def self.addAttend(student2, student1)
+		student2.attendances.append(student1.attendances)
+	end
 
   def add_to_mailchimp
   	if newsletter == "1"
