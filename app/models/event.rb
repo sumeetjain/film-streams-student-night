@@ -38,10 +38,10 @@ class Event < ActiveRecord::Base
     Event.past_events[0..9]
   end
 
-  def self.location_name_list
+  def self.drop_locations
     theaters = []
-    Event.locations.each do |location|
-      theaters << Event::LOCATIONS[location[0].to_sym][:title]
+    Event::LOCATIONS.each do |location, details|
+      theaters << [details[:title], location]
     end
     return theaters
   end

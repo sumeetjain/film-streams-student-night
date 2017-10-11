@@ -36,4 +36,5 @@ module EventsHelper
   def event_location(event)
     Event::LOCATIONS[event.location.to_sym][:title]
   end
+
 end

@@ -14,7 +14,7 @@
 	        <%= f.date_field :date, class: 'form-control' %>
 
 	        <%= f.label :location %>
-         	<%= f.select :location, options_for_select([[Event.location_name_list[0], :ruth_sokolof], [Event.location_name_list[1], :dundee]]), class: 'form-control' %>
+         	<%= f.select :location, options_for_select(Event.drop_locations, selected: @event.location), {include_blank: "Select Location"}, class: 'form-control' %>
 
 	        <%= f.submit "Update Event", class: "btn custom-btn navbar-btn" %>
 
