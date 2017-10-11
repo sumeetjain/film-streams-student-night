@@ -53,5 +53,9 @@
 		  </tr>
 		</tbody>
 	</table>
+	
+	<h2 style="display:inline;">  Student Referral Sources</h2><h4 style="display:inline;"> (Deselect 'other' sources for better view)</h4>
+	<%= pie_chart @testref.sort_by{|k,v| v}.reverse %>
+
 </div>
 
