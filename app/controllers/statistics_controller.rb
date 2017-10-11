@@ -9,15 +9,29 @@ class StatisticsController < ApplicationController
 		@students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
 		@unique_schools = Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
-
 	end
   
 	def show
+		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
 		@event_info = Event.find(params[:id])
 		@events = Event.select(:id, :date).order(id: :desc)
 		@event_years = Event.all.order(id: :desc).map(&:date).map(&:year).uniq
 		@zipcodes = Student.joins(:attendances).select('students.zip').where("attendances.event_id = #{params[:id].to_i}").group(:zip).count
 		@years = Student.joins(:attendances).select('students.year').where("attendances.event_id = #{params[:id].to_i}").group(:year).count.transform_keys { |k| Student.years.key(k) }
+    	@getRefs = @conn.exec("SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = #{params[:id]} GROUP BY referral_type ORDER BY total DESC;")
+    	@referrals = {}
+    	@getRefs.each do |ref|
+    		referral_type = ref['referral_type']
+    		total = ref['total']
+
+    		@referrals[referral_type] = total
+    	end
+    	binding.pry
+
+    	# @maybe = Referral.find_by_sql "SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = 98 GROUP BY referral_type ORDER BY total DESC;"
+	# SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = 98 GROUP BY referral_type ORDER BY total DESC;
+
+
     	# TODO: Working here to replace @referrals value with new query
   		# 		
 # -- Given an event, what are the most popular referral sources?
@@ -28,18 +42,19 @@ class StatisticsController < ApplicationController
 # SELECT * FROM attendances WHERE event_id = 99;
 
 # -- Add a column 'referral_type' to this table result.
-# 	SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = 98 GROUP BY referral_type ORDER BY total DESC;
-	
+	# SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = 98 GROUP BY referral_type ORDER BY total DESC;
 
-	@testref = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
+	# @testref = Referral.select('referrals.id').group('referrals.referral_type'.count).where.transform_keys { |k| Referral.referral_types.key(k) }
+	# @thisishard = Rererral.joins(:attendances, :referrals).where("attendances.student_id = referrals.student_id").where("attendances.event_id = #{params[:id].to_i}")
+		
+	# @testrefs = Attendance.select('attendances.student_id').where("attendances.event_id = #{params[:id].to_i}")
+	# @testref = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
 	@schools = Student.joins(:attendances, :school).where("attendances.event_id = #{params[:id].to_i}").group("schools.name").count
 	@movies = Movie.joins(:attendances).select('movies.title').where("attendances.event_id = #{params[:id].to_i}").group(:title).count
+   	# @referrals = Student.joins(:attendances).select('students.referral').where("attendances.event_id = #{params[:id].to_i}").group(:referral).count.transform_keys { |k| Student.referrals.key(k) }
    	
-   		binding.pry
+   	# @referrals = Attendance.select([Arel.star.count.as('total'), :referral_type]).where(Attendance.arel_table[:event_id].eq(params[:id])).joins(Attendance.arel_table.join(Referral.arel_table).on(Attendance.arel_table[:student_id].eq(Referral.arel_table[:student_id])).join_sources).order(:total).reverse_order.group(:referral_type)
 
-   	# binding.pry 
-
-    # @referrals = Student.joins(:attendances).select('students.referral').where("attendances.event_id = #{params[:id].to_i}").group(:referral).count.transform_keys { |k| Student.referrals.key(k) }
 
     end
 
