@@ -1,64 +1,47 @@
 <div class="container p-rel">
-	<h1 class = "text-center">Here are the students you would like to merge <%= @findStudent %></h1>
+	<h1 class = "text-center">Choose the Student you would like to have merged.</h1>
 	<div class = "text-center"><a href="/merge_students">Go Back To Search</a></div>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>
-					Status
-				</th>
-				<th>
-					Name
-				</th>
-				<th>
-					Email
-				</th>
-				<th>
-					School
-				</th>
-				<th>
-					Attendances
-				</th>
-			</tr>			
-		</thead>
-		<tbody>
+		<table class="table">
+			<thead>
 				<tr>
-					<td>
-						Merge
-					</td>
-					<td>
-						<%= @student1.name %>
-					</td>
-					<td>
-						<%= @student1.email %>
-					</td>
-					<td>
-						<%= @student1.school.name %>
-					</td>
-					<td>
-						<%= @student1.attendances.count %>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Keep
-					</td>
-					<td>
-						<%= @student2.name %>
-					</td>
-					<td>
-						<%= @student2.email %>
-					</td>
-					<td>
-						<%= @student2.school.name %>
-					</td>
-					<td>
-						<%= @student2.attendances.count %>
-					</td>
-				</tr>
-		</tbody>
-	</table>
-	<div class="text-center">
-		<a href="/merge_students/<%= @student2.id%>/edit?attend=<%= @student1.id%>" class="btn custom-btn borderless"> Merge? <span class="glyphicon glyphicon-edit"></span></a>
+					<th>
+						Name
+					</th>
+					<th>
+						Email
+					</th>
+					<th>
+						School
+					</th>
+					<th>
+						Attendances
+					</th>
+					<th>
+						Merge?
+					</th>
+				</tr>			
+			</thead>
+			<tbody>
+					<% @student1.each do |student| %>
+						<tr>
+							<td>
+								<%= student.name %>
+							</td>
+							<td>
+								<%= student.email %>
+							</td>
+							<td>
+								<%= student.school.name %>
+							</td>
+							<td>
+								<%= student.attendances.count %>
+							</td>
+							<td>
+								<a href="/merge_students/findSecond/<%= student.id%>" class="btn custom-btn borderless"> Merge <span class="glyphicon glyphicon-edit"></span></a>
+							</td>
+						</tr>
+					<% end %>
+			</tbody>
+		</table>
 	</div>
 </div>
