@@ -12,7 +12,6 @@ class StatisticsController < ApplicationController
 	end
   
 	def show
-		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
 		@event_info = Event.find(params[:id])
 		@events = Event.select(:id, :date).order(id: :desc)
 		@event_years = Event.all.order(id: :desc).map(&:date).map(&:year).uniq
@@ -20,27 +19,7 @@ class StatisticsController < ApplicationController
 		@years = Student.joins(:attendances).select('students.year').where("attendances.event_id = #{params[:id].to_i}").group(:year).count.transform_keys { |k| Student.years.key(k) }
     	@schools = Student.joins(:attendances, :school).where("attendances.event_id = #{params[:id].to_i}").group("schools.name").count
 		@movies = Movie.joins(:attendances).select('movies.title').where("attendances.event_id = #{params[:id].to_i}").group(:title).count
-    	@getRefs = @conn.exec("SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = #{params[:id]} GROUP BY referral_type ORDER BY total DESC;")
-    	@referrals = {}
-    	referral_types = {
-		'From a friend'             => 0,
-		'From my teacher'           => 1,
-		'From a family member'		=> 2,
-		"Film Streams' enewsletter or email" => 3,
-		'Internet Search'			=> 4,
-		'Social media'              => 5,
-		"Radio"						=> 6,
-		"Film Streams' website"     => 7,
-		"Film Streams' Flyer"		=> 8,
-		'other source'				=> 999
-
-		}
-    	@getRefs.each do |ref|
-    		referral_type = referral_types.key(ref['referral_type'].to_i)
-    		total = ref['total']
-
-    		@referrals[referral_type] = total
-    	end
+	    @referrals = Referral.get_referrals_by_event(params[:id])
 
     	# TODO: Is this acceptable?
   		# 		
