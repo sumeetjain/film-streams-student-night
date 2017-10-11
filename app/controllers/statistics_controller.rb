@@ -18,22 +18,31 @@ class StatisticsController < ApplicationController
 		@event_years = Event.all.order(id: :desc).map(&:date).map(&:year).uniq
 		@zipcodes = Student.joins(:attendances).select('students.zip').where("attendances.event_id = #{params[:id].to_i}").group(:zip).count
 		@years = Student.joins(:attendances).select('students.year').where("attendances.event_id = #{params[:id].to_i}").group(:year).count.transform_keys { |k| Student.years.key(k) }
+    	@schools = Student.joins(:attendances, :school).where("attendances.event_id = #{params[:id].to_i}").group("schools.name").count
+		@movies = Movie.joins(:attendances).select('movies.title').where("attendances.event_id = #{params[:id].to_i}").group(:title).count
     	@getRefs = @conn.exec("SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = #{params[:id]} GROUP BY referral_type ORDER BY total DESC;")
     	@referrals = {}
+    	referral_types = {
+		'From a friend'             => 0,
+		'From my teacher'           => 1,
+		'From a family member'		=> 2,
+		"Film Streams' enewsletter or email" => 3,
+		'Internet Search'			=> 4,
+		'Social media'              => 5,
+		"Radio"						=> 6,
+		"Film Streams' website"     => 7,
+		"Film Streams' Flyer"		=> 8,
+		'other source'				=> 999
+
+		}
     	@getRefs.each do |ref|
-    		referral_type = ref['referral_type']
+    		referral_type = referral_types.key(ref['referral_type'].to_i)
     		total = ref['total']
 
     		@referrals[referral_type] = total
     	end
-    	@confirm = @referrals.transform_keys { |k| Referral.referral_types.key(k) }
-    	binding.pry
 
-    	# @maybe = Referral.find_by_sql "SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = 98 GROUP BY referral_type ORDER BY total DESC;"
-	# SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = 98 GROUP BY referral_type ORDER BY total DESC;
-
-
-    	# TODO: Working here to replace @referrals value with new query
+    	# TODO: Is this acceptable?
   		# 		
 # -- Given an event, what are the most popular referral sources?
 # -- First, just show me most popular referral sources.
@@ -45,18 +54,7 @@ class StatisticsController < ApplicationController
 # -- Add a column 'referral_type' to this table result.
 	# SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = 98 GROUP BY referral_type ORDER BY total DESC;
 
-	# @testref = Referral.select('referrals.id').group('referrals.referral_type'.count).where.transform_keys { |k| Referral.referral_types.key(k) }
-	# @thisishard = Rererral.joins(:attendances, :referrals).where("attendances.student_id = referrals.student_id").where("attendances.event_id = #{params[:id].to_i}")
-		
-	# @testrefs = Attendance.select('attendances.student_id').where("attendances.event_id = #{params[:id].to_i}")
-	# @testref = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
-	@schools = Student.joins(:attendances, :school).where("attendances.event_id = #{params[:id].to_i}").group("schools.name").count
-	@movies = Movie.joins(:attendances).select('movies.title').where("attendances.event_id = #{params[:id].to_i}").group(:title).count
-   	# @referrals = Student.joins(:attendances).select('students.referral').where("attendances.event_id = #{params[:id].to_i}").group(:referral).count.transform_keys { |k| Student.referrals.key(k) }
-   	
-   	# @referrals = Attendance.select([Arel.star.count.as('total'), :referral_type]).where(Attendance.arel_table[:event_id].eq(params[:id])).joins(Attendance.arel_table.join(Referral.arel_table).on(Attendance.arel_table[:student_id].eq(Referral.arel_table[:student_id])).join_sources).order(:total).reverse_order.group(:referral_type)
-
-
+	
     end
 
 	def list
