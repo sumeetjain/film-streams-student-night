@@ -26,6 +26,7 @@ class StatisticsController < ApplicationController
 
     		@referrals[referral_type] = total
     	end
+    	@confirm = @referrals.transform_keys { |k| Referral.referral_types.key(k) }
     	binding.pry
 
     	# @maybe = Referral.find_by_sql "SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = 98 GROUP BY referral_type ORDER BY total DESC;"
