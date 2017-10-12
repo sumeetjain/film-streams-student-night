@@ -2,13 +2,15 @@ class Event < ActiveRecord::Base
   LOCATIONS = {
     ruth_sokolof: {
       title: "Ruth Sokolof",
-      logo: "/images/ruth_sokolof.gif",
-      brand_colors: "#333333"
+      logo: "apps/assets/images/ruth_sokolof_logo.jpg",
+      brand_colors: "#666666",
+      welcome: "Welcome to the Ruth Sokolof Theater!"
     },
     dundee: {
       title: "The Dundee",
       logo: "/images/dundee.gif",
-      brand_colors: "#666666"
+      brand_colors: "#759AAB",
+      welcome: "Welcome to the Dundee Theater!"
     }
   }
 
@@ -45,6 +47,7 @@ class Event < ActiveRecord::Base
     end
     return theaters
   end
+
 
   enum location: {
     :ruth_sokolof => 0,

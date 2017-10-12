@@ -16,4 +16,5 @@ class Checkin
   def student_id
     student.id
   end
+
 end

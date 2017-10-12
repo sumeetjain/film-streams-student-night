@@ -1,5 +1,7 @@
+<body style="background-color:<%= brand_colors(@event) %>">
 <div class="container">
   <h2 class="text-center">Hello!</h2>
+  <h2><img src="<%=  event_logo(@event) %>" alt="<%= event_location(@event) %> logo"></h2>
   <h4 class="text-center">Let's get you checked in.</h4>
   <hr>
   <div class="row">
@@ -31,3 +33,4 @@
     }, 2000);
   });
 </script>
+</body>

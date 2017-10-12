@@ -37,4 +37,11 @@ module EventsHelper
     Event::LOCATIONS[event.location.to_sym][:title]
   end
 
+  def event_logo(event)
+    Event::LOCATIONS[event.location.to_sym][:logo]
+  end
+
+  def brand_colors(event)
+    Event::LOCATIONS[event.location.to_sym][:brand_colors]
+  end
 end
