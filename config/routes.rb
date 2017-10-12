@@ -9,9 +9,7 @@ Rails.application.routes.draw do
   get  '/logout' => 'login#destroy'
 
   #These routes deal with the merging of students
-  get '/merge_students/pickSecond/' => 'merge_students#pickSecond'
   resources :merge_students
-  get '/merge_students/findSecond/:id' => 'merge_students#findSecond'
   resources :merge_students_search
 
 

@@ -1,18 +1,15 @@
 <div class="container bottom_space">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h2 class="text-center">Search for Student to Merge</h2>
-      <h4 class="text-center">The first student you search for will be the one that is merged and delted.</h4>
-      <%= form_for "searchChange", method: 'get' do |f| %>
+        <h2 class="text-center">Search for Student to Keep</h2>
+        <h4 class="text-center">Now find the student you would like <%= @change.name %> to be merged to.</h4>
+        <%= form_for "searchKeep", url:"/merge_students/#{@change.id}",  method: 'get' do |f| %>
         <div class= "form-group">
           <%= f.label "name" %>
           <%= f.text_field "name", class: "form-control"%>
           <%= f.submit "Search", class: "btn custom-btn col-xs-4 col-xs-offset-4" %>
         </div>
-      <% end %>
+    <% end %>
     </div>
   </div>
 </div>
-
-                
-
