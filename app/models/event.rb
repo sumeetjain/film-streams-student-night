@@ -2,13 +2,13 @@ class Event < ActiveRecord::Base
   LOCATIONS = {
     ruth_sokolof: {
       title: "Ruth Sokolof",
-      logo: "apps/assets/images/ruth_sokolof_logo.jpg",
+      logo: "ruth_sokolof_logo.jpg",
       brand_colors: "#666666",
       welcome: "Welcome to the Ruth Sokolof Theater!"
     },
     dundee: {
       title: "The Dundee",
-      logo: "/images/dundee.gif",
+      logo: "dundee_logo_placeholder.png",
       brand_colors: "#759AAB",
       welcome: "Welcome to the Dundee Theater!"
     }
