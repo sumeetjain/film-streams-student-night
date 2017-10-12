@@ -1,8 +1,8 @@
 <body style="background-color:<%= brand_colors(@event) %>">
 <div class="container">
   <h2 class="text-center">Hello!</h2>
-  <%= image_tag "#{event_logo(@event)}" %>
   <h4 class="text-center">Let's get you checked in.</h4>
+  <%= image_tag("#{event_logo(@event)}", style: 'display: block; margin: auto; width: 40%;') %>
   <hr>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
