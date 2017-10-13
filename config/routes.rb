@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   resources :login
   resources :stats, only: [:index]
   get  '/logout' => 'login#destroy'
+  resources :admin_students
+
+  #These routes deal with the merging of students
+  resources :merge_students
+  resources :merge_students_search
+
 
   # ---------------------------------------------------------------------------
 

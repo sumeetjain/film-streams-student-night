@@ -1,0 +1,46 @@
+<!-- Purpose of this page is to edit a given student's info. -->
+<div class="container">
+  <div class="container bottom_space">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1 class = "text-center">Edit Student</h1>
+          <%= form_for "student", url: "/admin_students/#{@student.id}", method: 'patch' do |f| %>
+            <div class="form-group">
+              <%= f.label "name" %>
+              <%= f.text_field "name", class: "form-control"%>
+            </div>
+
+            <div class="form-group">
+              <%= f.label "year" %>
+              <%= f.select( :year, dropYears,{include_blank: "Select Year"},{ :class => 'form-control' })%>
+            </div>
+
+            <div class="form-group">
+              <%= f.label "school_id" %>
+
+              <%= f.select( "school_id", dropSchools,{include_blank: "Select School"}, { :class => 'form-control' })%>
+            </div>
+
+            <div class="form-group">
+              <%= f.label "zip" %>
+              <%= f.text_field "zip", class: "form-control" %>
+            </div>  
+
+            <div class="form-group">
+              <%= f.label "email" %>
+              <%= f.text_field "email", class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label "email_confirmation" %>
+              <%= f.text_field "email_confirmation", class: "form-control", value: @student.email %>
+            </div>
+            <div class = "text-center">
+              <%= f.submit type="Update Student", class: "btn custom-btn navbar-btn"%>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
