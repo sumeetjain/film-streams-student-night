@@ -29,4 +29,8 @@ module EventsHelper
     movies = Movie.find_by(event_id: event.id)
   end
 
+  def event_date(event)
+    (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y '))
+  end
+
 end

@@ -25,10 +25,6 @@ class Student < ActiveRecord::Base
   		Student.where("name LIKE '%#{student}%'").order("name ASC")
   	end
 
-	def self.addAttend(student2, student1)
-		student2.attendances.append(student1.attendances)
-	end
-
   def add_to_mailchimp
   	if newsletter == "1"
 	  	begin

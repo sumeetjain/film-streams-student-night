@@ -16,4 +16,12 @@ class Event < ActiveRecord::Base
     self.attributes["title"] || DEFAULT_TITLE
   end
 
+  def self.past_events
+    Event.where("date < ?", Date.today).reverse
+  end
+
+  def self.most_recent_past
+    Event.past_events[0..9]
+  end
+
 end
