@@ -9,9 +9,9 @@
 	<link rel="shortcut icon" href="http://www.filmstreams.org/wp-content/themes/filmstreams/inc/images/favicon.ico" />
 </head>
 <% if @colors %>
-  <body style="background-color:<%= brand_colors(@event) %>">
+  <%= event_body(@event) %>
 <% else %>
- <body>
+  <body>
 <% end %>
     <% if !@checkin %>
       <div class="cHeader">

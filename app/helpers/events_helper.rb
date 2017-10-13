@@ -44,4 +44,8 @@ module EventsHelper
   def brand_colors(event)
     Event::LOCATIONS[event.location.to_sym][:brand_colors]
   end
+
+  def event_body(event)
+    return %Q[<body style="background-color:#{ brand_colors(@event)}">].html_safe
+  end
 end
