@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   get  '/logout' => 'login#destroy'
   resources :admin_students
 
+  #These routes deal with the merging of students
+  resources :merge_students
+  resources :merge_students_search
+
+
   # ---------------------------------------------------------------------------
 
   # This block of resources handles the entire process of a student

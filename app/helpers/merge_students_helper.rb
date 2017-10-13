@@ -1,0 +1,2 @@
+module MergeStudentsHelper
+end
