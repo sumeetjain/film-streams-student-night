@@ -45,15 +45,11 @@ module EventsHelper
     Event::LOCATIONS[event.location.to_sym][:brand_colors]
   end
 
-  def event_body(event)
-    return %Q[<body style="background-color:#{ brand_colors(@event)}">].html_safe
-  end
-
-  def body_tag(event)
+  def theater_color_style(event)
     if @colors 
-      event_body(event)
+      return "background-color: #{brand_colors(event)}"
     else
-      return "<body>".html_safe
+      return "background-color: none"
     end
   end
 end
