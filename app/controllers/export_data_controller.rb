@@ -1,0 +1,2 @@
+class ExportDataController < ApplicationController
+end
