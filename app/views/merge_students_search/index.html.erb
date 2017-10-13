@@ -3,7 +3,7 @@
     <div class="col-md-6 col-md-offset-3">
       <h2 class="text-center">Search for Student to Merge</h2>
       <h4 class="text-center">The first student you search for will be the one that is merged and delted.</h4>
-      <%= form_for "searchChange", method: 'get' do |f| %>
+      <%= form_for "searchChange", url: "/merge_students_search/show", method: 'get' do |f| %>
         <div class= "form-group">
           <%= f.label "name" %>
           <%= f.text_field "name", class: "form-control"%>

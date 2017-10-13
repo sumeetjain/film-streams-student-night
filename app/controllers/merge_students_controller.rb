@@ -1,21 +1,20 @@
 class MergeStudentsController < ApplicationController
 
-	#Search page to find the student to be merged into another
+	# Search page to find the student to be merged into another
 	def index
 		@change = Student.find(params[:id])
 	end
 
-	#Shows the results of the search and lets the user pick one.
+	# Shows the results of the search and lets the user pick one.
 	def show
-		@keep = params[:searchKeep][:name].to_s
 		@student1 = Student.find(params[:id])
-		@student2 = Student.find_student(@keep)
+		@student2 = Student.find_student(params[:searchKeep][:name])
 	end
 
-	def edit
-		@student1 = Student.find(params[:change])
+	def update
+		@student1 = Student.find(params[:format])
 		@student2 = Student.find(params[:id])
-		@student2.update_attribute("attendances", Student.addAttend(@student2, @student1))
+		@student1.attendances.update_all(student_id: @student2.id)
 		flash[:notice] = "Student updated!"
 	end
 

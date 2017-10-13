@@ -36,7 +36,7 @@
 							<%= student.attendances.count %>
 						</td>
 						<td>
-							<a href="/merge_students/<%= student.id%>/edit?change=<%= @student1.id%>" class="btn custom-btn borderless"> Keep <span class="glyphicon glyphicon-edit"></span></a>
+							<%= link_to "Keep", merge_student_path(student, @student1.id), class: "custom-btn btn", method: :patch, data: { confirm: 'Are you sure?', disable_with: 'loading...' }%>
 						</td>
 					</tr>
 				<% end %>
