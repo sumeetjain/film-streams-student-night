@@ -1,7 +1,7 @@
 # Every action in this controller has params[:event_id].
 
 class StudentsController < ApplicationController
-  before_filter :set_event
+  before_filter :set_event, :set_colors
 
   # This is where user ends up if they're new to Film Streams!
   # We want to collect more info about them.
@@ -58,6 +58,10 @@ class StudentsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:event_id])
+  end
+
+  def set_colors
+    @colors = true
   end
 
 

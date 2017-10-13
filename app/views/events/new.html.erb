@@ -4,6 +4,7 @@
 	    <div class="col-md-6 col-md-offset-3">
 	      <h2 class="text-center">What are the details?</h2>
       	<%= render 'layouts/event_errors' %>
+        <div class = "form-group">
       	<%= form_for @event do |f| %>
 
         	<%= f.label :title %>
@@ -11,10 +12,15 @@
 
         	<%= f.label :date %>
         	<%= f.date_field :date, class: 'form-control' %>
+
+          <%= f.label :location %>
+          <%= f.select( :location, options_for_select(Event.drop_locations), {include_blank: "Select Location"}, { :class => 'form-control' })%>
+
           <div class="row">
             <%= f.submit "Save Event", class: "btn custom-btn col-xs-4 col-xs-offset-4" %>
           </div>          
       	<% end %>
+      </div>
 	    </div>
 	  </div>
 	</div>
