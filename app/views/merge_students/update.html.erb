@@ -17,8 +17,4 @@
 			</tr>
 		</tbody>
 	</table>
-	<div class = "text-center">
-		<p>Click the button to finish the merge by deleting the old student information</p>
-		<%= button_to('Destroy', "/merge_students/#{@student1.id}", class: 'btn custom-btn-dngr navbar-btn', method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }) %>
-	</div>
 </div>

@@ -15,14 +15,7 @@ class MergeStudentsController < ApplicationController
 		@student1 = Student.find(params[:format])
 		@student2 = Student.find(params[:id])
 		@student1.attendances.update_all(student_id: @student2.id)
+		@student1.delete
 		flash[:notice] = "Student updated!"
 	end
-
-	def destroy
-		@student = Student.find(params[:id])
-		@student.delete
-		flash[:alert] = "Student deleted."
-	    redirect_to '/merge_students_search'
-	end
-
 end
