@@ -12,7 +12,7 @@ class CheckinsController < ApplicationController
 
 	def create
     checkin = Checkin.new(params[:checkin])
-
+    
     if checkin.valid?
       if checkin.student
         # Just verify the rest of your details. School? Grade?

@@ -1,8 +1,9 @@
 class Checkin
   include ActiveModel::Model
-
+  include ActiveModel::Validations::Callbacks
+  
   attr_accessor :email
-
+  before_validation :downcase_email
   validates :email, confirmation: true
 
   validates :email,
@@ -15,5 +16,10 @@ class Checkin
 
   def student_id
     student.id
+  end
+
+  def downcase_email
+    self.email.downcase!
+    self.email_confirmation.downcase!
   end
 end
