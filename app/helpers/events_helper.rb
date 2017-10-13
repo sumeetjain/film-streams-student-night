@@ -48,8 +48,6 @@ module EventsHelper
   def theater_color_style(event)
     if @colors 
       return "background-color: #{brand_colors(event)}"
-    else
-      return "background-color: none"
     end
   end
 end
