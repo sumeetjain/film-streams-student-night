@@ -9,6 +9,7 @@ class StudentsController < ApplicationController
   # GET /events/1/students/new
   #             :event_id
   def new
+    @colors = true
     @student = Student.new(email: flash[:email])
   end
 
@@ -18,6 +19,7 @@ class StudentsController < ApplicationController
   # GET /events/1/students/99
   #             :event_id  :id
   def edit
+    @colors = true
     @checkin = "true"
     @student = Student.find(params[:id])
   end
