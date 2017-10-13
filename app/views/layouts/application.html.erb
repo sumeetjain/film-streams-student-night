@@ -8,11 +8,7 @@
 
 	<link rel="shortcut icon" href="http://www.filmstreams.org/wp-content/themes/filmstreams/inc/images/favicon.ico" />
 </head>
-<% if @colors %>
-  <%= event_body(@event) %>
-<% else %>
-  <body>
-<% end %>
+<%= body_tag(@event) %>
     <% if !@checkin %>
       <div class="cHeader">
         <%= render 'layouts/header' %>

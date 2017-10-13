@@ -48,4 +48,12 @@ module EventsHelper
   def event_body(event)
     return %Q[<body style="background-color:#{ brand_colors(@event)}">].html_safe
   end
+
+  def body_tag(event)
+    if @colors 
+      event_body(event)
+    else
+      return "<body>".html_safe
+    end
+  end
 end
