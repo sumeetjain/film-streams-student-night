@@ -5,12 +5,9 @@ class MergeStudentsController < ApplicationController
 		@change = Student.find(params[:id])
 	end
 
-
-
 	#Shows the results of the search and lets the user pick one.
 	def show
 		@keep = params[:searchKeep][:name].to_s
-		binding.pry
 		@student1 = Student.find(params[:id])
 		@student2 = Student.find_student(@keep)
 	end
