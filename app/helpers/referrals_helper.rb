@@ -11,6 +11,7 @@ module ReferralsHelper
       end 
       alternate += 1 
     end
+    return_string += '</div>'
     return return_string.html_safe 
   end
 
@@ -40,6 +41,7 @@ module ReferralsHelper
       end 
       alternate += 1 
     end
+    return_string += '</div>'
     return return_string.html_safe  
   end
 end
