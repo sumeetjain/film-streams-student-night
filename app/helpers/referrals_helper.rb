@@ -5,9 +5,9 @@ module ReferralsHelper
     alternate = 0 
     Referral.referral_types.each do |referral| 
       if alternate.even? 
-        return_string += '<tr><td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '">&nbsp;' + referral[0].to_s + '</td>'
+        return_string += '<tr><td style="font-size: .95em"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '">&nbsp;' + referral[0].to_s + '</td>'
       else
-        return_string += '<td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '"> &nbsp;' + referral[0].to_s + '</td></tr>'
+        return_string += '<td style="font-size: .95em"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '"> &nbsp;' + referral[0].to_s + '</td></tr>'
       end 
       alternate += 1 
     end
@@ -28,15 +28,15 @@ module ReferralsHelper
     Referral.referral_types.each do |referral| 
       if alternate.even? 
         if referrals_to_compare.include?(referral[0])
-          return_string += '<tr><td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '" checked> &nbsp;' + referral[0].to_s + '</td>'
+          return_string += '<tr><td style="font-size: .95em"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '" checked> &nbsp;' + referral[0].to_s + '</td>'
         else
-          return_string += '<tr><td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '"> &nbsp;' + referral[0].to_s + '</td>'
+          return_string += '<tr><td style="font-size: .95em"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '"> &nbsp;' + referral[0].to_s + '</td>'
         end
       else
         if referrals_to_compare.include?(referral[0])
-          return_string += '<td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '" checked> &nbsp;'  + referral[0].to_s + '</td></tr>'
+          return_string += '<td style="font-size: .95em"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '" checked> &nbsp;'  + referral[0].to_s + '</td></tr>'
         else
-          return_string += '<td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '"> &nbsp;'  + referral[0].to_s + '</td></tr>'
+          return_string += '<td style="font-size: .95em"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '"> &nbsp;'  + referral[0].to_s + '</td></tr>'
         end 
       end 
       alternate += 1 
