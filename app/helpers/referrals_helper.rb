@@ -5,9 +5,9 @@ module ReferralsHelper
     alternate = 0 
     Referral.referral_types.each do |referral| 
       if alternate.even? 
-        return_string += '<div style="float:left"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '">' + referral[0].to_s + '</div>'
+        return_string += '<tr><td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '">' + referral[0].to_s + '</td>'
       else
-        return_string += '<div style="float:right">' + referral[0].to_s + '<input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '"></div><br>'
+        return_string += '<td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '">' + referral[0].to_s + '</td></tr>'
       end 
       alternate += 1 
     end

@@ -26,9 +26,12 @@
 
   <div class="form-group">
     <%= f.label :referrals, 'How did you hear about us?' %>
-    <%= render_checkboxes_new %>
+    <table>
+      <col width="240">
+      <%= render_checkboxes_new %>
+    </table>
   </div>
-      
+  <br>
   <div class="form-group">
     <label>
       <%= f.check_box :newsletter %>
