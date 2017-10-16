@@ -24,29 +24,9 @@
     <%= f.text_field :zip, class: 'form-control' %>
   </div>
 
-
-  <!-- TODO: Add this code to a helper -->
   <div class="form-group">
     <%= f.label :referrals, 'How did you hear about us?' %>
-
-    <div class="clearfix" style="font-size: .85em;">
-      <% alternate = 0 %>
-      <% Referral.referral_types.each do |referral| %>
-        <% if alternate.even? %>
-          <div style="float:left"> 
-            <input type="checkbox" name="referrals[]" value="<%= referral[1] %>">
-            <%= referral[0] %>
-          </div>
-        <% else %>
-          <div style="float:right"> 
-            <%= referral[0] %>
-            <input type="checkbox" name="referrals[]" value="<%= referral[1] %>">
-          </div>
-          <br>
-        <% end %> 
-        <% alternate += 1 %>
-      <% end %>
-    </div>
+    <%= render_checkboxes_new %>
   </div>
       
   <div class="form-group">
