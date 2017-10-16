@@ -26,7 +26,10 @@
 
   <div class="form-group">
     <%= f.label :referrals, 'How did you hear about us?' %>
-    <%= render_checkboxes_update(@student.id) %>
+    <table>
+      <col width="240">
+        <%= render_checkboxes_update(@student.id) %>  
+      </table>
   </div>
 
   <div class="form-group">

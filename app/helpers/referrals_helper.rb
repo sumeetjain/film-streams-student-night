@@ -28,15 +28,15 @@ module ReferralsHelper
     Referral.referral_types.each do |referral| 
       if alternate.even? 
         if referrals_to_compare.include?(referral[0])
-          return_string += '<div style="float:left"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '" checked>' + referral[0].to_s + '</div>'
+          return_string += '<tr><td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '" checked>' + referral[0].to_s + '</td>'
         else
-          return_string += '<div style="float:left"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '">' + referral[0].to_s + '</div>'
+          return_string += '<tr><td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '">' + referral[0].to_s + '</td>'
         end
       else
         if referrals_to_compare.include?(referral[0])
-          return_string += '<div style="float:right">' + referral[0].to_s + '<input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '" checked></div><br>'
+          return_string += '<td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '" checked>'  + referral[0].to_s + '</td></tr>'
         else
-          return_string += '<div style="float:right">' + referral[0].to_s + '<input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '"></div><br>'
+          return_string += '<td><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '">'  + referral[0].to_s + '</td></tr>'
         end 
       end 
       alternate += 1 
