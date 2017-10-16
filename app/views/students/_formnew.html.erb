@@ -27,15 +27,26 @@
   <div class="form-group">
     <%= f.label :referrals, 'How did you hear about us?' %>
 
-    <% Referral.referral_types.each do |referral| %>
-      <div> 
-        <%= referral[0] %>
-        <input type="checkbox" name="referrals[]" value="<%= referral[1] %>">
-      </div>
-    <% end %>
-
+    <div class="clearfix" style="font-size: .85em;">
+      <% alternate = 0 %>
+      <% Referral.referral_types.each do |referral| %>
+        <% if alternate.even? %>
+          <div style="float:left"> 
+            <input type="checkbox" name="referrals[]" value="<%= referral[1] %>">
+            <%= referral[0] %>
+          </div>
+        <% else %>
+          <div style="float:right"> 
+            <%= referral[0] %>
+            <input type="checkbox" name="referrals[]" value="<%= referral[1] %>">
+          </div>
+          <br>
+        <% end %> 
+        <% alternate += 1 %>
+      <% end %>
+    </div>
   </div>
-
+      
   <div class="form-group">
     <label>
       <%= f.check_box :newsletter %>
