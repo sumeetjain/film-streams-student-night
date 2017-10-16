@@ -20,20 +20,6 @@ class StatisticsController < ApplicationController
     	@schools = Student.joins(:attendances, :school).where("attendances.event_id = #{params[:id].to_i}").group("schools.name").count
 		@movies = Movie.joins(:attendances).select('movies.title').where("attendances.event_id = #{params[:id].to_i}").group(:title).count
 	    @referrals = Referral.get_referrals_by_event(params[:id])
-
-    	# TODO: Is this acceptable?
-  		# 		
-# -- Given an event, what are the most popular referral sources?
-# -- First, just show me most popular referral sources.
-# SELECT COUNT(id) AS total, referral_type FROM referrals GROUP BY referral_type ORDER BY total DESC;
-
-# --All attendances for a given event (99)
-# SELECT * FROM attendances WHERE event_id = 99;
-
-# -- Add a column 'referral_type' to this table result.
-	# SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = 98 GROUP BY referral_type ORDER BY total DESC;
-
-	
     end
 
 	def list
