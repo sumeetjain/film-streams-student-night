@@ -1,7 +1,7 @@
 module ReferralsHelper
 
   def render_checkboxes_new
-    return_string = '<div class="clearfix" style="font-size: .85em;">'
+    return_string = '<div>'
     alternate = 0 
     Referral.referral_types.each do |referral| 
       if alternate.even? 
@@ -23,7 +23,7 @@ module ReferralsHelper
       referrals_to_compare.push(referral.referral_type) 
     end
 
-    return_string = '<div class="clearfix" style="font-size: .85em;">'
+    return_string = '<div>'
     alternate = 0
     Referral.referral_types.each do |referral| 
       if alternate.even? 
