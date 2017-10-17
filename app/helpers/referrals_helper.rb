@@ -17,17 +17,21 @@ module ReferralsHelper
     return return_string.html_safe 
   end
 
-  # Takes in a students id, and gathers all the referral sources they have already selected in the past.
-  # Returns an HTML formatted string to display a table of checkboxes representing the available referral types, with the students previously selected referrals already checked
-  def render_checkboxes_update(student_id)
-    # Gathers previous referrals for a student and adds their string representations to an array
+  # Takes in a students ID and gathers previous referrals for the student and adds their string representations to an array
+  def get_past_referrals(student_id)
     referrals_to_compare = [] 
     current_referrals = Referral.where(student_id: student_id) 
    
     current_referrals.each do |referral|
       referrals_to_compare.push(referral.referral_type) 
     end
+    return referrals_to_compare
+  end
 
+  # Takes in a students id, and gathers all the referral sources they have already selected in the past by calling a function.
+  # Returns an HTML formatted string to display a table of checkboxes representing the available referral types, with the students previously selected referrals already checked
+  def render_checkboxes_update(student_id)
+    referrals_to_compare = get_past_referrals(student_id)
     return_string = '<div>'
     alternate = 0
     Referral.referral_types.each do |referral| 
