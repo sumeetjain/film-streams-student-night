@@ -1,5 +1,18 @@
 module ReferralsHelper
 
+ 
+  # TODO: Define some function that if one path, return function 1, else return funct 2
+  # Rails.application.routes.recognize_path('/your/path/here') 
+  # or
+  # path = ActionController::Routing::Routes.recognize_path "/your/path/here/"
+  # for older versions
+
+  # def determine_path 
+  #   path =  Rails.application.routes.recognize_path
+
+  # end
+
+
 
   # Returns an HTML formatted string to display a table of checkboxes representing the available referral types
   def render_checkboxes_new
