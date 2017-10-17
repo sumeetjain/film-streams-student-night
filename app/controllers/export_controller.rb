@@ -1,6 +1,7 @@
 class ExportController < ApplicationController
 	def index
-		@students = Student.order('name ASC')
+		@students = Student.all
+		@movies = Movie.all
 	  	respond_to do |format|
 	    	format.html
 	    	format.xlsx

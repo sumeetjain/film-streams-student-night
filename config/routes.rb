@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :stats, only: [:index]
   get  '/logout' => 'login#destroy'
   resources :admin_students
-  resources :export
+  resources :export, only: [:index]
 
   #These routes deal with the merging of students
   resources :merge_students

@@ -1,6 +1,13 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Students") do |sheet|
+	sheet.add_row ["Name", "School", "Year", "Zip", "Email", "First Attendance", "Latest Attendance", "Total Attendances"]
 	@students.each do |student|
-    sheet.add_row [student.name, student.school_id, student.year, student.zip, student.email]
+    	sheet.add_row [student.name, student.school.name, student.year, student.zip, student.email,student.attendances.order("created_at ASC")[0],student.attendances.order("created_at ASC")[-1], student.attendances.count]
+	end
+end
+wb.add_worksheet(name: "Events") do |sheet|
+	sheet.add_row ["Title", "Time", "Attendances"]
+	@movies.each do |movie|
+		sheet.add_row [movie.title, movie.time.to_s(:time), movie.attendances.count]
 	end
 end
