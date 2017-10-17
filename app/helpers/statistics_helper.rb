@@ -38,10 +38,16 @@ module StatisticsHelper
     students.sort_by{|k,v| v}.reverse
   end
 
-  def print_referral_types(student)
+  def print_referral_types(referrals)
+    results = referrals.map{|referral_types| referral_types[:referral_type]}
+        binding.pry
+
+    referral_types.join(", ")
+    binding.pry
+    return "cookies"
 
   end
-  
+
   private
   def set_dates
     @start_date = params["start_date"] ? params["start_date"] : (Time.now.midnight - 365.day)
