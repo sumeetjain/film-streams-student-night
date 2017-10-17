@@ -3,7 +3,7 @@ module ReferralsHelper
 
   # Returns an HTML formatted string to display a table of checkboxes representing the available referral types
   def render_checkboxes_new
-    return_string = '<div>'
+    return_string = ''
     alternate = 0 
     Referral.referral_types.each do |referral| 
       if alternate.even? 
@@ -13,7 +13,6 @@ module ReferralsHelper
       end 
       alternate += 1 
     end
-    return_string += '</div>'
     return return_string.html_safe 
   end
 
@@ -32,7 +31,7 @@ module ReferralsHelper
   # Returns an HTML formatted string to display a table of checkboxes representing the available referral types, with the students previously selected referrals already checked
   def render_checkboxes_update(student_id)
     referrals_to_compare = get_past_referrals(student_id)
-    return_string = '<div>'
+    return_string = ''
 
     Referral.referral_types.each_with_index do |referral, index| 
       if index.even? 
@@ -49,7 +48,6 @@ module ReferralsHelper
         end 
       end 
     end
-    return_string += '</div>'
     return return_string.html_safe  
   end
 end
