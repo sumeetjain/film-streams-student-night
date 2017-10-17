@@ -33,9 +33,9 @@ module ReferralsHelper
   def render_checkboxes_update(student_id)
     referrals_to_compare = get_past_referrals(student_id)
     return_string = '<div>'
-    alternate = 0
-    Referral.referral_types.each do |referral| 
-      if alternate.even? 
+
+    Referral.referral_types.each_with_index do |referral, index| 
+      if index.even? 
         if referrals_to_compare.include?(referral[0])
           return_string += '<tr><td style="font-size: .95em"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '" checked> &nbsp;' + referral[0].to_s + '</td>'
         else
@@ -48,7 +48,6 @@ module ReferralsHelper
           return_string += '<td style="font-size: .95em"><input type="checkbox" name="referrals[]" value="' + referral[1].to_s + '"> &nbsp;'  + referral[0].to_s + '</td></tr>'
         end 
       end 
-      alternate += 1 
     end
     return_string += '</div>'
     return return_string.html_safe  
