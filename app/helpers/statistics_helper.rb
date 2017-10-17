@@ -39,13 +39,11 @@ module StatisticsHelper
   end
 
   def print_referral_types(referrals)
-    results = referrals.map{|referral_types| referral_types[:referral_type]}
-        binding.pry
-
-    referral_types.join(", ")
-    binding.pry
-    return "cookies"
-
+    student_referrals = []
+    referrals.each do |referral|
+      student_referrals.push(referral.referral_type)
+    end
+    return student_referrals.join(", ")
   end
 
   private
