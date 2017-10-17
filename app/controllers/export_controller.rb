@@ -1,10 +1,13 @@
 class ExportController < ApplicationController
 	def index
-		@students = Student.limit(2)
-		@movies = Movie.limit(2)
+		@students = Student.all
+		@movies = Movie.all
 	  	respond_to do |format|
+	  		time = Time.new
 	    	format.html
-	    	format.xlsx
+	    	format.xlsx{
+	    		response.headers['Content-Disposition'] = 'attachment; filename="export_' + time.to_s + '.xlsx"'
+	    	}
 		end
 	end
 end
