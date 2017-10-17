@@ -13,6 +13,7 @@ class Referral < ActiveRecord::Base
 
 		# }
 	
+	# Rails enumeration for referral types
 	enum referral_type: {
 		'From a friend'             => 0,
 		'From my teacher'           => 1,
@@ -27,6 +28,7 @@ class Referral < ActiveRecord::Base
 
 	}
 
+	# Psuedo enum used for translating queries
 	referral_types = {
 		'From a friend'             => 0,
 		'From my teacher'           => 1,
@@ -41,6 +43,7 @@ class Referral < ActiveRecord::Base
 
 	}
 
+	# Returns a count of each referral type for a particular event
 	def self.get_referrals_by_event(event_id)
 		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
 		@get_referrals_from_event = @conn.exec("SELECT COUNT(*) AS total, referral_type FROM attendances JOIN referrals ON attendances.student_id = referrals.student_id WHERE attendances.event_id = #{event_id} GROUP BY referral_type ORDER BY total DESC;")
