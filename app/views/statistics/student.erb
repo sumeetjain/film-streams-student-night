@@ -36,6 +36,9 @@
 			<tr>
 				<td><%= @student.attendances.count %></td>
 				<td>
+
+					<%= def print_referral_types(@student.referrals) %>
+
 					<% @student.referrals.each do |referral| %> 
 						<%=  referral.referral_type + ", " %> 
 					<% end %>
