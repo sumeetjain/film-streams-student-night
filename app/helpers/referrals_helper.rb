@@ -1,5 +1,7 @@
 module ReferralsHelper
 
+
+  # Returns an HTML formatted string to display a table of checkboxes representing the available referral types
   def render_checkboxes_new
     return_string = '<div>'
     alternate = 0 
@@ -15,7 +17,10 @@ module ReferralsHelper
     return return_string.html_safe 
   end
 
+  # Takes in a students id, and gathers all the referral sources they have already selected in the past.
+  # Returns an HTML formatted string to display a table of checkboxes representing the available referral types, with the students previously selected referrals already checked
   def render_checkboxes_update(student_id)
+    # Gathers previous referrals for a student and adds their string representations to an array
     referrals_to_compare = [] 
     current_referrals = Referral.where(student_id: student_id) 
    
