@@ -1,0 +1,20 @@
+<div class="container p-rel">
+	<h1 class = "text-center">Merged Student</h1>
+	<h2 class = "text-center">Here is the result of your merge!</h2>
+	<table class = "table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>School</th>
+				<th>Attendances</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%=@student2.name%></td>
+				<td><%=@student2.school.name%></td>
+				<td><%=@student2.attendances.count%></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
