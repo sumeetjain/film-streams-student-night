@@ -1,8 +1,10 @@
 # Takes the student id and referral from each student and migrates their values to the referrals table
 
 class MoveReferralDataToReferralsTable < ActiveRecord::Migration
+  
   def updates
- # Previous Versions Enums once located in the student model.
+
+    # Previous Versions Enums once located in the student model.
     old_referral_types = {
       'From a friend'             => 0,
       'From my teacher'           => 1,
@@ -25,7 +27,7 @@ class MoveReferralDataToReferralsTable < ActiveRecord::Migration
   	Referral.destroy_all
   end
 
-# Takes in the referral type and updates it with a new value if it was one of the enum values which was updated
+  # Takes in the referral type and updates it with a new value if it was one of the enum values which was updated
   def update_referral_value(referral_type_id)
     if referral_type_id == 2
       return 3
