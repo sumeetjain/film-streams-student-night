@@ -5,6 +5,16 @@
 	  {name: "All Attendances", data: Attendance.all.group_by_year(:created_at).count.map},
 	  {name: "Unique Students", data: @unique_students.map},
 	  {name: "Unique Schools", data:  @unique_schools.map} 
+	]%> 
+
+	<!-- This qeury selects all attendances from a location -->
+	<!-- TODO: SELECT * FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = 0; --> 
+	
+	
+	<%= line_chart [
+	  {name: "All Attendances", data: Attendance.all.group_by_year(:created_at).count.map},
+	  {name: "Unique Students", data: @unique_students.map},
+	  {name: "Unique Schools", data:  @unique_schools.map} 
 	]%>  
 	<h2>Attendances By Year</h2>
 	<table class="table table-bordered">
