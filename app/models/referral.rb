@@ -16,7 +16,7 @@ class Referral < ActiveRecord::Base
 
 	}
 
-	# Psuedo enum used for translating queries
+	# Psuedo enum used for translating PG queries
 	referral_types = {
 		'From a friend'             => 0,
 		'From my teacher'           => 1,
