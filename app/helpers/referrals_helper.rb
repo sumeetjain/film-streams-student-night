@@ -12,7 +12,13 @@ module ReferralsHelper
 
   # end
 
-
+  def determine_view(student_id)
+    if student_id == nil
+      return render_checkboxes_new
+    else 
+      return render_checkboxes_update(student_id)
+    end
+  end
 
   # Returns an HTML formatted string to display a table of checkboxes representing the available referral types
   def render_checkboxes_new
