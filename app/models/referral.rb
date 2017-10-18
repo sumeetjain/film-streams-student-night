@@ -39,8 +39,7 @@ class Referral < ActiveRecord::Base
 
     	@get_referrals_from_event.each do |ref|
 
-    		binding.pry
-    		referral_type = referral_types.key(ref['referral_type'].to_i)
+    		referral_type = Referral.referral_types.key(ref['referral_type'].to_i)
     		total = ref['total']
 
     		@referrals[referral_type] = total
