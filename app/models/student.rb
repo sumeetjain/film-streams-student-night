@@ -10,14 +10,13 @@ class Student < ActiveRecord::Base
 	validates :school, presence: true
 	validates :year, presence: true
 	validates :zip, presence: true, :length => { :is => 5 }
-	validates :referral, presence: true
-  validates :email, confirmation: true
+  	validates :email, confirmation: true
 	validates :email, presence: true,  uniqueness: { case_sensitive: false },
 					  format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
 
 	# Adds referrals for a new student 
 	def add_referrals(referrals)
-		if !referrals == nil
+		if referrals != nil
 			referrals.each do |r|
 	      		Referral.create!(student_id: self.id, referral_type: r.to_i)
 	  	    end
@@ -29,7 +28,7 @@ class Student < ActiveRecord::Base
    	    self.referrals.destroy_all
 
 	    # Add new_referrals to this student.
-		if !new_referrals == nil
+		if new_referrals != nil
 	        new_referrals.each do |r|
 	      		Referral.create!(student_id: self.id, referral_type: r.to_i)
 	  	    end
