@@ -16,21 +16,6 @@ class Referral < ActiveRecord::Base
 
 	}
 
-	# Psuedo enum used for translating PG queries
-	referral_types = {
-		'From a friend'             => 0,
-		'From my teacher'           => 1,
-		'From a family member'		=> 2,
-		"Film Streams' enewsletter or email" => 3,
-		'Internet Search'			=> 4,
-		'Social media'              => 5,
-		"Radio"						=> 6,
-		"Film Streams' website"     => 7,
-		"Film Streams' Flyer"		=> 8,
-		'other source'				=> 999
-
-	}
-
 	# Returns a count of each referral type for a particular event
 	def self.get_referrals_by_event(event_id)
 		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
