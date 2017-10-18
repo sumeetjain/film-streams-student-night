@@ -29,7 +29,7 @@
     <table>
       <col style="width:240px;">
       <col>
-        <%= render_checkboxes_update(@student.id) %>  
+        <%= determine_view(params['id']) %>
     </table>
   </div>
 
