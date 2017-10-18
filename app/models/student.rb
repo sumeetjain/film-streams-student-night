@@ -16,7 +16,7 @@ class Student < ActiveRecord::Base
 
 	# Adds referrals for a new student 
 	def add_referrals(referrals)
-		if !referrals == nil
+		if referrals != nil
 			referrals.each do |r|
 	      		Referral.create!(student_id: self.id, referral_type: r.to_i)
 	  	    end
@@ -28,7 +28,7 @@ class Student < ActiveRecord::Base
    	    self.referrals.destroy_all
 
 	    # Add new_referrals to this student.
-		if !new_referrals == nil
+		if new_referrals != nil
 	        new_referrals.each do |r|
 	      		Referral.create!(student_id: self.id, referral_type: r.to_i)
 	  	    end

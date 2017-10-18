@@ -1,0 +1,87 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Students") do |sheet|
+	sheet.add_row ["First Name", "Last Name", "School", "Year", "Zip", "Email","Referral 1", "Referral 2","Referral 3", "Referral 4", "Referral 5", "Total Referrals", "First Attendance", "Latest Attendance", "Total Attendances"]
+	@students.each do |student|
+
+		fName = student.name.split[0]
+		lName = student.name.split[1]
+		school = student.school.name
+		year = student[:year]
+		zip = student.zip
+		email = student.email
+		refferal = student.referrals
+		tR = refferal.length
+
+		
+		if refferal[0] == nil
+			r1 = ""
+		else
+			r1 = refferal[0].referral_type
+		end
+
+		if refferal[1] == nil
+			r2 = ""
+		else
+			r2 = refferal[1].referral_type
+		end
+		if refferal[2] == nil
+			r3 = ""
+		else
+			r3 = refferal[2].referral_type
+		end
+		if refferal[3] == nil
+			r4 = ""
+		else
+			r4 = refferal[3].referral_type
+		end
+		if refferal[4] == nil
+			r5 = ""
+		else
+			r5 = refferal[4].referral_type
+		end
+
+
+
+		fAttend = student.attendances.order("created_at ASC")[0]
+		if fAttend == nil
+			firstAttend = ""
+		else
+			firstAttend = fAttend.created_at.strftime("%D")
+		end
+
+		lAttend = student.attendances.order("created_at ASC")[-1]
+		if lAttend == nil
+			lastAttend = ""
+		else
+			lastAttend = lAttend.created_at.strftime("%D")
+		end
+
+		tAttend = student.attendances.count
+    	sheet.add_row [fName, lName, school, year, zip, email, r1, r2, r3, r4, r5, tR, firstAttend, lastAttend, tAttend]
+	end
+end
+
+wb.add_worksheet(name: "Events") do |sheet|
+	sheet.add_row ["Title", "Time", "Attendances",
+	 "Location"]
+	@movies.each do |movie|
+
+		title = movie.title
+		time = movie.time.strftime("%r")
+		attendance = movie.attendances.count
+		eLocation = movie.event
+		if eLocation == nil
+			location = ""
+		else
+			location = movie.event.location
+			if location == "ruth_sokolof"
+				locationName = "RST"
+			else
+				locationName = "DUN"
+			end
+
+		end
+
+		sheet.add_row [title, time, attendance, locationName]
+	end
+end
