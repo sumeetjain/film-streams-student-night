@@ -1,17 +1,6 @@
 module ReferralsHelper
 
- 
-  # TODO: Define some function that if one path, return function 1, else return funct 2
-  # Rails.application.routes.recognize_path('/your/path/here') 
-  # or
-  # path = ActionController::Routing::Routes.recognize_path "/your/path/here/"
-  # for older versions
-
-  # def determine_path 
-  #   path =  Rails.application.routes.recognize_path
-
-  # end
-
+  # Checks the params hash to determine which function should be used to generate the group of checkboxes
   def determine_view(student_id)
     if student_id == nil
       return render_checkboxes_new
