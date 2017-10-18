@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 20171005224441) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "referrals", force: :cascade do |t|
+    t.integer  "referral_type"
+    t.integer  "student_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "schools", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -52,7 +59,6 @@ ActiveRecord::Schema.define(version: 20171005224441) do
     t.integer  "school_id"
     t.integer  "year"
     t.integer  "zip"
-    t.integer  "referral"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

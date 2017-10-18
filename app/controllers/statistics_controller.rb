@@ -8,7 +8,7 @@ class StatisticsController < ApplicationController
 		@years = Event.all.map(&:date).map(&:year).uniq
 		@students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
 		@unique_schools = Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count
-
+		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
 	end
   
 	def show
@@ -17,10 +17,10 @@ class StatisticsController < ApplicationController
 		@event_years = Event.all.order(id: :desc).map(&:date).map(&:year).uniq
 		@zipcodes = Student.joins(:attendances).select('students.zip').where("attendances.event_id = #{params[:id].to_i}").group(:zip).count
 		@years = Student.joins(:attendances).select('students.year').where("attendances.event_id = #{params[:id].to_i}").group(:year).count.transform_keys { |k| Student.years.key(k) }
-    @referrals = Student.joins(:attendances).select('students.referral').where("attendances.event_id = #{params[:id].to_i}").group(:referral).count.transform_keys { |k| Student.referrals.key(k) }
-		@schools = Student.joins(:attendances, :school).where("attendances.event_id = #{params[:id].to_i}").group("schools.name").count
+    	@schools = Student.joins(:attendances, :school).where("attendances.event_id = #{params[:id].to_i}").group("schools.name").count
 		@movies = Movie.joins(:attendances).select('movies.title').where("attendances.event_id = #{params[:id].to_i}").group(:title).count
-  end
+	    @referrals = Referral.get_referrals_by_event(params[:id])
+    end
 
 	def list
 		@events = Event.order(date: :desc).map(&:date).uniq
