@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :checkins, only: [:new, :create]
     resources :attendances
     resources :students  
+    resources :referrals
   end
 
   # ---------------------------------------------------------------------------

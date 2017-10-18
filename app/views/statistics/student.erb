@@ -29,13 +29,13 @@
 		<thead>
 			<tr>
 				<th>Attendances</th>
-				<th>Referral</th>
+				<th>Referral Sources</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td><%= @student.attendances.count %></td>
-				<td><%= @student.referral %></td>
+				<td><%= print_referral_types(@student.referrals) %></td>
 			</tr>
 		</tbody>
 	</table>
@@ -61,8 +61,4 @@
 			<% end %>
 		</tbody>
 	</table>
-
-
-
 </div>
-

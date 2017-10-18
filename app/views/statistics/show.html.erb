@@ -104,14 +104,14 @@
 			<br>
 		
 			<h4 class="text-center">Referrals</h4>
-		  <%= pie_chart @referrals.sort_by{|k,v| v}.reverse, adapter: "google"%>
+		  <%= pie_chart @referrals.sort_by{|k,v| v}.reverse %>
 
 			<br>
 		  <hr>
 	
 			<br>
 		  <h4 class="text-center">Movies</h4>
-		  <%= pie_chart @movies.sort_by{|k,v| v}.reverse, adapter: "google"%>
+		  <%= pie_chart @movies.sort_by{|k,v| v}.reverse %>
 	  </div>
 	</div>
 </div>
