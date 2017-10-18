@@ -81,7 +81,7 @@ class Student < ActiveRecord::Base
 		'Sophomore in college'     => 15,
 		'Senior in college'        => 16,
 		'Grad'                     => 17,
-		'other'										 => 999
+		'other'					   => 999
 	}
 
 
