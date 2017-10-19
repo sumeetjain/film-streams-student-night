@@ -3,6 +3,8 @@ class StatisticsController < ApplicationController
 	before_filter :set_dates
 
 	def index
+		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
+		
 		@attendances = Attendance.count
 		@unique_students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
 		@years = Event.all.map(&:date).map(&:year).uniq
