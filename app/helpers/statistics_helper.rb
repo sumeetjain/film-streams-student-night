@@ -67,7 +67,7 @@ module StatisticsHelper
 
   # Gets the number of unique students per location grouped by year
   def get_students_per_location(location_id)
-    students_by_year = @conn.exec("SELECT COUNT(DISTINCT student_id) as students, extract(year from date) as year FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = #{location_id} GROUP BY year;")
+    students_by_year = @conn.exec("SELECT COUNT(DISTINCT student_id) as students, extract(year from date) as year FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = #{location_id} GROUP BY year ORDER BY year DESC;")
     unique_student_count = {}
     students_by_year.each do |unique_students|
       unique_student_count[unique_students['year']] = unique_students['students']
