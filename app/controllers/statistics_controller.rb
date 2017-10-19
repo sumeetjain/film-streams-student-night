@@ -12,7 +12,6 @@ class StatisticsController < ApplicationController
 		@unique_schools = Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
 		# mine
-		@attendances_by_location = get_attendances_per_event
 		@events_by_location = events_per_location
 	end
   
