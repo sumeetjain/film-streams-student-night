@@ -38,6 +38,21 @@ module StatisticsHelper
     students.sort_by{|k,v| v}.reverse
   end
 
+  # My work starts here
+
+  def attends_by_location(location)
+    @conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
+    @get_attends_by_location = @conn.exec("SELECT * FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = #{location}")
+    return @get_attends_by_location
+  end
+
+  # Gets all the events for a given location
+  # TODO: Remove static location
+  # based off school by id
+  def events_per_location 
+    events = Event.where('events.location = 0')
+  end
+
   def print_referral_types(referrals)
     student_referrals = []
     referrals.each do |referral|
