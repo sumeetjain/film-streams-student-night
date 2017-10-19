@@ -12,12 +12,14 @@
 
 	<%= line_chart [
 	  {name: "All Attendances", data: get_attendances_per_event(0)},
-	  {name: "Unique Students", data: get_students_per_location(0)}
+	  {name: "Unique Students", data: get_students_per_location(0)},
+	  {name: "Unique Students", data: get_schools_per_location(0)}
 	]%> 
 
 	<%= line_chart [
 	  {name: "All Attendances", data: get_attendances_per_event(1)},
-	  {name: "Unique Students", data: get_students_per_location(1)}
+	  {name: "Unique Students", data: get_students_per_location(1)},
+	  {name: "Unique Students", data: get_schools_per_location(1)}
 	]%> 
 
 
