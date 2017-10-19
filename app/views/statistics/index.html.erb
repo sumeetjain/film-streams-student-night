@@ -12,9 +12,7 @@
 	<%= @locatation_attendances %>
 	<%= @events_by_location %>
 	<%= line_chart [
-	  {name: "All Attendances", data: @attendances_by_location},
-	  {name: "Unique Students", data: @unique_students.map},
-	  {name: "Unique Schools", data:  @unique_schools.map} 
+	  {name: "All Attendances", data: @attendances_by_location}
 	]%> 
 
 
