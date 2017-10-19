@@ -11,7 +11,6 @@ class StatisticsController < ApplicationController
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
 		# mine
 		@events_by_location = events_per_location
-		
 	end
   
 	def show

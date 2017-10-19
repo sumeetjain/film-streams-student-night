@@ -50,7 +50,14 @@ module StatisticsHelper
   # TODO: Remove static location
   # based off school by id
   def events_per_location 
+
     events = Event.where('events.location = 0')
+    # return get_attendances_per_event(events)
+  end
+
+  # Gets the count of all attendances per location grouped by year
+  def get_attendances_per_event
+    "SELECT COUNT(*) as total, extract(year from date) as yyyy FROM events JOIN attendances ON events.id = attendances.event_id WHERE events.location = 0 GROUP BY yyyy ORDER BY yyyy DESC;"
   end
 
   def print_referral_types(referrals)
