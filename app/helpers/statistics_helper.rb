@@ -57,7 +57,12 @@ module StatisticsHelper
 
   # Gets the count of all attendances per location grouped by year
   def get_attendances_per_event
-    attendances_per_year_by_loc = @conn.exec("SELECT COUNT(*) as total, extract(year from date) as yyyy FROM events JOIN attendances ON events.id = attendances.event_id WHERE events.location = 0 GROUP BY yyyy ORDER BY yyyy DESC;")
+    attendances_per_year_by_loc = @conn.exec("SELECT COUNT(*) as total, extract(year from date) as year FROM events JOIN attendances ON events.id = attendances.event_id WHERE events.location = 0 GROUP BY year ORDER BY year DESC;")
+    attends_by_year = {}
+    attendances_per_year_by_loc.each do |attends|
+      attends_by_year[attends['year']] = attends['total']
+    end
+    return attends_by_year
   end
 
   def print_referral_types(referrals)
