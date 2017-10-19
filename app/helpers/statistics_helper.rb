@@ -70,7 +70,7 @@ module StatisticsHelper
     students_by_year = @conn.exec("SELECT COUNT(DISTINCT student_id) as students, extract(year from date) as year FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = 0 GROUP BY year;")
     unique_student_count = {}
     students_by_year.each do |unique_students|
-      unique_student_count[unique_students['year']] = unique_students['total']
+      unique_student_count[unique_students['year']] = unique_students['students']
     end
     return unique_student_count
   end
