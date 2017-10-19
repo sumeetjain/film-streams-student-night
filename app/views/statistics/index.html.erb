@@ -12,13 +12,13 @@
 	<%= @locatation_attendances %>
 	<%= @events_by_location %>
 	<%= line_chart [
-	  {name: "All Attendances", data: @attendances_by_location}
+	  {name: "All Attendances", data: get_attendances_per_event(0)}
 	]%> 
 
 		<%= @locatation_attendances %>
 	<%= @events_by_location %>
 	<%= line_chart [
-	  {name: "All Attendances", data: @attendances_by_location}
+	  {name: "All Attendances", data: get_attendances_per_event(1)}
 	]%> 
 
 
