@@ -59,6 +59,7 @@ module StatisticsHelper
   def get_attendances_per_event(location_id)
     attendances_per_year_by_loc = @conn.exec("SELECT COUNT(*) as total, extract(year from date) as year FROM events JOIN attendances ON events.id = attendances.event_id WHERE events.location = #{location_id} GROUP BY year ORDER BY year DESC;")
     attends_by_year = {}
+   
     attendances_per_year_by_loc.each do |attends|
       attends_by_year[attends['year']] = attends['total']
     end
@@ -69,10 +70,22 @@ module StatisticsHelper
   def get_students_per_location(location_id)
     students_by_year = @conn.exec("SELECT COUNT(DISTINCT student_id) as students, extract(year from date) as year FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = #{location_id} GROUP BY year ORDER BY year DESC;")
     unique_student_count = {}
+  
     students_by_year.each do |unique_students|
       unique_student_count[unique_students['year']] = unique_students['students']
     end
     return unique_student_count
+  end
+
+  # Gets the number of unique schools per location grouped by year
+  def get_schools_per_location(location_id)
+    schools_by_year = @conn.exec("SELECT DISTINCT school_id as school, extract(year from date) as year FROM attendances JOIN events ON attendances.event_id = events.id JOIN students ON attendances.student_id = students.id WHERE events.location = #{location_id};")
+    schools_grouped = {}
+
+    schools_by_year.each do |unique_schools|
+      schools_grouped[unique_schools['year']] = unique_schools['school']
+    end 
+    return schools_grouped
   end
 
   def print_referral_types(referrals)
