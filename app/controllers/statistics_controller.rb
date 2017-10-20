@@ -15,6 +15,10 @@ class StatisticsController < ApplicationController
 		@years_for_ruth_sokolof = Event.where(location: 0 ).map(&:date).map(&:year).uniq
 		@years_for_the_dundee = Event.where(location: 1 ).map(&:date).map(&:year).uniq
 		@events_by_location = events_per_location
+		# total attendaces per loc
+		@location_attends = Event.where(location: 0).joins(:attendances).count
+		binding.pry
+		somestuff = ''
 	end
   
 	def show
