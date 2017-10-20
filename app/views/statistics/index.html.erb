@@ -119,6 +119,48 @@
 		  </tr>
 		</tbody>
 	</table>
+
+	<h2>All Time For Ruth Sokolof Theater</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Total Attendances</th>
+				<th>Unique Students</th>
+				<th>Unique Schools</th>
+			</tr>
+		</thead>
+		<tbody>
+		  <tr>
+		  	<td>Total</td>
+		  	<td><%= @location_attends %></td>
+		  	<td><%= @location_students %></td>
+		  	<td><%= @location_schools %></td>
+		  </tr>
+		  <tr>
+		  	<td>Avg</td>
+		  	<td><%= @attendances/@years.length %></td>
+		  	<td><%= @unique_students.values.sum/@unique_students.count %></td>
+		  	<td><%= @unique_schools.values.sum/@unique_schools.count %></td>
+		  </tr>
+		</tbody>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	<h2 style="display:inline;">  Student Referral Sources</h2><h4 style="display:inline;"> (Deselect 'other' sources for better view)</h4>
 	<%= pie_chart @referrals.sort_by{|k,v| v}.reverse %>
