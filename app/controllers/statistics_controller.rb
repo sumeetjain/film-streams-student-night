@@ -5,13 +5,15 @@ class StatisticsController < ApplicationController
 	def index
 		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
 		
-		@attendances = Attendance.count
+	    @attendances = Attendance.count
 		@unique_students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
 		@years = Event.all.map(&:date).map(&:year).uniq
 		@students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
 		@unique_schools = Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
-		# mine
+	# mine
+		@years_by_location = Event.where(location: 0 ).map(&:date).map(&:year).uniq
+		binding.pry
 		@events_by_location = events_per_location
 	end
   

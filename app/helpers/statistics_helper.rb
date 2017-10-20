@@ -81,10 +81,12 @@ module StatisticsHelper
   def get_schools_per_location(location_id)
     schools_by_year = @conn.exec("SELECT DISTINCT school_id as school, extract(year from date) as year FROM attendances JOIN events ON attendances.event_id = events.id JOIN students ON attendances.student_id = students.id WHERE events.location = #{location_id};")
     schools_grouped = {}
-
+    # SELECT DISTINCT school_id as school, extract(year from events.date) as yyyy FROM attendances JOIN events ON attendances.event_id = events.id JOIN students ON attendances.student_id = students.id WHERE events.location = 0;
     schools_by_year.each do |unique_schools|
       schools_grouped[unique_schools['year']] = unique_schools['school']
     end 
+            
+
     return schools_grouped
   end
 
