@@ -56,7 +56,7 @@
 				<tr>
 					<td><%= year %></td>
 					<td><%= Event.new.attends_by_year_for_loc(year, 0) %></td>
-					<td><%= Event.new.unique_student_attendances(year) %></td>
+					<td><%= Event.new.students_by_year_for_loc(year, 0) %></td>
 					<td><%= Event.new.unique_schools(year) %></td>
 				</tr>
 			<% end %>
@@ -78,7 +78,7 @@
 				<tr>
 					<td><%= year %></td>
 					<td><%= Event.new.attends_by_year_for_loc(year, 1) %></td>
-					<td><%= Event.new.unique_student_attendances(year) %></td>
+					<td><%= Event.new.students_by_year_for_loc(year, 1) %></td>
 					<td><%= Event.new.unique_schools(year) %></td>
 				</tr>
 			<% end %>
