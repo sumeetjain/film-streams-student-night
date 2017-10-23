@@ -6,10 +6,7 @@
 	  {name: "Unique Students", data: @unique_students.map},
 	  {name: "Unique Schools", data:  @unique_schools.map} 
 	]%> 
-
-	<!-- This qeury selects all attendances from a location -->
-	<!-- TODO: SELECT * FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = 0; --> 
-
+	
 	<%= line_chart [
 	  {name: "All Attendances", data: get_attendances_per_event(0)},
 	  {name: "Unique Students", data: get_students_per_location(0)},
@@ -21,11 +18,6 @@
 	  {name: "Unique Students", data: get_students_per_location(1)},
 	  {name: "Unique Schools", data: get_schools_per_location(1)}
 	]%> 
-
-
-
-
-
 
 	<h2>Attendances By Year For The Ruth Sokolof Theater</h2>
 	<table class="table table-bordered">
@@ -50,7 +42,7 @@
 	</table>
 
 
-	
+
 
 	<h2>Attendances By Year For The Dundee Theater</h2>
 	<table class="table table-bordered">
