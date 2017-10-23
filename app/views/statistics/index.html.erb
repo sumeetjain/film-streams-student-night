@@ -135,12 +135,12 @@
 		  	<td>Total</td>
 		  	<td><%= @location_attends %></td>
 		  	<td><%= @location_students %></td>
-		  	<td><%= @location_students_grouped.values.sum %></td>
+		  	<td><%= @location_schools %></td>
 		  </tr>
 		  <tr>
 		  	<td>Avg</td>
 		  	<td><%= @attendances/@years.length %></td>
-		  	<td><%= @unique_students.values.sum/@unique_students.count %></td>
+		  	<td><%= @location_students/get_years_for_location(0).count %></td>
 		  	<td><%= @unique_schools.values.sum/@unique_schools.count %></td>
 		  </tr>
 		</tbody>

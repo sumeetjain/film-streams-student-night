@@ -15,14 +15,14 @@ class StatisticsController < ApplicationController
 	# mine
 		@years_for_ruth_sokolof = Event.where(location: 0 ).map(&:date).map(&:year).uniq
 		@years_for_the_dundee = Event.where(location: 1 ).map(&:date).map(&:year).uniq
-		@events_by_location = events_per_location
+		@events_by_location = events_per_location(0)
 		# total attendaces/students per loc
 		@location_attends = Event.where(location: 0).joins(:attendances).count
 	    @location_students = Event.where(location: 0).joins(:attendances).select('attendances.student_id').uniq.count
 	    @location_students_grouped = Event.where(location: 0).joins(:attendances).group_by_year('attendances.created_at').select('attendances.student_id').uniq.count
 
 	    @location_schools = Event.where(location: 0).joins(:attendances => :student).select('students.school_id').uniq.count
-		binding.pry	
+get_years_for_location(0)
 
 		somestuff = ''
 	end

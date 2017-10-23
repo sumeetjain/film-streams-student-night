@@ -49,9 +49,8 @@ module StatisticsHelper
   # Gets all the events for a given location
   # TODO: Remove static location
   # based off school by id
-  def events_per_location 
-
-    events = Event.where('events.location = 0')
+  def events_per_location(location_id) 
+    events = Event.where('events.location = #{location_id}')
     # return get_attendances_per_event(events)
   end
 
@@ -103,7 +102,6 @@ module StatisticsHelper
   def location_schools(location_id)
     Event.where(location: location_id).joins(:attendances => :student).select('students.school_id').uniq.count
   end
-
 
   def print_referral_types(referrals)
     student_referrals = []
