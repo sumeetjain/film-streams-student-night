@@ -1,5 +1,13 @@
 <div class="container p-rel">
-	<h1 class = "text-center">Choose the Student you would like to have <%= @student1.name %> merged to.</h1>
+	<h2 class="text-center">Merge Student</h2>
+	<h4 class="text-center">You are merging '<%= @student1.name %>' into another student's record.</h4>
+
+	<hr>
+	<p>'<%= @student1.name %>' will be deleted, and all of the student's attendance data will be transfered to another student.</p>
+	<p>Please select the student to transfer <%= @student1.name %>'s data to.</p>
+
+	<hr>
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -36,7 +44,7 @@
 							<%= student.attendances.count %>
 						</td>
 						<td>
-							<%= link_to "Keep", merge_student_path(student, @student1.id), class: "custom-btn btn", method: :patch, data: { confirm: 'Are you sure?', disable_with: 'loading...' }%>
+							<%= link_to "Select", merge_student_path(student, @student1.id), class: "custom-btn btn", method: :patch, data: { confirm: 'Confirm: You are executing the merge. There is no undo.', disable_with: 'loading...' }%>
 						</td>
 					</tr>
 				<% end %>
