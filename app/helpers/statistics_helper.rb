@@ -90,22 +90,15 @@ module StatisticsHelper
   def build_school_hash
     school_stats = {}
     Event.locations.keys.each do |location_id|                
-      school_stats[location_id] = {}                             #   my_model = Model.find(123)
-                                                              #    Model.sale_infos[my_model.sale_info] #
+      school_stats[location_id] = {}                            
       school_stats[location_id]['total_attendances'] = get_attends_for_location(Event.locations[location_id])
       school_stats[location_id]['total_students'] = location_students(Event.locations[location_id])
       school_stats[location_id]['total_schools'] = location_schools(Event.locations[location_id])
       school_stats[location_id]['students_grouped'] = location_students_grouped(Event.locations[location_id])
       school_stats[location_id]['schools_grouped'] = location_schools_grouped(Event.locations[location_id])
-
-    end
-    
+    end  
     return school_stats
-
   end
-
-
-
 
   def get_years_for_location(location_id)
     Event.where(location: location_id).map(&:date).map(&:year).uniq
