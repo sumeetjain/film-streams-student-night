@@ -88,6 +88,17 @@ module StatisticsHelper
     return schools_grouped
   end
 
+  def get_years_for_location(location_id)
+    @years_for_ruth_sokolof = Event.where(location: location_id).map(&:date).map(&:year).uniq
+  end
+
+  def get_attends_for_location(location_id)
+
+
+
+
+
+
   def print_referral_types(referrals)
     student_referrals = []
     referrals.each do |referral|
