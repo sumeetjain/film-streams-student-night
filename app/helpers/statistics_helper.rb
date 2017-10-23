@@ -87,8 +87,18 @@ module StatisticsHelper
     return schools_grouped
   end
 
-  def build_school_hash(location_id)
+  def build_school_hash
+    school_stats = {}
+    Event.locations.keys.each do |location_id|                
+      school_stats[location_id] = {}                             #   my_model = Model.find(123)
+                                                              #    Model.sale_infos[my_model.sale_info] #
+      school_stats[location_id]['total_attendances'] = get_attends_for_location(Event.locations[location_id])
+      school_stats[location_id]['total_students'] = location_students(Event.locations[location_id])
+      school_stats[location_id]['total_schools'] = location_schools(Event.locations[location_id])
 
+    end
+    
+    return school_stats
 
   end
 
