@@ -11,7 +11,7 @@ class StatisticsController < ApplicationController
 		@years = Event.all.map(&:date).map(&:year).uniq.sort
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
 		@location_stats = build_school_hash
-		testvar = Event.new.students_by_year_for_loc(@years[0], 0)
+		testvar = Event.new.unique_schools_by_loc(@years[0], 0)
 		binding.pry 
 		
 		@years_for_ruth_sokolof = Event.where(location: 0 ).map(&:date).map(&:year).uniq

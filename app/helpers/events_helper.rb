@@ -10,15 +10,20 @@ module EventsHelper
   end
 
   def unique_student_attendances(year)
-      Attendance.by_year(year).select(:student_id).uniq.count
+    Attendance.by_year(year).select(:student_id).uniq.count
   end
 
   def students_by_year_for_loc(year, location_id)
-    Event.where(location: location_id).joins(:attendances).by_year(year).select(:student_id).uniq.count
+    # Event.where(location: location_id).joins(:attendances).by_year(year).select(:student_id).uniq.count
+    Event.where(location: location_id).joins(:attendances => :student).by_year(year).select('students.school_id').uniq.count
   end
 
   def unique_schools(year)
     Attendance.by_year(year).joins(:student => :school).select('schools.name').uniq.count
+  end
+
+  def unique_schools_by_loc(year, location_id)
+    Event.where(location: location_id).joins(:attendances => :student).by_year(year).select(:school_id).uniq.count
   end
 
   def school_by_event(date)
