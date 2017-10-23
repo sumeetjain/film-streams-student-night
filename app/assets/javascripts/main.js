@@ -1,6 +1,8 @@
 window.addEventListener('load', function(){
-  document.getElementById("new_movie").addEventListener("click", new_movie);
-  add_movies_listener();
+  if (document.getElementById("new_movie")){
+    document.getElementById("new_movie").addEventListener("click", new_movie);
+    add_movies_listener();
+  }
 });
 
 // Adds eventListeners to all the comment delete images.

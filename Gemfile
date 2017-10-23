@@ -58,3 +58,4 @@ group :development, :test do
 end
 
 gem "gibbon"
+gem "selectize-rails"
