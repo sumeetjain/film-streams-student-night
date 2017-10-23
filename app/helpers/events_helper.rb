@@ -10,7 +10,7 @@ module EventsHelper
   end
 
   def unique_student_attendances(year)
-    Attendance.attends_by_year_for_locear(year).select(:student_id).uniq.count
+      Attendance.by_year(year).select(:student_id).uniq.count
   end
 
   def students_by_year_for_loc(year, location_id)
