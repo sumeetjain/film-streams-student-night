@@ -96,7 +96,8 @@ module StatisticsHelper
   end 
 
   def location_students(location_id)
-    Event.where(location: location_id).joins(:attendances).select('attendances.student_id').uniq.count
+    # Event.where(location: location_id).joins(:attendances).select('attendances.student_id').uniq.count
+    @conn.exec("SELECT COUNT(DISTINCT attendances.student_id) FROM attendances JOIN events ON events.id = attendances.event_id WHERE events.location = #{location_id};")[0].values[0].to_i
   end
 
   def location_schools(location_id)

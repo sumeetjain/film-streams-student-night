@@ -112,13 +112,19 @@
 		  	<td><%= Student.uniq.pluck(:school_id).count %></td>
 		  </tr>
 		  <tr>
-		  	<td>Avg</td>
+		  	<td>Avg(year)</td>
 		  	<td><%= @attendances/@years.length %></td>
 		  	<td><%= @unique_students.values.sum/@unique_students.count %></td>
 		  	<td><%= @unique_schools.values.sum/@unique_schools.count %></td>
 		  </tr>
 		</tbody>
 	</table>
+
+
+
+
+
+
 
 	<h2>All Time For Ruth Sokolof Theater</h2>
 	<table class="table table-bordered">
@@ -134,17 +140,24 @@
 		  <tr>
 		  	<td>Total</td>
 		  	<td><%= @location_attends %></td>
-		  	<td><%= location_students_grouped(0).values.sum %></td>
-		  	<td><%= location_school_grouped(0).values.sum %></td>
+		  	<td><%= location_students(0) %></td>
+		  	<td><%= location_schools_grouped(0).values.sum %></td>
 		  </tr>
 		  <tr>
-		  	<td>Avg</td>
+		  	<td>Avg(year)</td>
 		  	<td><%= @attendances/@years.length %></td>
-		  	<td><%= @location_students/get_years_for_location(0).count %></td>
-		  	<td><%= @location_schools/get_years_for_location(0).count %></td>
+		  	<td><%= location_students(0) / location_students_grouped(0).count %></td>
+		  	<td><%= location_schools_grouped(0).values.sum/ location_students_grouped(0).count %></td>
 		  </tr>
 		</tbody>
 	</table>
+
+
+
+
+
+
+
 
 
 
@@ -162,13 +175,13 @@
 		  <tr>
 		  	<td>Total</td>
 		  	<td><%= @location_attends %></td>
-		  	<td><%= @location_students %></td>
+		  	<td><%= location_students(1) %></td>
 		  	<td><%= @location_schools %></td>
 		  </tr>
 		  <tr>
-		  	<td>Avg</td>
+		  	<td>Avg(year)</td>
 		  	<td><%= @attendances/@years.length %></td>
-		  	<td><%= @location_students/get_years_for_location(1).count %></td>
+		  	<td><%= location_students(1)/get_years_for_location(1).count %></td>
 		  	<td><%= @location_schools/get_years_for_location(1).count %></td>
 		  </tr>
 		</tbody>

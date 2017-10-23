@@ -6,10 +6,10 @@ class StatisticsController < ApplicationController
 		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
 		
 	    @attendances = Attendance.count
-		@unique_students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
-		@years = Event.all.map(&:date).map(&:year).uniq
-		@students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
+		@unique_students = Attendance.all.group_by_year(:created_at).select(:student_id).distinct.count
 		@unique_schools = Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count
+		@years = Event.all.map(&:date).map(&:year).uniq
+		
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
 		
 	# mine
@@ -21,10 +21,12 @@ class StatisticsController < ApplicationController
 	    @location_students = Event.where(location: 0).joins(:attendances).select('attendances.student_id').uniq.count
 	    @location_students_grouped = Event.where(location: 0).joins(:attendances).group_by_year('attendances.created_at').select('attendances.student_id').uniq.count
 
+
 	    @location_schools_grouped = Event.where(location: 0).joins(:attendances => :student).group_by_year('attendances.created_at').select('students.school_id').uniq.count
 
 	    @location_schools = Event.where(location: 0).joins(:attendances => :student).select('students.school_id').uniq.count
 get_years_for_location(0)
+	
 		binding.pry
 		somestuff = ''
 	end
