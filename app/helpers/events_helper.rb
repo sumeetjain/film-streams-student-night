@@ -4,7 +4,19 @@ module EventsHelper
   def year_student_attendances(year)
     Attendance.by_year(year).select(:student_id).count
   end
+
+
+  def attends_by_year_for_loc(year, location_id)
+    Event.where(location: location_id).joins(:attendances).by_year(year).select(:student_id).count
+  end
   
+
+
+
+
+
+
+
   def unique_student_attendances(year)
     Attendance.by_year(year).select(:student_id).uniq.count
   end
