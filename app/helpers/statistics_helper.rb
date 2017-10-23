@@ -96,7 +96,11 @@ module StatisticsHelper
     Event.where(location: location_id).joins(:attendances).count
   end 
 
+  def location_students(location_id)
+    Event.where(location: location_id).joins(:attendances).select('attendances.student_id').uniq.count
+  end
 
+  
 
 
 
