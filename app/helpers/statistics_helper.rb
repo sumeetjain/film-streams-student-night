@@ -103,6 +103,14 @@ module StatisticsHelper
     Event.where(location: location_id).joins(:attendances => :student).select('students.school_id').uniq.count
   end
 
+  def location_students_grouped(location_id)
+    Event.where(location: 0).joins(:attendances).group_by_year('attendances.created_at').select('attendances.student_id').uniq.count
+  end
+
+  def location_schools_grouped(location_id)
+    Event.where(location: 0).joins(:attendances => :student).group_by_year('attendances.created_at').select('students.school_id').uniq.count
+  end
+
   def print_referral_types(referrals)
     student_referrals = []
     referrals.each do |referral|
