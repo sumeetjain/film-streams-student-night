@@ -47,11 +47,8 @@ module StatisticsHelper
   end
 
   # Gets all the events for a given location
-  # TODO: Remove static location
-  # based off school by id
   def events_per_location(location_id) 
     events = Event.where('events.location = #{location_id}')
-    # return get_attendances_per_event(events)
   end
 
   # Gets the count of all attendances per location grouped by year
@@ -80,7 +77,6 @@ module StatisticsHelper
   def get_schools_per_location(location_id)
     schools_by_year = @conn.exec("SELECT yyyy, COUNT(school_id) FROM (SELECT extract(year FROM events.date) AS yyyy, students.school_id FROM events JOIN attendances ON attendances.event_id = events.id JOIN students ON attendances.student_id = students.id WHERE events.location = #{location_id} GROUP BY students.school_id, yyyy) AS years_school_attendances GROUP BY yyyy;")
     schools_grouped = {}
-    # SELECT DISTINCT school_id as school, extract(year from events.date) as yyyy FROM attendances JOIN events ON attendances.event_id = events.id JOIN students ON attendances.student_id = students.id WHERE events.location = 0;
     schools_by_year.each do |unique_schools|
       schools_grouped[unique_schools['yyyy']] = unique_schools['count']
     end 
