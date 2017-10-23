@@ -19,6 +19,28 @@
 	  {name: "Unique Schools", data: get_schools_per_location(1)}
 	]%> 
 
+	<h2>Attendances By Year</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Year</th>
+				<th>Total Attendances</th>
+				<th>Unique Students</th>
+				<th>Unique Schools</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%  @years.each do |year|  %>
+				<tr>
+					<td><%= year %></td>
+					<td><%= Event.new.year_student_attendances(year) %></td>
+					<td><%= Event.new.unique_student_attendances(year) %></td>
+					<td><%= Event.new.unique_schools(year) %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
 	<h2>Attendances By Year For The Ruth Sokolof Theater</h2>
 	<table class="table table-bordered">
 		<thead>
@@ -41,9 +63,6 @@
 		</tbody>
 	</table>
 
-
-
-
 	<h2>Attendances By Year For The Dundee Theater</h2>
 	<table class="table table-bordered">
 		<thead>
@@ -56,29 +75,6 @@
 		</thead>
 		<tbody>
 			<%  @years_for_the_dundee.each do |year|  %>
-				<tr>
-					<td><%= year %></td>
-					<td><%= Event.new.year_student_attendances(year) %></td>
-					<td><%= Event.new.unique_student_attendances(year) %></td>
-					<td><%= Event.new.unique_schools(year) %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
-
-
-	<h2>Attendances By Year</h2>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>Year</th>
-				<th>Total Attendances</th>
-				<th>Unique Students</th>
-				<th>Unique Schools</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%  @years.each do |year|  %>
 				<tr>
 					<td><%= year %></td>
 					<td><%= Event.new.year_student_attendances(year) %></td>
