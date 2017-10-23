@@ -100,8 +100,9 @@ module StatisticsHelper
     Event.where(location: location_id).joins(:attendances).select('attendances.student_id').uniq.count
   end
 
-  
-
+  def location_schools(location_id)
+    Event.where(location: location_id).joins(:attendances => :student).select('students.school_id').uniq.count
+  end
 
 
   def print_referral_types(referrals)
