@@ -10,14 +10,11 @@ class StatisticsController < ApplicationController
 		@unique_schools = Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count
 		@years = Event.all.map(&:date).map(&:year).uniq
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
-		
+		@location_stats = build_school_hash
 
 		@years_for_ruth_sokolof = Event.where(location: 0 ).map(&:date).map(&:year).uniq
 		@years_for_the_dundee = Event.where(location: 1 ).map(&:date).map(&:year).uniq
 
-		@location_stats = build_school_hash
-	# mine
-			@events_by_location = events_per_location(0)
 		# total attendaces/students per loc
 	    @location_students = Event.where(location: 0).joins(:attendances).select('attendances.student_id').uniq.count
 	    @location_students_grouped = Event.where(location: 0).joins(:attendances).group_by_year('attendances.created_at').select('attendances.student_id').uniq.count
@@ -26,10 +23,6 @@ class StatisticsController < ApplicationController
 	    @location_schools_grouped = Event.where(location: 0).joins(:attendances => :student).group_by_year('attendances.created_at').select('students.school_id').uniq.count
 
 	    @location_schools = Event.where(location: 0).joins(:attendances => :student).select('students.school_id').uniq.count
-get_years_for_location(0)
-	
-				binding.pry
-		somestuff = ''
 	end
   
 	def show
