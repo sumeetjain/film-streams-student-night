@@ -89,11 +89,12 @@ module StatisticsHelper
   end
 
   def get_years_for_location(location_id)
-    @years_for_ruth_sokolof = Event.where(location: location_id).map(&:date).map(&:year).uniq
+    Event.where(location: location_id).map(&:date).map(&:year).uniq
   end
 
   def get_attends_for_location(location_id)
-
+    Event.where(location: location_id).joins(:attendances).count
+  end 
 
 
 
