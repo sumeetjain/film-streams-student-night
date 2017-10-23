@@ -85,8 +85,6 @@ module StatisticsHelper
     schools_by_year.each do |unique_schools|
       schools_grouped[unique_schools['yyyy']] = unique_schools['count']
     end 
-
-
     return schools_grouped
   end
 

@@ -18,7 +18,9 @@ class StatisticsController < ApplicationController
 		@events_by_location = events_per_location
 		# total attendaces/students per loc
 		@location_attends = Event.where(location: 0).joins(:attendances).count
-	    @location_students = Event.where(location: 0).joins(:attendances).group_by_year('attendances.created_at').select('attendances.student_id').uniq.count
+	    @location_students = Event.where(location: 0).joins(:attendances).select('attendances.student_id').uniq.count
+	    @location_students_grouped = Event.where(location: 0).joins(:attendances).group_by_year('attendances.created_at').select('attendances.student_id').uniq.count
+
 	    @location_schools = Event.where(location: 0).joins(:attendances => :student).select('students.school_id').uniq.count
 		binding.pry	
 
