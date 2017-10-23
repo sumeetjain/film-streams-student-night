@@ -3,13 +3,13 @@ class Event < ActiveRecord::Base
     ruth_sokolof: {
       title: "Ruth Sokolof",
       logo: "ruth_sokolof_logo.jpg",
-      brand_colors: "#666666",
+      brand_colors: "#fff",
       welcome: "Welcome to the Ruth Sokolof Theater!"
     },
     dundee: {
       title: "The Dundee",
-      logo: "dundee_logo_placeholder.png",
-      brand_colors: "#759AAB",
+      logo: "dundee_logo.jpg",
+      brand_colors: "#fff",
       welcome: "Welcome to the Dundee Theater!"
     }
   }
