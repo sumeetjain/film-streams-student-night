@@ -146,12 +146,6 @@
 		</tbody>
 	</table>
 
-
-
-
-
-
-
 	<h2>All Time For The Dundee Theater</h2>
 	<table class="table table-bordered">
 		<thead>
@@ -165,15 +159,15 @@
 		<tbody>
 		  <tr>
 		  	<td>Total</td>
-		  	<td><%= get_attends_for_location(1) %></td>
-		  	<td><%= location_students(1) %></td>
-		  	<td><%= location_schools(1) %></td>
+		  	<td><%= @location_stats['dundee']['total_attendances'] %></td>
+		  	<td><%= @location_stats['dundee']['total_students'] %></td>
+		  	<td><%= @location_stats['dundee']['total_schools'] %></td>
 		  </tr>
 		  <tr>
 		  	<td>Avg (year)</td>
-		  	<td><%= get_attends_for_location(1) / @years.length %></td>
-		  	<td><%= location_students(1) / location_students_grouped(1).count %></td>
-		  	<td><%= location_schools_grouped(1).values.sum / location_schools_grouped(1).count %></td>
+		  	<td><%= @location_stats['dundee']['total_attendances'] / @location_stats['dundee']['students_grouped'].count %></td>
+		  	<td><%= @location_stats['dundee']['total_students'] / @location_stats['dundee']['students_grouped'].count %></td>
+		  	<td><%= @location_stats['dundee']['schools_grouped'].values.sum / @location_stats['dundee']['schools_grouped'].count %></td>
 		  </tr>
 		</tbody>
 	</table>
