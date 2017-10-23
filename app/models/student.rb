@@ -42,7 +42,7 @@ class Student < ActiveRecord::Base
     end
 
   	def self.find_student(student)
-  		Student.where("name LIKE '%#{student}%'").order("name ASC")
+  		Student.where("LOWER(name) LIKE LOWER('%#{student}%')").order("name ASC")
   	end
 
     def add_to_mailchimp
