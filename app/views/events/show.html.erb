@@ -13,6 +13,9 @@
 	        <%= f.label :date %>
 	        <%= f.date_field :date, class: 'form-control' %>
 
+	        <%= f.label :location %>
+         	<%= f.select :location, options_for_select(Event.drop_locations, selected: @event.location), {include_blank: "Select Location"}, class: 'form-control' %>
+
 	        <%= f.submit "Update Event", class: "btn custom-btn navbar-btn" %>
 
 	        <a class="btn custom-btn navbar-btn pull-right" href="/events/<%=@event.id%>/checkins/new" role="button">Go To Student Check-In  <span class="glyphicon glyphicon-share"></span></a>
@@ -20,8 +23,6 @@
 
 	      <%= button_to 'Delete Event', event_path(@event), class: 'btn custom-btn-dngr navbar-btn' , 
 				data: {:confirm => 'Are you sure? This will delete report information as well.'}, :method => :delete %>
-
-	      
 	    </div>
 	  </div>
 	</div>	

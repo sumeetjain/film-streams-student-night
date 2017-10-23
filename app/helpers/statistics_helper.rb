@@ -38,6 +38,14 @@ module StatisticsHelper
     students.sort_by{|k,v| v}.reverse
   end
 
+  def print_referral_types(referrals)
+    student_referrals = []
+    referrals.each do |referral|
+      student_referrals.push(referral.referral_type)
+    end
+    return student_referrals.join(", ")
+  end
+
   private
   def set_dates
     @start_date = params["start_date"] ? params["start_date"] : (Time.now.midnight - 365.day)

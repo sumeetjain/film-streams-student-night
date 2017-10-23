@@ -29,4 +29,25 @@ module EventsHelper
     movies = Movie.find_by(event_id: event.id)
   end
 
+  def event_date(event)
+    (Time.parse(event.date.to_s).strftime('%a, %b %d, %Y '))
+  end
+
+  def event_location(event)
+    Event::LOCATIONS[event.location.to_sym][:title]
+  end
+
+  def event_logo(event)
+    Event::LOCATIONS[event.location.to_sym][:logo]
+  end
+
+  def brand_colors(event)
+    Event::LOCATIONS[event.location.to_sym][:brand_colors]
+  end
+
+  def theater_color_style(event)
+    if @colors 
+      return "background-color: #{brand_colors(event)}"
+    end
+  end
 end

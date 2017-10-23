@@ -1,12 +1,15 @@
 source 'https://rubygems.org'
 
 gem 'dotenv-rails', groups: [:development, :test]
-
+gem 'pry'
 gem "chartkick"
 gem 'groupdate'
 gem 'by_star'
 gem 'bootstrap-sass'
+gem 'pry'
 
+
+gem 'axlsx_rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -34,6 +37,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 
 group :development, :test do
+  gem 'pry'
+  
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end

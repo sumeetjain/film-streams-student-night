@@ -1,0 +1,45 @@
+<div class="container p-rel">
+	<h1 class = "text-center">Choose the Student you would like to have <%= @student1.name %> merged to.</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Name
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					School
+				</th>
+				<th>
+					Attendances
+				</th>
+				<th>
+					Merge?
+				</th>
+			</tr>			
+		</thead>
+		<tbody>
+				<% @student2.each do |student| %>
+					<tr>
+						<td>
+							<%= student.name %>
+						</td>
+						<td>
+							<%= student.email %>
+						</td>
+						<td>
+							<%= student.school.name %>
+						</td>
+						<td>
+							<%= student.attendances.count %>
+						</td>
+						<td>
+							<%= link_to "Keep", merge_student_path(student, @student1.id), class: "custom-btn btn", method: :patch, data: { confirm: 'Are you sure?', disable_with: 'loading...' }%>
+						</td>
+					</tr>
+				<% end %>
+		</tbody>
+	</table>
+</div>

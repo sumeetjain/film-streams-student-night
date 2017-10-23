@@ -4,6 +4,7 @@ class CheckinsController < ApplicationController
   before_filter :set_event
 
 	def new
+    @colors = true
     @checkin = Checkin.new({
       email: flash[:email],
       email_confirmation: flash[:email]
@@ -11,6 +12,7 @@ class CheckinsController < ApplicationController
 	end
 
 	def create
+    @colors = true
     checkin = Checkin.new(params[:checkin])
 
     if checkin.valid?

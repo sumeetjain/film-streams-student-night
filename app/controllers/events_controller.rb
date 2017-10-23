@@ -6,6 +6,8 @@ class EventsController < ApplicationController
 			@events.sort_by {|obj| obj.date}
 		end
 		@events = @events.sort_by {|obj| obj.date}
+
+		@recent_events = Event.most_recent_past
 	end
 
 	def new
@@ -14,6 +16,10 @@ class EventsController < ApplicationController
 		else
 			redirect_to root_path
 		end
+	end
+
+	def past
+		@past_events = Event.past_events
 	end
 
 	def show
@@ -53,9 +59,10 @@ class EventsController < ApplicationController
 	end
 	
 	def event_params
-		params.require(:event).permit(:title, :date)
+		params.require(:event).permit(:title, :date, :location)
 	end
 
 	def edit
 	end
+
 end
