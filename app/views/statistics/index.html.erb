@@ -112,7 +112,7 @@
 		  	<td><%= Student.uniq.pluck(:school_id).count %></td>
 		  </tr>
 		  <tr>
-		  	<td>Avg(year)</td>
+		  	<td>Avg (year)</td>
 		  	<td><%= @attendances/@years.length %></td>
 		  	<td><%= @unique_students.values.sum/@unique_students.count %></td>
 		  	<td><%= @unique_schools.values.sum/@unique_schools.count %></td>
@@ -139,21 +139,18 @@
 		<tbody>
 		  <tr>
 		  	<td>Total</td>
-		  	<td><%= @location_attends %></td>
+		  	<td><%= get_attends_for_location(0) %></td>
 		  	<td><%= location_students(0) %></td>
-		  	<td><%= location_schools_grouped(0).values.sum %></td>
+		  	<td><%= location_schools(0) %></td>
 		  </tr>
 		  <tr>
-		  	<td>Avg(year)</td>
-		  	<td><%= @attendances/@years.length %></td>
+		  	<td>Avg (year)</td>
+		  	<td><%= get_attends_for_location(0) / @years.length %></td>
 		  	<td><%= location_students(0) / location_students_grouped(0).count %></td>
-		  	<td><%= location_schools_grouped(0).values.sum/ location_students_grouped(0).count %></td>
+		  	<td><%= location_schools_grouped(0).values.sum / location_schools_grouped(0).count %></td>
 		  </tr>
 		</tbody>
 	</table>
-
-
-
 
 
 
@@ -174,33 +171,18 @@
 		<tbody>
 		  <tr>
 		  	<td>Total</td>
-		  	<td><%= @location_attends %></td>
+		  	<td><%= get_attends_for_location(1) %></td>
 		  	<td><%= location_students(1) %></td>
-		  	<td><%= @location_schools %></td>
+		  	<td><%= location_schools(1) %></td>
 		  </tr>
 		  <tr>
-		  	<td>Avg(year)</td>
-		  	<td><%= @attendances/@years.length %></td>
-		  	<td><%= location_students(1)/get_years_for_location(1).count %></td>
-		  	<td><%= @location_schools/get_years_for_location(1).count %></td>
+		  	<td>Avg (year)</td>
+		  	<td><%= get_attends_for_location(1) / @years.length %></td>
+		  	<td><%= location_students(1) / location_students_grouped(1).count %></td>
+		  	<td><%= location_schools_grouped(1).values.sum / location_schools_grouped(1).count %></td>
 		  </tr>
 		</tbody>
 	</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	<h2 style="display:inline;">  Student Referral Sources</h2><h4 style="display:inline;"> (Deselect 'other' sources for better view)</h4>
 	<%= pie_chart @referrals.sort_by{|k,v| v}.reverse %>

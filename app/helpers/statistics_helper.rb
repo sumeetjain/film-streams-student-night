@@ -87,6 +87,14 @@ module StatisticsHelper
     return schools_grouped
   end
 
+  def build_school_hash(location_id)
+
+
+  end
+
+
+
+
   def get_years_for_location(location_id)
     Event.where(location: location_id).map(&:date).map(&:year).uniq
   end
@@ -105,11 +113,11 @@ module StatisticsHelper
   end
 
   def location_students_grouped(location_id)
-    Event.where(location: 0).joins(:attendances).group_by_year('attendances.created_at').select('attendances.student_id').uniq.count
+    Event.where(location: location_id).joins(:attendances).group_by_year('attendances.created_at').select('attendances.student_id').uniq.count
   end
 
   def location_schools_grouped(location_id)
-    Event.where(location: 0).joins(:attendances => :student).group_by_year('attendances.created_at').select('students.school_id').uniq.count
+    Event.where(location: location_id).joins(:attendances => :student).group_by_year('attendances.created_at').select('students.school_id').uniq.count
   end
 
   def print_referral_types(referrals)
