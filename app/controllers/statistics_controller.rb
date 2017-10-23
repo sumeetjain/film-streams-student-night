@@ -9,13 +9,15 @@ class StatisticsController < ApplicationController
 		@unique_students = Attendance.all.group_by_year(:created_at).select(:student_id).distinct.count
 		@unique_schools = Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count
 		@years = Event.all.map(&:date).map(&:year).uniq
-		
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
 		
-	# mine
+
 		@years_for_ruth_sokolof = Event.where(location: 0 ).map(&:date).map(&:year).uniq
 		@years_for_the_dundee = Event.where(location: 1 ).map(&:date).map(&:year).uniq
-		@events_by_location = events_per_location(0)
+
+		@location_stats = build_school_hash
+	# mine
+			@events_by_location = events_per_location(0)
 		# total attendaces/students per loc
 	    @location_students = Event.where(location: 0).joins(:attendances).select('attendances.student_id').uniq.count
 	    @location_students_grouped = Event.where(location: 0).joins(:attendances).group_by_year('attendances.created_at').select('attendances.student_id').uniq.count
