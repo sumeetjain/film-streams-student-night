@@ -121,7 +121,35 @@
 	</table>
 
 
-
+"total_attendances"=>9946,
+   "total_students"=>5768,
+   "total_schools"=>614,
+   "students_grouped"=>
+    {Thu, 01 Jan 2009=>631,
+     Fri, 01 Jan 2010=>664,
+     Sat, 01 Jan 2011=>815,
+     Sun, 01 Jan 2012=>1294,
+     Tue, 01 Jan 2013=>1091,
+     Wed, 01 Jan 2014=>1193,
+     Thu, 01 Jan 2015=>635,
+     Fri, 01 Jan 2016=>748,
+     Sun, 01 Jan 2017=>371},
+   "schools_grouped"=>
+    {Thu, 01 Jan 2009=>110,
+     Fri, 01 Jan 2010=>120,
+     Sat, 01 Jan 2011=>160,
+     Sun, 01 Jan 2012=>215,
+     Tue, 01 Jan 2013=>125,
+     Wed, 01 Jan 2014=>138,
+     Thu, 01 Jan 2015=>110,
+     Fri, 01 Jan 2016=>110,
+     Sun, 01 Jan 2017=>63}},
+ "dundee"=>
+  {"total_attendances"=>1,
+   "total_students"=>1,
+   "total_schools"=>1,
+   "students_grouped"=>{Sun, 01 Jan 2017=>1},
+   "schools_grouped"=>{Sun, 01 Jan 2017=>1}}}
 
 
 
@@ -139,7 +167,7 @@
 		<tbody>
 		  <tr>
 		  	<td>Total</td>
-		  	<td><%= get_attends_for_location(0) %></td>
+		  	<td><%= @location_stats['ruth_sokolof']['total_attendances'] %></td>
 		  	<td><%= location_students(0) %></td>
 		  	<td><%= location_schools(0) %></td>
 		  </tr>
