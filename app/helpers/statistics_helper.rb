@@ -96,6 +96,7 @@ module StatisticsHelper
       school_stats[location_id]['total_students'] = location_students(Event.locations[location_id])
       school_stats[location_id]['total_schools'] = location_schools(Event.locations[location_id])
       school_stats[location_id]['students_grouped'] = location_students_grouped(Event.locations[location_id])
+      school_stats[location_id]['schools_grouped'] = location_schools_grouped(Event.locations[location_id])
 
     end
     
