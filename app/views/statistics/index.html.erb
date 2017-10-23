@@ -55,7 +55,7 @@
 			<%  @years_for_ruth_sokolof.each do |year|  %>
 				<tr>
 					<td><%= year %></td>
-					<td><%= Event.new.year_student_attendances(year) %></td>
+					<td><%= Event.new.attends_by_year_for_loc(year, 0) %></td>
 					<td><%= Event.new.unique_student_attendances(year) %></td>
 					<td><%= Event.new.unique_schools(year) %></td>
 				</tr>
@@ -77,7 +77,7 @@
 			<%  @years_for_the_dundee.each do |year|  %>
 				<tr>
 					<td><%= year %></td>
-					<td><%= Event.new.year_student_attendances(year) %></td>
+					<td><%= Event.new.attends_by_year_for_loc(year, 1) %></td>
 					<td><%= Event.new.unique_student_attendances(year) %></td>
 					<td><%= Event.new.unique_schools(year) %></td>
 				</tr>
