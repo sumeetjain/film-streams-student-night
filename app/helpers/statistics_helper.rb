@@ -38,8 +38,6 @@ module StatisticsHelper
     students.sort_by{|k,v| v}.reverse
   end
 
-  # My work starts here
-
   def attends_by_location(location)
     @conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
     @get_attends_by_location = @conn.exec("SELECT * FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = #{location}")
@@ -83,6 +81,7 @@ module StatisticsHelper
     return schools_grouped
   end
 
+  # Collects information for Ruth Sokolof and Dundee theaters in a hash
   def build_school_hash
     school_stats = {}
     Event.locations.keys.each do |location_id|                
