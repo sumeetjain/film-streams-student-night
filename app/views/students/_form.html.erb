@@ -16,7 +16,7 @@
 
   <div class="form-group">
     <%= f.label :school_id %>
-    <%= f.select( :school_id, options_from_collection_for_select(School.all, :id, :name, selected: @student.school_id), {include_blank: "Select School"}, { :class => 'form-control' })%>
+    <%= f.select( :school_id, options_from_collection_for_select(School.top_ten, :id, :name, selected: @student.school_id), {include_blank: "Select School"}, { :class => 'form-control selectize' }) %>
   </div>
 
   <div class="form-group">

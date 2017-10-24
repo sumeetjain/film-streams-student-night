@@ -9,6 +9,7 @@ class StudentsController < ApplicationController
   # GET /events/1/students/new
   #             :event_id
   def new
+    @checkin = "true"
     @student = Student.new(email: flash[:email])
   end
 

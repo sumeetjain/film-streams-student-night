@@ -1,8 +1,14 @@
 <div class="container bottom_space">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h2 class="text-center">Search for Student to Keep</h2>
-      <h4 class="text-center">Now find the student you would like <%= @change.name %> to be merged to.</h4>
+      <h2 class="text-center">Merge Student</h2>
+      <h4 class="text-center">You are merging '<%= @change.name %>' into another student's record.</h4>
+
+      <hr>
+      <p>'<%= @change.name %>' will be deleted, and all of the student's attendance data will be transfered to another student. Please select the student to transfer <%= @change.name %>'s data to.</p>
+
+      <hr>
+      
       <%= form_for "searchKeep", url:"/merge_students/#{@change.id}",  method: 'get' do |f| %>
       <div class= "form-group">
         <%= f.label "name" %>

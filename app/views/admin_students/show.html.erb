@@ -1,5 +1,5 @@
 <div class="container p-rel">
-	<h1 class = "text-center">Here are the results that were found for <%= @findStudent %></h1>
+	<h1 class = "text-center">Results for '<%= @findStudent %>'</h1>
 	<div class = "text-center"><a href="/admin_students">Go Back To Search</a></div>
 	<table class="table">
 		<thead>
@@ -12,6 +12,8 @@
 				</th>
 				<th>
 					<!-- placeholder for edit -->
+				</th>
+				<th>
 				</th>
 				<th>
 					<!-- placeholder for delete -->
@@ -31,6 +33,11 @@
 						<td>
 							<a href="/admin_students/<%= student.id%>/edit" class="btn custom-btn borderless"> Edit <span class="glyphicon glyphicon-edit"></span></a>
 						</td>
+
+						<td>
+							<a href="/merge_students?id=<%= student.id %>" class="btn custom-btn borderless"> Merge <span class="glyphicon glyphicon-transfer"></span></a>
+						</td>
+
 						<td>
 							<%= button_to('Destroy', "/admin_students/#{student.id}", class: 'btn custom-btn-dngr navbar-btn', method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }) %>
 						</td>
