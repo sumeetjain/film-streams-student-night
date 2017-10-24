@@ -11,10 +11,6 @@ class StatisticsController < ApplicationController
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
 	end
 
-	def location
-
-	end
-
 	def ruth_sokolof
 		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")	
 		@years_for_ruth_sokolof = Event.where(location: 0 ).map(&:date).map(&:year).uniq
