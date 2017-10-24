@@ -1,45 +1,11 @@
 <%= render 'layouts/stats_header' %>
-<div class="container">
-
-	<%= line_chart [
-	  {name: "All Attendances", data: Attendance.all.group_by_year(:created_at).count.map},
-	  {name: "Unique Students", data: @unique_students.map},
-	  {name: "Unique Schools", data:  @unique_schools.map} 
-	]%> 
+<div class="container"> 
 	
 	<%= line_chart [
 	  {name: "All Attendances", data: get_attendances_per_event(0)},
 	  {name: "Unique Students", data: get_students_per_location(0)},
 	  {name: "Unique Schools", data: get_schools_per_location(0)}
 	]%> 
-
-	<%= line_chart [
-	  {name: "All Attendances", data: get_attendances_per_event(1)},
-	  {name: "Unique Students", data: get_students_per_location(1)},
-	  {name: "Unique Schools", data: get_schools_per_location(1)}
-	]%> 
-
-	<h2>Attendances By Year</h2>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>Year</th>
-				<th>Total Attendances</th>
-				<th>Unique Students</th>
-				<th>Unique Schools</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%  @years.each do |year|  %>
-				<tr>
-					<td><%= year %></td>
-					<td><%= Event.new.year_student_attendances(year) %></td>
-					<td><%= Event.new.unique_student_attendances(year) %></td>
-					<td><%= Event.new.unique_schools(year) %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
 
 	<h2>Attendances By Year For The Ruth Sokolof Theater</h2>
 	<table class="table table-bordered">
@@ -60,54 +26,6 @@
 					<td><%= Event.new.unique_schools_by_loc(year, 0) %></td>
 				</tr>
 			<% end %>
-		</tbody>
-	</table>
-
-	<h2>Attendances By Year For The Dundee Theater</h2>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>Year</th>
-				<th>Total Attendances</th>
-				<th>Unique Students</th>
-				<th>Unique Schools</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%  @years_for_the_dundee.each do |year|  %>
-				<tr>
-					<td><%= year %></td>
-					<td><%= Event.new.attends_by_year_for_loc(year, 1) %></td>
-					<td><%= Event.new.students_by_year_for_loc(year, 1) %></td>
-					<td><%= Event.new.unique_schools_by_loc(year, 1) %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
-
-	<h2>All Time</h2>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th></th>
-				<th>Total Attendances</th>
-				<th>Unique Students</th>
-				<th>Unique Schools</th>
-			</tr>
-		</thead>
-		<tbody>
-		  <tr>
-		  	<td>Total</td>
-		  	<td><%= @attendances %></td>
-		  	<td><%= Attendance.uniq.pluck(:student_id).count %></td>
-		  	<td><%= Student.uniq.pluck(:school_id).count %></td>
-		  </tr>
-		  <tr>
-		  	<td>Avg (year)</td>
-		  	<td><%= @attendances/@years.length %></td>
-		  	<td><%= @unique_students.values.sum/@unique_students.count %></td>
-		  	<td><%= @unique_schools.values.sum/@unique_schools.count %></td>
-		  </tr>
 		</tbody>
 	</table>
 
@@ -133,32 +51,6 @@
 		  	<td><%= @location_stats['ruth_sokolof']['total_attendances'] / @location_stats['ruth_sokolof']['students_grouped'].count %></td>
 		  	<td><%= @location_stats['ruth_sokolof']['total_students'] / @location_stats['ruth_sokolof']['students_grouped'].count %></td>
 		  	<td><%= @location_stats['ruth_sokolof']['schools_grouped'].values.sum / @location_stats['ruth_sokolof']['schools_grouped'].count %></td>
-		  </tr>
-		</tbody>
-	</table>
-
-	<h2>All Time For The Dundee Theater</h2>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th></th>
-				<th>Total Attendances</th>
-				<th>Unique Students</th>
-				<th>Unique Schools</th>
-			</tr>
-		</thead>
-		<tbody>
-		  <tr>
-		  	<td>Total</td>
-		  	<td><%= @location_stats['dundee']['total_attendances'] %></td>
-		  	<td><%= @location_stats['dundee']['total_students'] %></td>
-		  	<td><%= @location_stats['dundee']['total_schools'] %></td>
-		  </tr>
-		  <tr>
-		  	<td>Avg (year)</td>
-		  	<td><%= @location_stats['dundee']['total_attendances'] / @location_stats['dundee']['students_grouped'].count %></td>
-		  	<td><%= @location_stats['dundee']['total_students'] / @location_stats['dundee']['students_grouped'].count %></td>
-		  	<td><%= @location_stats['dundee']['schools_grouped'].values.sum / @location_stats['dundee']['schools_grouped'].count %></td>
 		  </tr>
 		</tbody>
 	</table>
