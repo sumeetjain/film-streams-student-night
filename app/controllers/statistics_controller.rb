@@ -14,7 +14,20 @@ class StatisticsController < ApplicationController
 		@years_for_ruth_sokolof = Event.where(location: 0 ).map(&:date).map(&:year).uniq
 		@years_for_the_dundee = Event.where(location: 1 ).map(&:date).map(&:year).uniq
 	end
-  
+
+	def location
+
+	end
+
+	def ruth_sokolof
+
+	end
+
+	def dundee
+
+	end
+
+
 	def show
 		@event_info = Event.find(params[:id])
 		@events = Event.select(:id, :date).order(id: :desc)

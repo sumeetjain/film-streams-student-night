@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   # ---------------------------------------------------------------------------
 
   # This block handles stats
+  get "statistics/location" => 'statistics#location'
   get "/statistics/by_date" => 'statistics#by_date'
   get "/statistics/attendance" => 'statistics#attendance'
   get "/statistics/list" => 'statistics#list'
