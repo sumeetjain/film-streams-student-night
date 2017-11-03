@@ -1,0 +1,58 @@
+<%= render 'layouts/stats_header' %>
+<div class="container"> 
+	
+	<%= line_chart [
+	  {name: "All Attendances", data: get_attendances_per_event(0)},
+	  {name: "Unique Students", data: get_students_per_location(0)},
+	  {name: "Unique Schools", data: get_schools_per_location(0)}
+	]%> 
+
+	<h2>Attendances By Year For The Ruth Sokolof Theater</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Year</th>
+				<th>Total Attendances</th>
+				<th>Unique Students</th>
+				<th>Unique Schools</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%  @years_for_ruth_sokolof.each do |year|  %>
+				<tr>
+					<td><%= year %></td>
+					<td><%= Event.new.attends_by_year_for_loc(year, 0) %></td>
+					<td><%= Event.new.students_by_year_for_loc(year, 0) %></td>
+					<td><%= Event.new.unique_schools_by_loc(year, 0) %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<h2>All Time For Ruth Sokolof Theater</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Total Attendances</th>
+				<th>Unique Students</th>
+				<th>Unique Schools</th>
+			</tr>
+		</thead>
+		<tbody>
+		  <tr>
+		  	<td>Total</td>
+		  	<td><%= @location_stats['ruth_sokolof']['total_attendances'] %></td>
+		  	<td><%= @location_stats['ruth_sokolof']['total_students'] %></td>
+		  	<td><%= @location_stats['ruth_sokolof']['total_schools'] %></td>
+		  </tr>
+		  <tr>
+		  	<td>Avg (year)</td>
+		  	<td><%= @location_stats['ruth_sokolof']['total_attendances'] / @location_stats['ruth_sokolof']['students_grouped'].count %></td>
+		  	<td><%= @location_stats['ruth_sokolof']['total_students'] / @location_stats['ruth_sokolof']['students_grouped'].count %></td>
+		  	<td><%= @location_stats['ruth_sokolof']['schools_grouped'].values.sum / @location_stats['ruth_sokolof']['schools_grouped'].count %></td>
+		  </tr>
+		</tbody>
+	</table>
+</div>
+

@@ -3,14 +3,28 @@ class StatisticsController < ApplicationController
 	before_filter :set_dates
 
 	def index
-		@attendances = Attendance.count
-		@unique_students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
-		@years = Event.all.map(&:date).map(&:year).uniq
-		@students = Attendance.all.group_by_year(:created_at).select(:student_id).uniq.count
+		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
+	    @attendances = Attendance.count
+		@unique_students = Attendance.all.group_by_year(:created_at).select(:student_id).distinct.count
 		@unique_schools = Attendance.group_by_year('attendances.created_at').joins(:student => :school).select('schools.name').uniq.count
+		@years = Event.all.map(&:date).map(&:year).uniq.sort
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
 	end
-  
+
+	def ruth_sokolof
+		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")	
+		@years_for_ruth_sokolof = Event.where(location: 0 ).map(&:date).map(&:year).uniq
+		@location_stats = build_school_hash
+		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
+	end
+
+	def dundee
+		@conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
+		@years_for_the_dundee = Event.where(location: 1 ).map(&:date).map(&:year).uniq
+		@location_stats = build_school_hash
+		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
+	end
+
 	def show
 		@event_info = Event.find(params[:id])
 		@events = Event.select(:id, :date).order(id: :desc)
