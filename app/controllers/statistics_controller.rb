@@ -23,6 +23,10 @@ class StatisticsController < ApplicationController
 		@years_for_the_dundee = Event.where(location: 1 ).map(&:date).map(&:year).uniq
 		@location_stats = build_school_hash
 		@referrals = Referral.select('referrals.id').group('referrals.referral_type').count.transform_keys { |k| Referral.referral_types.key(k) }
+
+		if @location_stats['dundee']['students_grouped'].count == 0
+			redirect_to :statistics, alert: "No statistics for the Dundee yet."
+		end
 	end
 
 	def show
