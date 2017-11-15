@@ -38,12 +38,6 @@ module StatisticsHelper
     students.sort_by{|k,v| v}.reverse
   end
 
-  def attends_by_location(location)
-    @conn = PGconn.connect(:dbname =>  "film-streams-student-night_development")
-    @get_attends_by_location = @conn.exec("SELECT * FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = #{location}")
-    return @get_attends_by_location
-  end
-
   # Gets all the events for a given location
   def events_per_location(location_id) 
     events = Event.where('events.location = #{location_id}')
