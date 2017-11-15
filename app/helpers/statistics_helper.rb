@@ -45,7 +45,7 @@ module StatisticsHelper
 
   # Gets the count of all attendances per location grouped by year
   def get_attendances_per_event(location_id)
-    attendances_per_year_by_loc = @conn.exec("SELECT COUNT(*) as total, extract(year from date) as year FROM events JOIN attendances ON events.id = attendances.event_id WHERE events.location = #{location_id} GROUP BY year ORDER BY year DESC;")
+    attendances_per_year_by_loc = ActiveRecord::Base.connection.execute("SELECT COUNT(*) as total, extract(year from date) as year FROM events JOIN attendances ON events.id = attendances.event_id WHERE events.location = #{location_id} GROUP BY year ORDER BY year DESC;")
     attends_by_year = {}
    
     attendances_per_year_by_loc.each do |attends|
@@ -56,7 +56,7 @@ module StatisticsHelper
 
   # Gets the number of unique students per location grouped by year
   def get_students_per_location(location_id)
-    students_by_year = @conn.exec("SELECT COUNT(DISTINCT student_id) as students, extract(year from date) as year FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = #{location_id} GROUP BY year ORDER BY year DESC;")
+    students_by_year = ActiveRecord::Base.connection.execute("SELECT COUNT(DISTINCT student_id) as students, extract(year from date) as year FROM attendances JOIN events ON attendances.event_id = events.id WHERE events.location = #{location_id} GROUP BY year ORDER BY year DESC;")
     unique_student_count = {}
   
     students_by_year.each do |unique_students|
@@ -67,7 +67,7 @@ module StatisticsHelper
 
   # Gets the number of unique schools per location grouped by year
   def get_schools_per_location(location_id)
-    schools_by_year = @conn.exec("SELECT yyyy, COUNT(school_id) FROM (SELECT extract(year FROM events.date) AS yyyy, students.school_id FROM events JOIN attendances ON attendances.event_id = events.id JOIN students ON attendances.student_id = students.id WHERE events.location = #{location_id} GROUP BY students.school_id, yyyy) AS years_school_attendances GROUP BY yyyy;")
+    schools_by_year = ActiveRecord::Base.connection.execute("SELECT yyyy, COUNT(school_id) FROM (SELECT extract(year FROM events.date) AS yyyy, students.school_id FROM events JOIN attendances ON attendances.event_id = events.id JOIN students ON attendances.student_id = students.id WHERE events.location = #{location_id} GROUP BY students.school_id, yyyy) AS years_school_attendances GROUP BY yyyy;")
     schools_grouped = {}
     schools_by_year.each do |unique_schools|
       schools_grouped[unique_schools['yyyy']] = unique_schools['count']
