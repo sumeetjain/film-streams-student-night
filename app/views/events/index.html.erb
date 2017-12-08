@@ -29,10 +29,10 @@
 						<%= event_location(event) %>
 					</td>
 					<td>
-						<a href="events/<%= event.id %>" class="btn custom-btn borderless">
+						<a href="/events/<%= event.id %>" class="btn custom-btn borderless">
 							Edit <span class="glyphicon glyphicon-edit"></span>
 					  </a>
-					  <a href="events/<%= event.id %>/checkins/new" class="btn custom-btn borderless">
+					  <a href="/events/<%= event.id %>/checkins/new" class="btn custom-btn borderless">
 					  	Student Sign In<span class="glyphicon glyphicon-view"></span>
 		 			  </a>
 					</td>
@@ -68,7 +68,7 @@
 						<%= event.title %>
 					</td>
 					<td>
-						<a href="events/<%= event.id %>" class="btn custom-btn borderless">
+						<a href="/events/<%= event.id %>" class="btn custom-btn borderless">
 							Edit <span class="glyphicon glyphicon-edit"></span>
 					  </a>
 					</td>
@@ -78,7 +78,7 @@
 		</tbody>
 		
 	</table>
-	 <a href="events/past" class="btn custom-btn borderless">
+	 <a href="/events/past" class="btn custom-btn borderless">
 	Show All Past Events<span class="glyphicon glyphicon-view"></span></a>
 </div>
 
