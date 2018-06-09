@@ -2,7 +2,8 @@ module EventsHelper
 
 	  # Database queries for reports
   def year_student_attendances(year)
-    Attendance.by_year(year).select(:student_id).count
+    events = Event.by_year(year, field: :date)
+    Attendance.where(event: events).select(:student_id).count
   end
 
   def attends_by_year_for_loc(year, location_id)
@@ -10,7 +11,8 @@ module EventsHelper
   end
 
   def unique_student_attendances(year)
-    Attendance.by_year(year).select(:student_id).uniq.count
+    events = Event.by_year(year, field: :date)
+    Attendance.where(event: events).select(:student_id).uniq.count
   end
 
   def students_by_year_for_loc(year, location_id)
@@ -19,7 +21,8 @@ module EventsHelper
   end
 
   def unique_schools(year)
-    Attendance.by_year(year).joins(:student => :school).select('schools.name').uniq.count
+    events = Event.by_year(year, field: :date)
+    Attendance.where(event: events).joins(:student => :school).select('schools.name').uniq.count
   end
 
   def unique_schools_by_loc(year, location_id)
