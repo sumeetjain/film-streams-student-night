@@ -34,12 +34,17 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>Student</th>
-						<th>Attends </th>	
+						<th>
+							Student
+							(<%= @students.count %>)
+						</th>
+						<th>
+							Attendances
+							(<%= @students.map{|student, num| num}.inject { |sum, num| sum + num } %>)
+						</th>
 					</tr>
 				</thead>
 				<tbody>
-
 					<%  @students.each do |student, num| %>
 						<tr>
 							<td><a href="/statistics/student/<%=student[2]%>"><%= student[1] %></a></td>
@@ -54,8 +59,15 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>Schools</th>
-						<th>Attends</th>
+						<th>
+							School
+							(<%= @schools.count %>)
+						</th>
+
+						<th>
+							Attendances
+							(<%= @schools.map{|school, num| num}.inject { |sum, num| sum + num } %>)
+						</th>
 						<th class="text-center">%</th>
 					</tr>
 				</thead>

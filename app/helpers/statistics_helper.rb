@@ -30,12 +30,21 @@ module StatisticsHelper
   end
 
   def schools_name_by_year
-    schools = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student => :school).order("count_all DESC").group("schools.name", "students.school_id").count
+    events = Event.where("date >= ? AND date <= ?", @start_date.to_date, @end_date.to_date)
+
+    attendances = Attendance.where(event: events)
+    
+    schools = attendances.joins(:student => :school).order("count_all DESC").group("schools.name", "students.school_id").count
   end
 
   def student_attends_by_year
-    students = Attendance.between_times(@start_date.to_date, @end_date.to_date).joins(:student).group(:email, :name, 'attendances.student_id').count
+    events = Event.where("date >= ? AND date <= ?", @start_date.to_date, @end_date.to_date)
+
+    attendances = Attendance.where(event: events)
+
+    students = attendances.joins(:student).group(:email, :name, 'attendances.student_id').count
     students.sort_by{|k,v| v}.reverse
+
   end
 
   # Gets all the events for a given location
