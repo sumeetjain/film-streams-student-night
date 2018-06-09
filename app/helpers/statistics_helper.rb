@@ -14,7 +14,7 @@ module StatisticsHelper
   end 
 
   def event_list_by_year
-    Event.by_year(@year).select(:id, :date).order(id: :desc)
+    Event.by_year(@year, field: :date).select(:id, :date).order(id: :desc)
   end
 
   def attends_by_student(id)
