@@ -33,11 +33,11 @@ class Event < ActiveRecord::Base
   end
 
   def self.past_events
-    Event.where("date < ?", Date.today).reverse
+    Event.order(date: :desc)
   end
 
   def self.most_recent_past
-    Event.past_events[0..9]
+    Event.order(date: :desc).limit(10)
   end
 
   def self.drop_locations
