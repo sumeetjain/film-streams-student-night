@@ -14,7 +14,7 @@ module StatisticsHelper
   end 
 
   def event_list_by_year
-    Event.by_year(@year, field: :date).select(:id, :date).order(id: :desc)
+    Event.by_year(@year, field: :date).select(:id, :date).order(date: :desc)
   end
 
   def attends_by_student(id)
@@ -33,7 +33,7 @@ module StatisticsHelper
     events = Event.where("date >= ? AND date <= ?", @start_date.to_date, @end_date.to_date)
 
     attendances = Attendance.where(event: events)
-    
+
     schools = attendances.joins(:student => :school).order("count_all DESC").group("schools.name", "students.school_id").count
   end
 
