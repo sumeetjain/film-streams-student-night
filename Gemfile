@@ -6,7 +6,6 @@ gem "chartkick"
 gem 'groupdate'
 gem 'by_star'
 gem 'bootstrap-sass'
-gem 'pry'
 
 
 gem 'axlsx_rails'
@@ -37,14 +36,13 @@ gem 'bcrypt', '~> 3.1.7'
 
 
 group :development, :test do
-  gem 'pry'
-  
+  gem 'pry-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
 
 group :development do
-  gem "pry"
+  
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
