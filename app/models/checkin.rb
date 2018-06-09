@@ -11,7 +11,7 @@ class Checkin
     format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
 
   def student
-    Student.find_by(email: email)
+    Student.where("LOWER(email) = ?", email.downcase).first
   end
 
   def student_id
