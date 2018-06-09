@@ -27,7 +27,7 @@
 						
 								<td><a href="/statistics/<%= event.id %>?year=<%=params[:year]%>&event=<%=event.date%>"><%= event.date %></a></td>
 								<td><%= event.attendances.count %></td>
-								<td><%= event.school_by_event(event.date)   %></td>
+								<td><%= event.school_by_event(event.id)   %></td>
 							</tr>
 						<% end %>
 					<% end %>	

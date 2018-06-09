@@ -47,11 +47,6 @@ class StatisticsController < ApplicationController
 		@years = Event.all.map(&:date).map(&:year).uniq
 	end
 
-	def all_time
-		student_attends_by_year
-		@events = Event.order(date: :desc).map(&:date).uniq
-	end
-
 	def by_date
 		@students = student_attends_by_year
 		@schools = schools_name_by_year
